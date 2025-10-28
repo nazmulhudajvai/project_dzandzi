@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: AppColors.whiteColor,
       body: Center(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -45,7 +45,7 @@ class _SplashPageState extends State<SplashView> {
             gradient: RadialGradient(
               radius: 1.5,
               transform: const GradientRotation(2.8),
-              colors: [AppColor.blueLiteColor, AppColor.blueColor],
+              colors: [AppColors.black, AppColors.blueColor],
             ),
           ),
           child: Container(
@@ -56,7 +56,7 @@ class _SplashPageState extends State<SplashView> {
               borderRadius: BorderRadius.circular(6),
               gradient: LinearGradient(
                 transform: const GradientRotation(1.8),
-                colors: [AppColor.whiteColor, AppColor.blueLiteColor],
+                colors: [AppColors.whiteColor, AppColors.black],
               ),
             ),
             child: Center(
@@ -65,7 +65,7 @@ class _SplashPageState extends State<SplashView> {
                 style: GoogleFonts.roboto(
                   fontSize: 32.sp,
                   fontWeight: FontWeight.w700,
-                  color: AppColor.blueColor,
+                  color: AppColors.blueColor,
                 ),
               ),
             ),

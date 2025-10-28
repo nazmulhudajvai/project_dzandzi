@@ -25,14 +25,6 @@ class AppUrl {
   static const String getChatsUrl = '$_baseUrl/chat/rooms/';
 
 
-
-
-
-
-
-
-
-
   static const String fetchProfilesUrl = '$_baseUrl/user/profiles/';
   static const String profilesFilterUrl = '$_baseUrl/profiles/filter/';
   static const String updateProfileUrl = '$_baseUrl/user/update-profile/';
