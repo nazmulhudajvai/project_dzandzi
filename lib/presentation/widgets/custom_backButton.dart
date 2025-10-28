@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tinny_app/theams/app_color.dart';
+
+import '../../theams/app_color.dart';
 
 class Custom_back_button extends StatelessWidget {
   const Custom_back_button({super.key, required this.buttonSvg});

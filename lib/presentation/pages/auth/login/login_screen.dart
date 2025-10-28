@@ -80,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(height: 6.h),
                     Text(
                       'Login to your account',
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.roboto(
                         color: AppColor.textGreyColor,
                         fontSize: 16,
                       ),
@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           const Spacer(),
                           InkWell(
-                            onTap: () => Get.to(() => ForgetPasswordView()),
+                            onTap: () => Get.to(() => SignUpView()),
                             child: Text(
                               'Forget Password?',
                               style: GoogleFonts.inter(

@@ -46,8 +46,8 @@ class AppColor {
   static const Color greenColor2 = Color(0xFF96DC42);
   static const Color blackColor = Color(0xFF000000);
   static const Color greenLightColor = Color(0x8E9AFFB8);
-  static const Color blueColor = Color(0xFF1D2B86);
-  static const Color purleColor = Color(0xFFEDF7EA);
+  static const Color blueColor = Color(0xFF032D5C);
+  static const Color blueLiteColor = Color(0xFF0D73E5);
   static const Color deepRedColor = Color(0xFF960808);
   static const Color textAreaColor = Color(0xFFF8FCFF);
   static const Color dividerColor = Color(0xFFC7C7C7);
@@ -71,6 +71,8 @@ class AppColor {
   static const Color subTitleColor = Color(0xFFB5B6B9);
   static const Color backColor = Color(0xFF9095AC);
   static const Color whiteColor = Color(0xFFFFFFFF);
+  static const Color border1Color = Color(0xFFCFCFCF);
+  static const Color inputColor = Color(0xFFEFEFEF);
   static const Color grey30Color = Color(0xFF6A6A6A);
   static const Color toggleColor = Color(0xFFE8EAF0);
   static const Color inactiveScroll = Color(0xFFAFAFAF);
@@ -91,10 +93,12 @@ class AppColor {
   static const Color textareaColor = Color(0xFFFDFDFE);
   static const Color borderareaColor = Color(0xFFE7E9ED);
   static const Color background1Color = Color(0xFFEAEAEA);
+  static const Color background2Color = Color(0xFFF7FBFD);
 
   // static const Color backColor = Color(0xFFECF0FF);
   static const Color black25 = Color(0x40000000);
-  static const Color greyBC = Color(0xFFBCBCC0);
+  static const Color greyBC = Color(0xFF575757);
+  static const Color grayBC = Color(0xFF101828);
   static const Color darkGrey = Color(0xFF343537);
   static const Color subTitleGrey = Color(0xFF8E8E93);
 

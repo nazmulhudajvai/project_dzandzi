@@ -1,22 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+// fixed "theams" → "themes"
 import '../../../../res/assets/image_assets.dart';
+import '../../../theams/app_color.dart';
 
-class SplashView extends StatelessWidget {
-  const SplashView({super.key});
+class SwitchController extends GetxController {
+  var isLoading = true.obs; // controls loading bar
+}
+
+class SplashView extends StatefulWidget {
+  const SplashView({Key? key}) : super(key: key);
+
+  @override
+  State<SplashView> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashView> {
+  final SwitchController controller = Get.put(SwitchController());
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Simulate loading and navigate after 3 seconds
+    Future.delayed(const Duration(seconds: 3), () {
+      controller.isLoading.value = false;
+      Get.offNamed('signup'); // navigate to next page
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Initialize SplashControllergi
-
     return Scaffold(
-      backgroundColor: Color(0xFF0B0B0B), // optional background
+      backgroundColor: AppColor.whiteColor,
       body: Center(
-        child: Image.asset(
-          'assets/image/logo.png',
-          height: 213.h,
-          width: 104.w,
+        child: Container(
+          margin: const EdgeInsets.all(10),
+          width: 400.w,
+          height: 142.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            gradient: RadialGradient(
+              radius: 1.5,
+              transform: const GradientRotation(2.8),
+              colors: [AppColor.blueLiteColor, AppColor.blueColor],
+            ),
+          ),
+          child: Container(
+            margin: const EdgeInsets.all(10),
+            width: 400.w,
+            height: 142.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              gradient: LinearGradient(
+                transform: const GradientRotation(1.8),
+                colors: [AppColor.whiteColor, AppColor.blueLiteColor],
+              ),
+            ),
+            child: Center(
+              child: Text(
+                "Welcome To DzanDzi",
+                style: GoogleFonts.roboto(
+                  fontSize: 32.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColor.blueColor,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

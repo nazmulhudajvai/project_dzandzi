@@ -9,6 +9,11 @@ abstract class Routes {
   static const OTP = _Paths.OTP;
   static const SplashView = _Paths.SplashView;
   static const Notification = _Paths.Notification;
+  static const HOME = '/home';
+  static const PROJECT = '/projects';
+  static const EMPLOYEES = '/employees';
+  static const INVENTORY = '/inventory';
+  static const PROFILE = '/profile';
 }
 
 abstract class _Paths {

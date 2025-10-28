@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:tinny_app/presentation/pages/home/home_view.dart';
 
 import '../../../../theams/app_color.dart';
 import '../../controllers/bottom_navbar_controller.dart';

@@ -1,3 +1,7 @@
+import 'package:dzandzi/presentation/pages/common/company_details.dart';
+import 'package:dzandzi/presentation/widgets/custom_button.dart';
+import 'package:dzandzi/presentation/widgets/custom_field_button.dart';
+import 'package:dzandzi/presentation/widgets/custom_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,179 +27,96 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        backgroundColor: AppColor.blackLiteColor,
+    return Scaffold(
+        backgroundColor: AppColor.background2Color,
         body: SafeArea(
-          child: Stack(
-            children: [
-              Positioned(
-                top: 20.h,
-                left: 0,
-                right: 0,
-                child: SizedBox(
-                  height: 68,
-                  width: 139,
-                  child: Image.asset(
-                    'assets/image/logo.png',
-                    height: 213.h,
-                    width: 104.w,
+          child: Container(margin:EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text(
+                'Create Your Account',
+                style: GoogleFonts.roboto(
+                  color: AppColor.grayBC,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w600
+                ),
+                textAlign: TextAlign.left,
+              ),
+
+              SizedBox(height: 30.h,),
+                Text(
+                  'First Name',
+                  style: GoogleFonts.roboto(
+                      color: AppColor.greyBC,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
                   ),
+                  textAlign: TextAlign.left,
                 ),
-              ),
-              AnimatedPositioned(
-                duration: Duration(milliseconds: 200),
-                curve: Curves.easeIn,
-                top: 70,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 30.w),
-                  children: [
-                    SizedBox(height: 20.h),
-                    Text(
-                      'Commit. Unite. Achieve.',
-                      style: GoogleFonts.inter(
-                        color: AppColor.whiteColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 1.20,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 5.h),
-                    Text(
-                      'Create your new account',
-                      style: GoogleFonts.inter(
-                        color: AppColor.textGreyColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 0.70,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 40.h),
-                    Text(
-                      'Phone Number',
-                      style: GoogleFonts.inter(
-                        color: AppColor.whiteColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-
-                    SizedBox(height: 17.h),
-                    Text(
-                      'Password',
-                      style: GoogleFonts.inter(
-                        color: AppColor.whiteColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-
-                    SizedBox(height: 16.h),
-                    Text(
-                      'Username',
-                      style: GoogleFonts.inter(
-                        color: AppColor.whiteColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-
-                    SizedBox(height: 16.h),
-                    Text(
-                      'Birthday',
-                      style: GoogleFonts.inter(
-                        color: AppColor.whiteColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    SizedBox(height: 10.h),
-
-                    SizedBox(height: 30.h),
-                    Padding(
-                      padding: EdgeInsets.only(right: 15.w),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              controller.isRemembered.toggle();
-                            },
-                            child: Obx(
-                              () => Container(
-                                width: 17,
-                                height: 17,
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  border: Border.all(
-                                    color: controller.isRemembered.value
-                                        ? Colors.white
-                                        : AppColor.whiteColor,
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.check,
-                                    color: controller.isRemembered.value
-                                        ? AppColor.whiteColor
-                                        : Colors.transparent,
-                                    size: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            'I agree to all Term, Privacy Policy and fees',
-                            style: GoogleFonts.inter(
-                              color: AppColor.whiteLiteColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 0.50,
-                            ),
-                          ),
-                          Spacer(),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 50.h),
-
-                    SizedBox(height: 20.h),
-                    Row(
-                      spacing: 12.w,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Already have an account?',
-                          style: GoogleFonts.inter(
-                            color: AppColor.whiteLiteColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            letterSpacing: 0.60,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20.h),
-                  ],
+                SizedBox(height: 5.h,),
+                CustomInputWidget(hintText: 'Enter First name', onChanged: (String value) {  },),
+                SizedBox(height: 10.h,),
+                Text(
+                  'Last Name',
+                  style: GoogleFonts.roboto(
+                      color: AppColor.greyBC,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-              ),
+                SizedBox(height: 5.h,),
+                CustomInputWidget(hintText: 'Enter Last name', onChanged: (String value) {  },),SizedBox(height: 10.h,),
+                Text(
+                  'Email Address',
+                  style: GoogleFonts.roboto(
+                      color: AppColor.greyBC,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.h,),
+                CustomInputWidget(hintText: 'Enter email address', onChanged: (String value) {  },),SizedBox(height: 10.h,),
+                Text(
+                  'Telephone Number',
+                  style: GoogleFonts.roboto(
+                      color: AppColor.greyBC,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.h,),
+                CustomInputWidget(hintText: 'Enter Telephone Number', onChanged: (String value) {  },),SizedBox(height: 10.h,),
+                Text(
+                  'Password',
+                  style: GoogleFonts.roboto(
+                      color: AppColor.greyBC,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.h,),
+                CustomInputWidget(hintText: '********', onChanged: (String value) {  },obscureText: true,),SizedBox(height: 10.h,),
+                Text(
+                  'Confirm Password',
+                  style: GoogleFonts.roboto(
+                      color: AppColor.greyBC,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.h,),
+                CustomInputWidget(hintText: '********', onChanged: (String value) {  },obscureText: true,),SizedBox(height: 50.h,),
+                InkWell(onTap:(){Get.to(CompanyDetailsView());},child: CustomButton(title: 'Register',radius: 100,height:50.h ,width: 369.9.w,))
             ],
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

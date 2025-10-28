@@ -1,4 +1,4 @@
-name: tinny_app
+name: dzandzi
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -91,21 +91,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/image/splash.png
-    - assets/image/password.svg
-    - assets/image/logo2.png
-    - assets/image/l1.png
-    - assets/image/logo.png
-    - assets/image/call.svg
-    - assets/image/person.svg
-    - assets/image/down.svg
+    - assets/image/ihome.svg
 
-    - assets/image/Vector-2.svg
-    - assets/image/Vector-3.svg
-    - assets/image/PostIMG.png
-
-
-    - assets/image/bro2.png
     - assets/image/
 
 
