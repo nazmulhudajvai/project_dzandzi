@@ -1,8 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppColor {
- 
+
   static const Color pageBackgroundColor = Color(0xFFF7FBFD);
   static const Color startTitle = Color(0xFFCFCFCF);
   static const Color Textcolor = Color(0xFF9D9D9D);
@@ -16,8 +15,7 @@ class AppColor {
   static const Color showEyeColor = Color(0xFF226CC0);
   static const Color projectSectionColor = Color(0xFF0D73E5);
   static const Color bottomNavigationIconColor = Color(0xFF0D73E5);
- 
- 
+
   static const Color blueColor = Color(0xFF0D73E5);
   static const Color inProgressText = Color(0xFF1E90FF);
   static const Color deepBlue = Color(0xFF0C59AF);
@@ -29,40 +27,28 @@ class AppColor {
   static const Color lightblue = Color(0xFF2A91EB);
   static const Color totalValueColor1 = Color(0xFF1544A6);
   static const Color copyButton = Color(0xFF395575);
- 
- 
-  static const Color deepblue = Color(0xFF074993);
-  static const Color deepblue11 = Color(0xF5851E1);
- 
+
   static const Color buttonColor = Color(0xFF032D5C);
   static const Color titileText = Color(0xFF18181B);
   static const Color projecSectiontColor2 = Color(0xFF002E5D);
   static const Color black12 = Color(0xFF314158);
   static const Color editTextColor = Color(0xFF45556C);
   static const Color black = Color(0xFF4A4A4A);
- 
+
   static const Color textFieldColor = Color(0xFFEFEFEF);
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color textFieldColor2 = Color(0xFFEDEDED);
   static const Color liteblue = Color(0xFF90A1B9);
   static const Color subtitleColor = Color(0xFF62748E);
   static const Color hintTextColor = Color(0xFF808284);
- 
+
   static const Color onGoingSection = Color(0xFFE67E2C);
   static const Color onGoingSection2 = Color(0xFFF69448);
   static const Color paintColor= Color(0xFFF59E0B);
   static const Color milestoneInterior= Color(0xFFE67D2A);
   static const Color ongoingIcon = Color(0xFFEF9853);
   static const Color oragelight = Color(0xFFF18733);
- 
-  static const Color inventoryTextmedium = Color(0xFFFFBB28);
-  static const Color ongoingText = Color(0xFFF57053);
-  static const Color orage = Color(0xFFFF8042);
- 
-  static const Color liteBlackTextColor = Color(0xFF3F3F3F);
-  static const Color blackColor = Color(0xFF000000);
-  static const Color textColorlite = Color(0xFF3D3D3D);
- 
+
   static const Color completeProjectSection1 = Color(0xFF0D886C);
   static const Color completeProjectSection2 = Color(0xFF10C59B);
   static const Color completeProjectIconColor = Color(0xFF41B499);
@@ -71,8 +57,7 @@ class AppColor {
   static const Color itemsectionColor = Color(0xFF00B679);
   static const Color greenTextcolor = Color(0xFF17B597);
   static const Color editProfileColor = Color(0xFF1B5596);
- 
- 
+
   static const Color totalItemTextColor = Color(0xFF005035);
   static const Color budgetUserColor = Color(0xFF9E53EF);
   static const Color inventoryRedText = Color(0xFFEF1A1A);
@@ -81,6 +66,4 @@ class AppColor {
   static const Color needAttentionColor2 = Color(0xFFA4170D);
   static const Color lowStockColor = Color(0xFFD39B56);
   static const Color lowStockColor120 = Color(0xFFD39B56);
- 
- 
-}
+
