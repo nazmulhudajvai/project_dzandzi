@@ -11,7 +11,7 @@ void main() {
       ScreenUtilInit(
         designSize: const Size(390, 844),
         builder: (context, child) => GetMaterialApp(
-          title: 'Tiny App',
+          title: 'Dzandzi',
           debugShowCheckedModeBanner: false,
           initialRoute: AppPages.initial, // your home route
           getPages: AppPages.routes,
