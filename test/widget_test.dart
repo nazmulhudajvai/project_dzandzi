@@ -1,8 +1,8 @@
+import 'package:dzandzi/core/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tinny_app/core/routes/app_pages.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
