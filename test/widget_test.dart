@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tinny_app/core/routes/app_pages.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -11,7 +10,7 @@ void main() {
       ScreenUtilInit(
         designSize: const Size(390, 844),
         builder: (context, child) => GetMaterialApp(
-          title: 'Tiny App',
+          title: 'Dzandzi',
           debugShowCheckedModeBanner: false,
           initialRoute: AppPages.initial, // your home route
           getPages: AppPages.routes,
