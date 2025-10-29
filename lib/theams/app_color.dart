@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-
   static const Color pageBackgroundColor = Color(0xFFF7FBFD);
   static const Color startTitle = Color(0xFFCFCFCF);
   static const Color textcolor = Color(0xFF9D9D9D);
-  static const Color grey11 = Color(0xFF676767);
-  static const Color grey12 = Color(0xFF676767);
+  static const Color searchColor = Color(0xFFC2C1C1);
+  static const Color smallUsercolor = Color(0xFF676767);
+  
   static const Color grey13 = Color(0xFF4F4E4E);
   static const Color defaultTextColor = Color(0xFF101828);
   static const Color textColor = Color(0xFF101828);
-  static const Color greydeep11 = Color(0xFF0F172B);
+  static const Color greydeep = Color(0xFF0F172B);
   static const Color textFeieldTitle = Color(0xFF575757);
   static const Color showEyeColor = Color(0xFF226CC0);
   static const Color projectSectionColor = Color(0xFF0D73E5);
@@ -28,12 +28,12 @@ class AppColors {
   static const Color totalValueColor1 = Color(0xFF1544A6);
   static const Color copyButton = Color(0xFF395575);
 
-  static const Color buttonColor = Color(0xFF032D5C);
+  static const Color liniarIndicatorColor = Color(0xFF032D5C);
   static const Color titileText = Color(0xFF18181B);
   static const Color projecSectiontColor2 = Color(0xFF002E5D);
   static const Color black12 = Color(0xFF314158);
   static const Color editTextColor = Color(0xFF45556C);
-  static const Color black = Color(0xFF4A4A4A);
+  static const Color black = Colors.black;
 
   static const Color textFieldColor = Color(0xFFEFEFEF);
   static const Color whiteColor = Color(0xFFFFFFFF);
@@ -52,7 +52,7 @@ class AppColors {
   static const Color completeProjectSection1 = Color(0xFF0D886C);
   static const Color completeProjectSection2 = Color(0xFF10C59B);
   static const Color completeProjectIconColor = Color(0xFF41B499);
-  static const Color completeTextColor = Color(0xFF1AB24C);
+  static const Color activeStatus = Color(0xFF1AB24C);
   static const Color inventoryText = Color(0xFF199743);
   static const Color itemsectionColor = Color(0xFF00B679);
   static const Color greenTextcolor = Color(0xFF17B597);
