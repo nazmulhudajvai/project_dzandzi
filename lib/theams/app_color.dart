@@ -31,6 +31,7 @@ class AppColors {
 
   static const Color liniarIndicatorColor = Color(0xFF032D5C);
   static const Color titleText = Color(0xFF18181B);
+  static const Color title2Text = Color(0xFF63707C);
   static const Color projecSectiontColor2 = Color(0xFF002E5D);
   static const Color black12 = Color(0xFF314158);
   static const Color editTextColor = Color(0xFF45556C);
@@ -41,6 +42,7 @@ class AppColors {
   static const Color textFieldColor2 = Color(0xFFEDEDED);
   static const Color liteblue = Color(0xFF90A1B9);
   static const Color subtitleColor = Color(0xFF62748E);
+  static const Color subtitle2Color = Color(0xFF62748E);
   static const Color hintTextColor = Color(0xFF808284);
 
   static const Color onGoingSection = Color(0xFFE67E2C);

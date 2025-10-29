@@ -68,6 +68,8 @@ class AssignedProjectManager extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                radius: 50.r,
+                cheight: 50.h,
                 hintText: 'Enter project name',
                 onChanged: (String value) {},
               ),
@@ -84,6 +86,8 @@ class AssignedProjectManager extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                radius: 50.r,
+                cheight: 50,
                 hintText: 'Enter project location',
                 onChanged: (String value) {},
               ),

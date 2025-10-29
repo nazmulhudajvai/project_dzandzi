@@ -1,4 +1,5 @@
 import 'package:dzandzi/presentation/pages/home/home_view.dart';
+import 'package:dzandzi/presentation/pages/profile/my_profile.dart';
 import 'package:dzandzi/theams/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +10,7 @@ import '../../core/routes/app_pages.dart';
 import '../../theams/app_color2.dart';
 import '../controllers/bottom_navbar_controller.dart';
 import '../pages/projects_page/projects.dart';
- // ✅ add this import for route names
+// ✅ add this import for route names
 
 class CustomBottomNav extends StatelessWidget {
   final BottomNavController controller = Get.find();
@@ -62,7 +63,7 @@ class CustomBottomNav extends StatelessWidget {
                     // Get.to(ProjectsView());
                     break;
                   case 4:
-                    // Get.to(ProjectsView());
+                    Get.to(ProfileView());
                     break;
                 }
               },
@@ -132,5 +133,6 @@ class CustomBottomNav extends StatelessWidget {
 class _NavItem {
   final String iconPath;
   final String label;
+
   _NavItem({required this.iconPath, required this.label});
 }

@@ -8,7 +8,6 @@ import '../../res/assets/image_assets.dart';
 import '../../theams/app_color.dart';
 import '../../theams/app_color2.dart';
 
-
 class CustomInputController extends GetxController {
   final RxBool isObscured;
   final TextEditingController textController;
@@ -95,6 +94,8 @@ class CustomInputWidget extends StatelessWidget {
     this.leadingIconWidget,
     this.borderGradientColors = const [Colors.blue, Colors.cyan],
     this.glassEffect = false,
+    required this.cheight,
+    required this.radius,
   });
 
   final Widget? leadingIconWidget;
@@ -138,6 +139,8 @@ class CustomInputWidget extends StatelessWidget {
   final Widget? settingsIconWidget;
   final TextInputType keyboardType;
   final List<Color> borderGradientColors;
+  final double cheight;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
@@ -150,12 +153,14 @@ class CustomInputWidget extends StatelessWidget {
       tag: key?.toString() ?? UniqueKey().toString(),
     );
 
-    return Container(width: 400.w,height: 50.h,
+    return Container(
+      width: 400.w,
+      height: cheight.h,
       decoration: BoxDecoration(
         color: AppColor.inputColor,
 
-        border: Border.all(color: AppColor.border1Color,width: 0.5.sp),
-        borderRadius: BorderRadius.circular(48),
+        border: Border.all(color: AppColor.border1Color, width: 0.5.sp),
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -189,16 +194,12 @@ class CustomInputWidget extends StatelessWidget {
                   onTap: onTap,
                   readOnly: readOnly,
                   maxLines: maxLines,
-                  textAlign: textAlign
-                      ? TextAlign.right
-                      : TextAlign.left,
+                  textAlign: textAlign ? TextAlign.right : TextAlign.left,
                   obscureText: inputController.isObscured.value,
                   decoration: InputDecoration(
                     hintText: hintText,
                     hintStyle: GoogleFonts.inter(
-                      color: glassEffect
-                          ? Colors.white70
-                          : hintTextColor,
+                      color: glassEffect ? Colors.white70 : hintTextColor,
                       fontSize: hintFontSize.sp,
                       fontWeight: hintFontWeight,
                     ),
@@ -211,13 +212,12 @@ class CustomInputWidget extends StatelessWidget {
                         : null,
                   ),
                   keyboardType: keyboardType,
-                  style: Theme.of(context).textTheme.titleMedium!
-                      .copyWith(
-                        fontSize: fontSize.sp,
-                        fontWeight: fontWeight,
-                        fontFamily: fontFamily,
-                        color: Colors.white,
-                      ),
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    fontSize: fontSize.sp,
+                    fontWeight: fontWeight,
+                    fontFamily: fontFamily,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -232,7 +232,7 @@ class CustomInputWidget extends StatelessWidget {
                           ? Icons.visibility_off
                           : Icons.visibility,
                       size: 16.sp, // 👈 decreased height
-                      color: AppColor.whiteLiteColor.withOpacity(
+                      color: AppColor.blueLiteColor.withOpacity(
                         0.8,
                       ), // 👈 changed color
                     ),
@@ -243,8 +243,7 @@ class CustomInputWidget extends StatelessWidget {
             if (backIcon)
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child:
-                    settingsIconWidget ?? SvgPicture.asset(imageIcon),
+                child: settingsIconWidget ?? SvgPicture.asset(imageIcon),
               ),
             if (backIcon2)
               Padding(
