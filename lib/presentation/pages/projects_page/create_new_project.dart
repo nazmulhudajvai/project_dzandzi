@@ -1,3 +1,4 @@
+import 'package:dzandzi/presentation/pages/projects_page/assign_project_manager.dart';
 import 'package:dzandzi/presentation/widgets/custom_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -142,22 +143,30 @@ class CreateNewProjectView extends StatelessWidget {
               ),
               SizedBox(height: 100.h),
 
-              Container(
-                width: 360.w,
-                height: 50.h,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.inProgressText, width: 1),
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Center(
-                  child: Text(
-                    'Assign Project Manager',
-                    style: GoogleFonts.roboto(
+              InkWell(
+                onTap: () {
+                  Get.to(AssignProjectManagerView());
+                },
+                child: Container(
+                  width: 360.w,
+                  height: 50.h,
+                  decoration: BoxDecoration(
+                    border: Border.all(
                       color: AppColors.inProgressText,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                      width: 1,
                     ),
-                    textAlign: TextAlign.center,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Assign Project Manager',
+                      style: GoogleFonts.roboto(
+                        color: AppColors.inProgressText,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
@@ -184,9 +193,10 @@ class Custom_date extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'title',
+          title,
           style: GoogleFonts.roboto(
             color: AppColor.greyBC,
             fontSize: 16,
