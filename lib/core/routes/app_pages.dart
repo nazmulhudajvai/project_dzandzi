@@ -1,4 +1,4 @@
-import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
+
 import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
 import 'package:dzandzi/presentation/pages/splash/splash_view.dart';
 import 'package:get/get.dart';
