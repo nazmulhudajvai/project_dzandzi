@@ -1,15 +1,17 @@
+import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
 import 'package:dzandzi/presentation/pages/home/home_view.dart';
 import 'package:dzandzi/presentation/pages/profile/my_profile.dart';
-import 'package:dzandzi/theams/app_color.dart';
+import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
+
+import 'package:dzandzi/theams/app_colors.dart';
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../core/routes/app_pages.dart';
-import '../../theams/app_color2.dart';
-import '../controllers/bottom_navbar_controller.dart';
-import '../pages/projects_page/projects.dart';
+
 // ✅ add this import for route names
 
 class CustomBottomNav extends StatelessWidget {
@@ -114,6 +116,7 @@ class CustomBottomNav extends StatelessWidget {
                       item.label,
                       style: TextStyle(
                         fontSize: 11.sp,
+
                         color: isSelected
                             ? AppColor.blueLiteColor
                             : Colors.grey,

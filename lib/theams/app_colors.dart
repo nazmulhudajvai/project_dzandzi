@@ -7,7 +7,6 @@ class AppColors {
   static const Color textcolor2 = Color(0xFF3F3F3F);
   static const Color searchColor = Color(0xFFC2C1C1);
   static const Color smallUsercolor = Color(0xFF676767);
-
   static const Color grey13 = Color(0xFF4F4E4E);
   static const Color defaultTextColor = Color(0xFF101828);
   static const Color textColor = Color(0xFF101828);
@@ -69,4 +68,16 @@ class AppColors {
   static const Color needAttentionColor2 = Color(0xFFA4170D);
   static const Color lowStockColor = Color(0xFFD39B56);
   static const Color lowStockColor120 = Color(0xFFD39B56);
+
+  //Abir
+
+  static const Color textclrblack = Color(0xFF000000); //#000000
+  static const Color borderColor = Color(0xFFC2C1C1); //#C2C1C1
+  static const Color grey14 = Color(0xFF6B7280); //#6B7280
+  static const Color grey15 = Color(0xFF9F9F9F); //#9F9F9F
+  static const Color grey16 = Color(0xFFD1D5DB); //#D1D5DB
+  static const Color headerColor = Color(0xFF253240); //#253240
+  static const Color txtcolor2 = Color(0xFF003049); //#003049
+  static const Color greyborder = Color(0xFFD1D5DB); //#D1D5DB
+  static const Color lightBlue2 = Color(0xFFDBECFF); //#DBECFF
 }

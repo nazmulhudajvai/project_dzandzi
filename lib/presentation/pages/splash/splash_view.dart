@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 // fixed "theams" → "themes"
 import '../../../../res/assets/image_assets.dart';
-import '../../../theams/app_color.dart';
+import '../../../theams/app_colors.dart';
 import '../../../theams/app_color2.dart';
 
 class SwitchController extends GetxController {
@@ -13,7 +13,7 @@ class SwitchController extends GetxController {
 }
 
 class SplashView extends StatefulWidget {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   @override
   State<SplashView> createState() => _SplashPageState();
@@ -27,7 +27,7 @@ class _SplashPageState extends State<SplashView> {
     super.initState();
 
     // Simulate loading and navigate after 3 seconds
-    Future.delayed( Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 3), () {
       controller.isLoading.value = false;
       Get.to(SignUpView()); // navigate to next page
     });
@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: AppColor.whiteColor,
       body: Center(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -46,18 +46,19 @@ class _SplashPageState extends State<SplashView> {
             borderRadius: BorderRadius.circular(6),
             gradient: RadialGradient(
               radius: 1.5,
+
               transform: GradientRotation(2.8),
               colors: [AppColor.blueLiteColor, AppColor.blueColor],
             ),
           ),
           child: Container(
-            margin:  EdgeInsets.all(10),
+            margin: EdgeInsets.all(10),
             width: 400.w,
             height: 142.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
               gradient: LinearGradient(
-                transform:  GradientRotation(1.8),
+                transform: GradientRotation(1.8),
                 colors: [AppColor.whiteColor, AppColor.blueLiteColor],
               ),
             ),
@@ -67,7 +68,7 @@ class _SplashPageState extends State<SplashView> {
                 style: GoogleFonts.roboto(
                   fontSize: 32.sp,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.blueColor,
+                  color: AppColor.blueColor,
                 ),
               ),
             ),

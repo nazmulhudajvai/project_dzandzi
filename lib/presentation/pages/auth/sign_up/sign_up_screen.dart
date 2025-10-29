@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../theams/app_color.dart';
+import '../../../../theams/app_colors.dart';
 import '../../../../theams/app_color2.dart';
 
 // Controller for UI state only

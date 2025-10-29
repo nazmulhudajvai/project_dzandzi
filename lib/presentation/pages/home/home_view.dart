@@ -1,16 +1,24 @@
+import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../theams/app_colors.dart';
 import 'package:dzandzi/presentation/pages/projects_page/create_new_project.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../theams/app_color.dart';
+import '../../../theams/app_colors.dart';
 import '../../../theams/app_color2.dart';
 import '../../controllers/home_controller.dart';
 import '../../widgets/custom_bottom_nav.dart';
 
 class HomeView extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
+  final BottomNavController bottomNavController = Get.put(
+    BottomNavController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +49,7 @@ class HomeView extends StatelessWidget {
                           children: [
                             Text(
                               'Welcome Back!',
+
                               style: GoogleFonts.roboto(
                                 fontSize: 13.sp,
                                 color: AppColors.editTextColor,
@@ -51,6 +60,7 @@ class HomeView extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp,
+
                                 color: AppColors.titleText,
                               ),
                             ),
@@ -58,6 +68,7 @@ class HomeView extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     Container(
                       width: 40.w,
                       height: 40.h,
@@ -98,6 +109,7 @@ class HomeView extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: 'Search here…..',
                             border: InputBorder.none,
+
                             hintStyle: GoogleFonts.roboto(
                               color: AppColors.textcolor,
                             ),
@@ -112,6 +124,7 @@ class HomeView extends StatelessWidget {
 
                 Text(
                   'All your activities in one place',
+
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.w500,
                     fontSize: 24.sp,
@@ -120,6 +133,7 @@ class HomeView extends StatelessWidget {
                 ),
 
                 SizedBox(height: 16.h),
+
                 InkWell(
                   onTap: () {
                     Get.to(CreateNewProjectView());
@@ -157,8 +171,6 @@ class HomeView extends StatelessWidget {
                 ),
                 // Stat cards
                 SizedBox(height: 24.h),
-
-                // Create project button
               ],
             ),
           ),

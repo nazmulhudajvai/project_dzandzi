@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui' as ui; // For BackdropFilter
 import '../../res/assets/image_assets.dart';
-import '../../theams/app_color.dart';
+import '../../theams/app_colors.dart';
 import '../../theams/app_color2.dart';
 
 class CustomInputController extends GetxController {
