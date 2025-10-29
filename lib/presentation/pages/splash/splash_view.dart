@@ -11,7 +11,7 @@ class SwitchController extends GetxController {
 }
 
 class SplashView extends StatefulWidget {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   @override
   State<SplashView> createState() => _SplashPageState();
@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: AppColor.whiteColor,
       body: Center(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -45,7 +45,7 @@ class _SplashPageState extends State<SplashView> {
             gradient: RadialGradient(
               radius: 1.5,
               transform: const GradientRotation(2.8),
-              colors: [AppColors.black, AppColors.blueColor],
+              colors: [AppColor.black, AppColor.blueColor],
             ),
           ),
           child: Container(
@@ -56,7 +56,7 @@ class _SplashPageState extends State<SplashView> {
               borderRadius: BorderRadius.circular(6),
               gradient: LinearGradient(
                 transform: const GradientRotation(1.8),
-                colors: [AppColors.whiteColor, AppColors.black],
+                colors: [AppColor.whiteColor, AppColor.black],
               ),
             ),
             child: Center(
@@ -65,7 +65,7 @@ class _SplashPageState extends State<SplashView> {
                 style: GoogleFonts.roboto(
                   fontSize: 32.sp,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.blueColor,
+                  color: AppColor.blueColor,
                 ),
               ),
             ),

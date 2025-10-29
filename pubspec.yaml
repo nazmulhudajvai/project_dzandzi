@@ -94,6 +94,7 @@ flutter:
     - assets/image/ihome.svg
 
     - assets/image/
+    - assets/icon/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

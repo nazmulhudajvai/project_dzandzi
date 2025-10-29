@@ -1,7 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_svg/svg.dart';
-
 // import '../../theams/app_color.dart';
 
 // class Custom_back_button extends StatelessWidget {
@@ -18,7 +17,7 @@
 //           transform: GradientRotation(7515),
 //           end: Alignment.bottomRight,
 //           colors: [
-//             AppColor.blackLiteColor,
+//             AppColor.black,
 //             AppColor.whiteLiteColor,
 //             AppColor.blackLiteColor,
 //           ],
@@ -44,8 +43,8 @@
 //             ],
 //           ),
 //         ),
-//         child: Padding(
-//           padding: EdgeInsets.all(2.0),
+//         child: Padding( 
+//           padding: EdgeInsets.all(2.0) ,
 //           child: SvgPicture.asset(
 //             buttonSvg,
 //             width: 7.w,
@@ -57,3 +56,4 @@
 //     );
 //   }
 // }
+

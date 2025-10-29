@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
-
+class AppColor {
   static const Color pageBackgroundColor = Color(0xFFF7FBFD);
   static const Color startTitle = Color(0xFFCFCFCF);
-  static const Color textcolor = Color(0xFF9D9D9D);
+  static const Color Textcolor = Color(0xFF9D9D9D);
   static const Color grey11 = Color(0xFF676767);
   static const Color grey12 = Color(0xFF676767);
   static const Color grey13 = Color(0xFF4F4E4E);
@@ -44,8 +43,8 @@ class AppColors {
 
   static const Color onGoingSection = Color(0xFFE67E2C);
   static const Color onGoingSection2 = Color(0xFFF69448);
-  static const Color paintColor= Color(0xFFF59E0B);
-  static const Color milestoneInterior= Color(0xFFE67D2A);
+  static const Color paintColor = Color(0xFFF59E0B);
+  static const Color milestoneInterior = Color(0xFFE67D2A);
   static const Color ongoingIcon = Color(0xFFEF9853);
   static const Color oragelight = Color(0xFFF18733);
 
@@ -67,4 +66,15 @@ class AppColors {
   static const Color lowStockColor = Color(0xFFD39B56);
   static const Color lowStockColor120 = Color(0xFFD39B56);
 
+  //Abir
+
+  static const Color textclrblack = Color(0xFF000000); //#000000
+  static const Color borderColor = Color(0xFFC2C1C1); //#C2C1C1
+  static const Color grey14 = Color(0xFF6B7280); //#6B7280
+  static const Color grey15 = Color(0xFF9F9F9F); //#9F9F9F
+  static const Color grey16 = Color(0xFFD1D5DB); //#D1D5DB
+  static const Color headerColor = Color(0xFF253240); //#253240
+  static const Color txtcolor2 = Color(0xFF003049); //#003049
+  static const Color greyborder = Color(0xFFD1D5DB); //#D1D5DB
+  static const Color lightBlue2 = Color(0xFFDBECFF); //#DBECFF
 }

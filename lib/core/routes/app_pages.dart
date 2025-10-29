@@ -1,8 +1,7 @@
- 
+import 'package:dzandzi/presentation/pages/document/document_view.dart';
+import 'package:dzandzi/presentation/pages/home/home_view.dart';
 import 'package:dzandzi/presentation/pages/splash/splash_view.dart';
 import 'package:get/get.dart';
-
- 
 
 part 'app_routes.dart';
 
@@ -10,7 +9,7 @@ class AppPages {
   AppPages._();
 
   // Define the initial route
-  static const initial = _Paths.SplashView;
+  static const initial = _Paths.Document;
 
   static final routes = [
     // Splash View Route
@@ -21,7 +20,8 @@ class AppPages {
     // GetPage(name: _Paths.SIGNUP, page: () => SignUpView()),
     // // OTP Route
     // // GetPage(name: _Paths.OTP, page: () => OtpVerifyView()),
-    // GetPage(name: Routes.HOME, page: () => HomeView()),
+    GetPage(name: Routes.HOME, page: () => HomeView()),
+    GetPage(name: Routes.Document, page: () => DocumentView()),
     //  GetPage(name: Routes.PROJECT, page: () => ProjectsView()),
     // GetPage(name: Routes.EMPLOYEES, page: () => EmployeesView()),
     // GetPage(name: Routes.INVENTORY, page: () => InventoryView()),
