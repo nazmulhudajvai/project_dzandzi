@@ -1,4 +1,5 @@
-import 'package:dzandzi/theams/app_color.dart';
+import 'package:dzandzi/theams/app_colors.dart';
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,10 +24,10 @@ class DocumentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: AppColor.grey15.withOpacity(0.5)),
+        border: Border.all(color: AppColors.grey15.withOpacity(0.5)),
         boxShadow: [
           BoxShadow(
-            color: AppColor.grey15.withOpacity(0.2),
+            color: AppColors.grey15.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, 3),
@@ -70,7 +71,7 @@ class DocumentCard extends StatelessWidget {
                       'Project: $projectName',
                       style: TextStyle(
                         fontStyle: GoogleFonts.inter().fontStyle,
-                        color: AppColor.grey14,
+                        color: AppColors.grey14,
                         fontSize: 12.sp,
                       ),
                     ),
@@ -79,7 +80,7 @@ class DocumentCard extends StatelessWidget {
                       'Uploaded: $uploadDate',
                       style: TextStyle(
                         fontStyle: GoogleFonts.inter().fontStyle,
-                        color: AppColor.grey14,
+                        color: AppColors.grey14,
                         fontSize: 12.sp,
                       ),
                     ),
@@ -90,7 +91,7 @@ class DocumentCard extends StatelessWidget {
                 'Size: $fileSize',
                 style: TextStyle(
                   fontStyle: GoogleFonts.inter().fontStyle,
-                  color: AppColor.grey14,
+                  color: AppColors.grey14,
                   fontSize: 12.sp,
                 ),
               ),

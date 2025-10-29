@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:dzandzi/theams/app_color.dart';
+import 'package:dzandzi/theams/app_colors.dart';
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,12 +51,12 @@ class _AddDocumentState extends State<AddDocument> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.arrow_back, color: AppColor.headerColor),
+                    const Icon(Icons.arrow_back, color: AppColors.headerColor),
                     SizedBox(width: 50.w),
                     Text(
                       'Add New Documents',
                       style: TextStyle(
-                        color: AppColor.headerColor,
+                        color: AppColors.headerColor,
                         fontSize: 24.sp,
                         fontStyle: GoogleFonts.roboto().fontStyle,
                         fontWeight: FontWeight.w600,
@@ -67,7 +68,7 @@ class _AddDocumentState extends State<AddDocument> {
                 Text(
                   'Upload Files',
                   style: TextStyle(
-                    color: AppColor.txtcolor2,
+                    color: AppColors.txtcolor2,
                     fontSize: 20.sp,
                     fontStyle: GoogleFonts.roboto().fontStyle,
                     fontWeight: FontWeight.w500,
@@ -77,7 +78,7 @@ class _AddDocumentState extends State<AddDocument> {
                 Text(
                   'Document Tittle*',
                   style: TextStyle(
-                    color: AppColor.textFeieldTitle,
+                    color: AppColors.textFeieldTitle,
                     fontSize: 16.sp,
                     fontStyle: GoogleFonts.roboto().fontStyle,
                     fontWeight: FontWeight.w500,
@@ -90,22 +91,22 @@ class _AddDocumentState extends State<AddDocument> {
                     hintText: 'Type name',
                     hintStyle: const TextStyle(color: Colors.grey),
                     filled: true,
-                    fillColor: AppColor.textFieldColor,
+                    fillColor: AppColors.textFieldColor,
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 12.h,
                       horizontal: 16.w,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColor.greyborder),
+                      borderSide: const BorderSide(color: AppColors.greyborder),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColor.greyborder),
+                      borderSide: const BorderSide(color: AppColors.greyborder),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColor.greyborder),
+                      borderSide: const BorderSide(color: AppColors.greyborder),
                     ),
                   ),
                 ),
@@ -113,7 +114,7 @@ class _AddDocumentState extends State<AddDocument> {
                 Text(
                   'Project*',
                   style: TextStyle(
-                    color: AppColor.textFeieldTitle,
+                    color: AppColors.textFeieldTitle,
 
                     fontSize: 16.sp,
                     fontStyle: GoogleFonts.roboto().fontStyle,
@@ -129,22 +130,22 @@ class _AddDocumentState extends State<AddDocument> {
                   ),
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: AppColor.textFieldColor,
+                    fillColor: AppColors.textFieldColor,
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 12.h,
                       horizontal: 16.w,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColor.greyborder),
+                      borderSide: const BorderSide(color: AppColors.greyborder),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColor.greyborder),
+                      borderSide: BorderSide(color: AppColors.greyborder),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColor.greyborder),
+                      borderSide: const BorderSide(color: AppColors.greyborder),
                     ),
                   ),
                   hint: const Text(
@@ -198,7 +199,7 @@ class FileUploadCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
       decoration: BoxDecoration(
-        color: AppColor.lightBlue2,
+        color: AppColors.lightBlue2,
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Column(

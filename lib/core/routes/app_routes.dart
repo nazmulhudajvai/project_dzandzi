@@ -19,9 +19,10 @@ abstract class Routes {
 
 abstract class _Paths {
   _Paths._();
-
+  
   static const LOGIN = '/login';
   static const SplashView = '/';
+  static const ProjectsPage = '/projectpage';
   static const SIGNUP = '/signup';
   static const OTP = '/otp';
   static const Notification = '/notification';

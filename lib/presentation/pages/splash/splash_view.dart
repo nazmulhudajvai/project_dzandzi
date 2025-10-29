@@ -1,10 +1,12 @@
+import 'package:dzandzi/presentation/pages/auth/sign_up/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 // fixed "theams" → "themes"
 import '../../../../res/assets/image_assets.dart';
-import '../../../theams/app_color.dart';
+import '../../../theams/app_colors.dart';
+import '../../../theams/app_color2.dart';
 
 class SwitchController extends GetxController {
   var isLoading = true.obs; // controls loading bar
@@ -25,9 +27,9 @@ class _SplashPageState extends State<SplashView> {
     super.initState();
 
     // Simulate loading and navigate after 3 seconds
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 3), () {
       controller.isLoading.value = false;
-      Get.offNamed('signup'); // navigate to next page
+      Get.to(SignUpView()); // navigate to next page
     });
   }
 
@@ -44,19 +46,20 @@ class _SplashPageState extends State<SplashView> {
             borderRadius: BorderRadius.circular(6),
             gradient: RadialGradient(
               radius: 1.5,
-              transform: const GradientRotation(2.8),
-              colors: [AppColor.black, AppColor.blueColor],
+
+              transform: GradientRotation(2.8),
+              colors: [AppColor.blueLiteColor, AppColor.blueColor],
             ),
           ),
           child: Container(
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.all(10),
             width: 400.w,
             height: 142.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
               gradient: LinearGradient(
-                transform: const GradientRotation(1.8),
-                colors: [AppColor.whiteColor, AppColor.black],
+                transform: GradientRotation(1.8),
+                colors: [AppColor.whiteColor, AppColor.blueLiteColor],
               ),
             ),
             child: Center(

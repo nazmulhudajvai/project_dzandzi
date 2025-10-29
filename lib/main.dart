@@ -24,12 +24,12 @@ Future<void> main() async {
       designSize: const Size(390, 844), // Your UI reference size
       minTextAdapt: true,
       builder: (context, child) => GetMaterialApp(
-        title: 'Tiny App',
+        title: 'Dzandzi',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
           scaffoldBackgroundColor: Colors.black, // ✅ Your UI background
-          fontFamily: "Inter", // Optional: If you added fonts
+          fontFamily: "Roboto", // Optional: If you added fonts
         ),
         initialRoute: AppPages.initial,
         getPages: AppPages.routes,

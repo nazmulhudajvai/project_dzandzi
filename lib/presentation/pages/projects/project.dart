@@ -1,7 +1,8 @@
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../theams/app_color.dart';
+import '../../../theams/app_colors.dart';
 import '../../controllers/home_controller.dart';
 import '../../widgets/custom_bottom_nav.dart';
 

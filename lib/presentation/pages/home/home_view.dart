@@ -2,7 +2,15 @@ import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../theams/app_color.dart';
+import '../../../theams/app_colors.dart';
+import 'package:dzandzi/presentation/pages/projects_page/create_new_project.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../../theams/app_colors.dart';
+import '../../../theams/app_color2.dart';
 import '../../controllers/home_controller.dart';
 import '../../widgets/custom_bottom_nav.dart';
 
@@ -15,10 +23,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.Textcolor,
+      backgroundColor: AppColor.background2Color,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+        child: Container(
+          margin: EdgeInsets.all(10),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,9 +49,10 @@ class HomeView extends StatelessWidget {
                           children: [
                             Text(
                               'Welcome Back!',
-                              style: TextStyle(
+
+                              style: GoogleFonts.roboto(
                                 fontSize: 13.sp,
-                                color: Colors.grey[600],
+                                color: AppColors.editTextColor,
                               ),
                             ),
                             Text(
@@ -51,19 +60,30 @@ class HomeView extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.sp,
-                                color: Colors.black87,
+
+                                color: AppColors.titleText,
                               ),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.notifications_none_rounded,
-                        size: 28.sp,
-                        color: Colors.grey[700],
+
+                    Container(
+                      width: 40.w,
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        color: AppColor.blueLiteColor.withOpacity(.2),
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: SvgPicture.asset(
+                          'assets/image/inotification.svg',
+                          height: 24.h,
+                          width: 24.w,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ],
@@ -73,22 +93,26 @@ class HomeView extends StatelessWidget {
 
                 // Search bar
                 Container(
+                  width: 399.w,
+                  height: 48.h,
                   padding: EdgeInsets.symmetric(horizontal: 12.w),
                   decoration: BoxDecoration(
-                    color: AppColor.whiteColor,
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(color: Colors.grey.shade300),
+                    color: AppColors.textFieldColor2,
+                    borderRadius: BorderRadius.circular(42.r),
+                    border: Border.all(color: AppColors.searchColor),
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.search, color: Colors.grey),
                       SizedBox(width: 8.w),
                       Expanded(
                         child: TextField(
                           decoration: InputDecoration(
                             hintText: 'Search here…..',
                             border: InputBorder.none,
-                            hintStyle: TextStyle(color: Colors.grey),
+
+                            hintStyle: GoogleFonts.roboto(
+                              color: AppColors.textcolor,
+                            ),
                           ),
                         ),
                       ),
@@ -100,116 +124,59 @@ class HomeView extends StatelessWidget {
 
                 Text(
                   'All your activities in one place',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                    color: Colors.black87,
+
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24.sp,
+                    color: AppColor.textColor2,
                   ),
                 ),
 
                 SizedBox(height: 16.h),
 
-                // Stat cards
-                SizedBox(height: 24.h),
-
-                // Create project button
-                Center(
-                  child: OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 24.w,
-                        vertical: 12.h,
+                InkWell(
+                  onTap: () {
+                    Get.to(CreateNewProjectView());
+                  },
+                  child: Center(
+                    child: Container(
+                      width: 350.w,
+                      height: 52.h,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: AppColors.liniarIndicatorColor,
+                        ),
+                        borderRadius: BorderRadius.circular(100),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      side: BorderSide(
-                        color: AppColor.completeProjectIconColor,
-                      ),
-                    ),
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.add,
-                      color: AppColor.completeProjectIconColor,
-                    ),
-                    label: Text(
-                      'Create Project',
-                      style: TextStyle(
-                        color: AppColor.completeProjectIconColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.sp,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: AppColors.liniarIndicatorColor,
+                          ),
+                          Text(
+                            'Create Project',
+                            style: GoogleFonts.roboto(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.liniarIndicatorColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
+                // Stat cards
+                SizedBox(height: 24.h),
               ],
             ),
           ),
         ),
       ),
       bottomNavigationBar: CustomBottomNav(),
-    );
-  }
-
-  Widget _buildStatCard({
-    required Color color,
-    required String title,
-    required String value,
-  }) {
-    return Container(
-      height: 90.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.r),
-        gradient: LinearGradient(
-          colors: [color.withOpacity(0.9), color],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Title & value
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                value,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          // Arrow icon
-          Container(
-            width: 34.w,
-            height: 34.h,
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.3),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Icon(
-              Icons.arrow_outward_rounded,
-              color: Colors.white,
-              size: 22.sp,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:dzandzi/presentation/pages/document/add_document.dart';
 import 'package:dzandzi/presentation/widgets/custom_document_card.dart';
-import 'package:dzandzi/theams/app_color.dart';
+import 'package:dzandzi/theams/app_colors.dart';
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class DocumentView extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use SafeArea to avoid system UI (like notches)
     return Scaffold(
-      backgroundColor: AppColor.pageBackgroundColor,
+      backgroundColor: AppColors.pageBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -25,12 +26,12 @@ class DocumentView extends StatelessWidget {
                 // Custom "Back" navigation row
                 Row(
                   children: [
-                    const Icon(Icons.arrow_back, color: AppColor.buttonColor),
+                    const Icon(Icons.arrow_back, color: AppColors.blueColor),
                     SizedBox(width: 8.w),
                     Text(
                       'Back to Company View',
                       style: TextStyle(
-                        color: AppColor.buttonColor,
+                        color: AppColor.blueColor,
                         fontSize: 16,
                         fontStyle: GoogleFonts.roboto().fontStyle,
                         fontWeight: FontWeight.w500,
@@ -44,7 +45,7 @@ class DocumentView extends StatelessWidget {
                 Text(
                   'Document',
                   style: TextStyle(
-                    color: AppColor.textclrblack,
+                    color: AppColors.textclrblack,
                     fontSize: 24.sp,
                     fontStyle: GoogleFonts.roboto().fontStyle,
                     fontWeight: FontWeight.w500,
@@ -57,16 +58,16 @@ class DocumentView extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextField(
-                        cursorColor: AppColor.Textcolor,
+                        cursorColor: AppColors.textcolor,
                         decoration: InputDecoration(
                           hintText: '   Search here.....',
-                          hintStyle: TextStyle(color: AppColor.Textcolor),
+                          hintStyle: TextStyle(color: AppColors.textcolor),
                           suffixIcon: Icon(
                             Icons.search,
-                            color: AppColor.Textcolor,
+                            color: AppColors.textcolor,
                           ),
                           filled: true,
-                          fillColor: AppColor.textFieldColor2,
+                          fillColor: AppColors.textFieldColor2,
                           contentPadding: EdgeInsets.symmetric(
                             vertical: 12.h,
                             horizontal: 16.w,
@@ -74,15 +75,21 @@ class DocumentView extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(48.r),
 
-                            borderSide: BorderSide(color: AppColor.borderColor),
+                            borderSide: BorderSide(
+                              color: AppColors.borderColor,
+                            ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(48.r),
-                            borderSide: BorderSide(color: AppColor.borderColor),
+                            borderSide: BorderSide(
+                              color: AppColors.borderColor,
+                            ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(48.r),
-                            borderSide: BorderSide(color: AppColor.borderColor),
+                            borderSide: BorderSide(
+                              color: AppColors.borderColor,
+                            ),
                           ),
                         ),
                       ),
@@ -108,7 +115,7 @@ class DocumentView extends StatelessWidget {
                     label: Text(
                       'Upload Document',
                       style: TextStyle(
-                        color: AppColor.deepBlue,
+                        color: AppColors.deepBlue,
                         fontWeight: FontWeight.bold,
                         fontSize: 15.sp,
                       ),
