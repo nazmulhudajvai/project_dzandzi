@@ -1,20 +1,17 @@
  
-import 'package:dzandzi/presentation/pages/splash/splash_view.dart';
+import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
+import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
 import 'package:get/get.dart';
-
- 
-
 part 'app_routes.dart';
-
 class AppPages {
   AppPages._();
 
   // Define the initial route
-  static const initial = _Paths.SplashView;
+  static const initial = _Paths.ProjectsPage;
 
   static final routes = [
-    // Splash View Route
-    GetPage(name: _Paths.SplashView, page: () => SplashView()),
+    // Projects page Route
+    GetPage(name: _Paths.ProjectsPage, page: () => ProjectDocument()),
     // // Login Route
     // GetPage(name: _Paths.LOGIN, page: () => LoginScreen()),
     // // Sign Up Route
