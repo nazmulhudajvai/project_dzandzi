@@ -7,7 +7,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const SIGNUP = _Paths.SIGNUP;
   static const OTP = _Paths.OTP;
-  static const SplashView = _Paths.ProjectsPage;
+  static const SplashView = _Paths.SplashView;
   static const Notification = _Paths.Notification;
   static const HOME = '/home';
   static const PROJECT = '/projects';
@@ -20,7 +20,8 @@ abstract class _Paths {
   _Paths._();
   
   static const LOGIN = '/login';
-  static const ProjectsPage = '/';
+  static const SplashView = '/';
+  static const ProjectsPage = '/projectpage';
   static const SIGNUP = '/signup';
   static const OTP = '/otp';
   static const Notification = '/notification';

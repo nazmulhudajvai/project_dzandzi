@@ -4,9 +4,10 @@ class AppColors {
   static const Color pageBackgroundColor = Color(0xFFF7FBFD);
   static const Color startTitle = Color(0xFFCFCFCF);
   static const Color textcolor = Color(0xFF9D9D9D);
+  static const Color textcolor2 = Color(0xFF3F3F3F);
   static const Color searchColor = Color(0xFFC2C1C1);
   static const Color smallUsercolor = Color(0xFF676767);
-  
+
   static const Color grey13 = Color(0xFF4F4E4E);
   static const Color defaultTextColor = Color(0xFF101828);
   static const Color textColor = Color(0xFF101828);
@@ -29,7 +30,7 @@ class AppColors {
   static const Color copyButton = Color(0xFF395575);
 
   static const Color liniarIndicatorColor = Color(0xFF032D5C);
-  static const Color titileText = Color(0xFF18181B);
+  static const Color titleText = Color(0xFF18181B);
   static const Color projecSectiontColor2 = Color(0xFF002E5D);
   static const Color black12 = Color(0xFF314158);
   static const Color editTextColor = Color(0xFF45556C);
@@ -44,8 +45,8 @@ class AppColors {
 
   static const Color onGoingSection = Color(0xFFE67E2C);
   static const Color onGoingSection2 = Color(0xFFF69448);
-  static const Color paintColor= Color(0xFFF59E0B);
-  static const Color milestoneInterior= Color(0xFFE67D2A);
+  static const Color paintColor = Color(0xFFF59E0B);
+  static const Color milestoneInterior = Color(0xFFE67D2A);
   static const Color ongoingIcon = Color(0xFFEF9853);
   static const Color oragelight = Color(0xFFF18733);
 
@@ -66,5 +67,4 @@ class AppColors {
   static const Color needAttentionColor2 = Color(0xFFA4170D);
   static const Color lowStockColor = Color(0xFFD39B56);
   static const Color lowStockColor120 = Color(0xFFD39B56);
-
 }
