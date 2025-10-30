@@ -104,7 +104,7 @@ class DocumentCard extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColor.buttonColor,
+                backgroundColor: AppColor.blueColor,
                 padding: EdgeInsets.symmetric(vertical: 5.h),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.r),

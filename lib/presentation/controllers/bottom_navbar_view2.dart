@@ -1,30 +1,36 @@
-import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../widgets/Navigation/custom_bottom_nav.dart';
+import '../pages/home/home_view.dart';
+import '../pages/projects_page/projects.dart';
+import '../pages/inventory/inventory_view.dart';
+import '../pages/document/document_view.dart';
+import '../pages/profile/my_profile.dart';
+import '../controllers/bottom_navbar_controller2.dart';
+import '../widgets/Navigation/custom_bottom_nav2.dart';
 
-class BottomNavView extends StatelessWidget {
-  final BottomNavController controller = Get.put(BottomNavController());
+class BottomNavView2 extends StatelessWidget {
+  BottomNavView2({super.key});
+
+  final BottomNavbarController2 controller = Get.put(BottomNavbarController2());
 
   final List<Widget> pages = [
-    Center(child: Text('Home Page')),
-    Center(child: Text('Projects Page')),
-    Center(child: Text('Employees Page')),
-    Center(child: Text('Inventory Page')),
-    Center(child: Text('Profile Page')),
+    HomeView(), // Overview
+    ProjectPage(), // Tasks
+    DocumentView(), // Placeholder
+    InventoryView(),
+    DocumentView(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Scaffold(
-        // ✅ Use IndexedStack so pages don’t rebuild each time
-        body: IndexedStack(
+    return Scaffold(
+      body: Obx(() {
+        return IndexedStack(
           index: controller.selectedIndex.value,
           children: pages,
-        ),
-        bottomNavigationBar: CustomBottomNav(),
-      );
-    });
+        );
+      }),
+      bottomNavigationBar: CustomBottomNav2(),
+    );
   }
 }

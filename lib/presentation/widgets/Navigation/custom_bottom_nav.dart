@@ -1,4 +1,6 @@
 import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
+import 'package:dzandzi/presentation/pages/Employees/employee_view.dart';
+import 'package:dzandzi/presentation/pages/document/document_view.dart';
 import 'package:dzandzi/presentation/pages/home/home_view.dart';
 import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
 import 'package:dzandzi/presentation/pages/profile/my_profile.dart';
@@ -11,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../core/routes/app_pages.dart';
+import '../../../core/routes/app_pages.dart';
 
 // ✅ add this import for route names
 
@@ -60,7 +62,7 @@ class CustomBottomNav extends StatelessWidget {
                     Get.to(ProjectPage());
                     break;
                   case 2:
-                    // Get.to(ProjectsView());
+                    Get.to(EmployeeView());
                     break;
                   case 3:
                     Get.to(InventoryView());

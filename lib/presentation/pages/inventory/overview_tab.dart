@@ -43,8 +43,8 @@ class OverviewTab extends StatelessWidget {
               heading: 'in Stock',
               value: '98',
               iconPath: ImageAssets.inStock,
-              startColor: AppColors.oragelight,
-              endColor: AppColors.orageDeep,
+              startColor: AppColors.orangelight,
+              endColor: AppColors.orangeDeep,
             ),
             SizedBox(width: 16.w),
             InventoryCards(
@@ -80,7 +80,7 @@ class OverviewTab extends StatelessWidget {
           ],
         ),
         SizedBox(height: 16.h),
-        InStockCard()
+        InStockCard(),
       ],
     );
   }

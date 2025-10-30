@@ -49,8 +49,8 @@ class AppColors {
   static const Color paintColor = Color(0xFFF59E0B);
   static const Color milestoneInterior = Color(0xFFE67D2A);
   static const Color ongoingIcon = Color(0xFFEF9853);
-  static const Color oragelight = Color(0xFFF18733);
-  static const Color orageDeep = Color(0xFFF18733);
+  static const Color orangelight = Color(0xFFF69448);
+  static const Color orangeDeep = Color(0xFFE67E2C);
 
   static const Color completeProjectSection1 = Color(0xFF0D886C);
   static const Color completeProjectSection2 = Color(0xFF10C59B);

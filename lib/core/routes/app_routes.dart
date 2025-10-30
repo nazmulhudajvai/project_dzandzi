@@ -16,11 +16,12 @@ abstract class Routes {
   static const INVENTORY = '/inventory';
   static const PROFILE = '/profile';
   static const InventoryView = _Paths.InventoryView;
+  static const EmployeesView = _Paths.EmployeesView;
 }
 
 abstract class _Paths {
   _Paths._();
-  
+
   static const LOGIN = '/login';
   static const SplashView = '/';
   static const ProjectsPage = '/projectpage';
@@ -30,4 +31,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const Document = '/document';
   static const InventoryView = '/inventory';
+  static const EmployeesView = '/employee';
 }

@@ -1,5 +1,5 @@
 import 'package:dzandzi/presentation/pages/home/home_view.dart';
-import 'package:dzandzi/presentation/widgets/custom_button.dart';
+import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 import '../../../../core/routes/app_pages.dart';
 import '../../../theams/app_colors.dart';
 import '../../../../theams/app_color2.dart';
-import '../../widgets/custom_input_widget.dart';
+import '../../widgets/buttons/custom_input_widget.dart';
 
 class TermsConditions extends StatelessWidget {
   const TermsConditions({super.key});

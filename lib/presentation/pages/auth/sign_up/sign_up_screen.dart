@@ -1,7 +1,6 @@
 import 'package:dzandzi/presentation/pages/common/company_details.dart';
-import 'package:dzandzi/presentation/widgets/custom_button.dart';
-import 'package:dzandzi/presentation/widgets/custom_field_button.dart';
-import 'package:dzandzi/presentation/widgets/custom_input_widget.dart';
+import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
+import 'package:dzandzi/presentation/widgets/buttons/custom_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -58,6 +57,7 @@ class SignUpView extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50.h,
                 hintText: 'Enter First name',
@@ -75,6 +75,7 @@ class SignUpView extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50.h,
                 hintText: 'Enter Last name',
@@ -92,6 +93,7 @@ class SignUpView extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50.h,
                 hintText: 'Enter email address',
@@ -109,6 +111,7 @@ class SignUpView extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50.h,
                 hintText: 'Enter Telephone Number',
@@ -126,6 +129,7 @@ class SignUpView extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50.h,
                 hintText: '********',
@@ -144,6 +148,7 @@ class SignUpView extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               CustomInputWidget(
+                cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50.h,
                 hintText: '********',

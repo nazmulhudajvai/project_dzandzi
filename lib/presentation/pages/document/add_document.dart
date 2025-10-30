@@ -4,6 +4,7 @@ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -51,7 +52,15 @@ class _AddDocumentState extends State<AddDocument> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.arrow_back, color: AppColors.headerColor),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: AppColors.headerColor,
+                      ),
+                    ),
                     SizedBox(width: 50.w),
                     Text(
                       'Add New Documents',
@@ -137,7 +146,7 @@ class _AddDocumentState extends State<AddDocument> {
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColors.greyborder),
+                      borderSide: BorderSide(color: AppColors.greyborder),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
@@ -145,10 +154,10 @@ class _AddDocumentState extends State<AddDocument> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColors.greyborder),
+                      borderSide: BorderSide(color: AppColors.greyborder),
                     ),
                   ),
-                  hint: const Text(
+                  hint: Text(
                     'Select Project',
                     style: TextStyle(color: Colors.grey),
                   ),
@@ -181,6 +190,7 @@ class _AddDocumentState extends State<AddDocument> {
 
 class FileUploadCard extends StatelessWidget {
   final Function(List<File>) onFilesSelected;
+
   const FileUploadCard({super.key, required this.onFilesSelected});
 
   Future<void> _pickFiles() async {
@@ -209,7 +219,7 @@ class FileUploadCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(12.r),
             decoration: const BoxDecoration(
-              color: AppColor.buttonColor,
+              color: AppColor.blueColor,
               shape: BoxShape.circle,
             ),
             child: Image.asset(
@@ -304,7 +314,7 @@ class UploadQueue extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24.r),
-                    border: Border.all(color: const Color(0xFFE0E0E0)),
+                    border: Border.all(color: AppColor.blackColor),
                   ),
                   child: Row(
                     children: [
@@ -318,18 +328,11 @@ class UploadQueue extends StatelessWidget {
                         child: Text(file.name, overflow: TextOverflow.ellipsis),
                       ),
                       SizedBox(width: 12.w),
-                      Text(
-                        file.status,
-                        style: const TextStyle(color: Colors.grey),
-                      ),
+                      Text(file.status, style: TextStyle(color: Colors.grey)),
                       SizedBox(width: 8.w),
                       InkWell(
                         onTap: () => onRemove(index),
-                        child: const Icon(
-                          Icons.close,
-                          color: Colors.grey,
-                          size: 18,
-                        ),
+                        child: Icon(Icons.close, color: Colors.grey, size: 18),
                       ),
                     ],
                   ),

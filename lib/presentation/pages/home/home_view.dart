@@ -1,4 +1,5 @@
 import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
+import 'package:dzandzi/presentation/widgets/Custom_Card_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../theams/app_colors.dart';
 import '../../../theams/app_color2.dart';
 import '../../controllers/home_controller.dart';
-import '../../widgets/custom_bottom_nav.dart';
+import '../../widgets/Navigation/custom_bottom_nav.dart';
 
 class HomeView extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
@@ -116,6 +117,10 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Icon(
+                        Icons.search_outlined,
+                        color: AppColors.textColor.withOpacity(.5),
+                      ),
                     ],
                   ),
                 ),
@@ -132,6 +137,36 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
 
+                SizedBox(height: 16.h),
+                CustomCardProgressCards(
+                  heading: 'Total Project',
+                  value: '56',
+                  iconPath: 'assets/image/itp.svg',
+                  startColor: AppColor.blueColor,
+                  endColor: AppColor.blueLiteColor,
+                  boxsColor: AppColor.blueLiteColor.withOpacity(.4),
+                  iconPath2: 'assets/image/ifrwd.svg',
+                ),
+                SizedBox(height: 16.h),
+                CustomCardProgressCards(
+                  heading: 'Total Project',
+                  value: '56',
+                  iconPath: 'assets/image/iongoing.svg',
+                  startColor: AppColors.orangeDeep,
+                  endColor: AppColors.orangelight,
+                  boxsColor: AppColors.orangelight.withOpacity(.4),
+                  iconPath2: 'assets/image/ifrwd.svg',
+                ),
+                SizedBox(height: 16.h),
+                CustomCardProgressCards(
+                  heading: 'Total Project',
+                  value: '56',
+                  iconPath: 'assets/image/itp.svg',
+                  startColor: AppColors.completeProjectSection1,
+                  endColor: AppColors.completeProjectSection2,
+                  boxsColor: AppColors.completeProjectSection2.withOpacity(.4),
+                  iconPath2: 'assets/image/ifrwd.svg',
+                ),
                 SizedBox(height: 16.h),
 
                 InkWell(

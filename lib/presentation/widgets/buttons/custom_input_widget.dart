@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui' as ui;
 
-import '../../theams/app_color2.dart'; // For BackdropFilter
+import '../../../theams/app_color2.dart'; // For BackdropFilter
 
 class CustomInputController extends GetxController {
   final RxBool isObscured;
@@ -37,7 +37,7 @@ class CustomInputController extends GetxController {
 }
 
 class CustomInputWidget extends StatelessWidget {
-  const CustomInputWidget({
+  CustomInputWidget({
     super.key,
     this.hintText = '',
     this.backIconTap2,
@@ -95,6 +95,7 @@ class CustomInputWidget extends StatelessWidget {
     this.glassEffect = false,
     required this.cheight,
     required this.radius,
+    required this.cwidth,
   });
 
   final Widget? leadingIconWidget;
@@ -139,6 +140,7 @@ class CustomInputWidget extends StatelessWidget {
   final TextInputType keyboardType;
   final List<Color> borderGradientColors;
   final double cheight;
+  final double cwidth;
   final double radius;
 
   @override
@@ -153,7 +155,7 @@ class CustomInputWidget extends StatelessWidget {
     );
 
     return Container(
-      width: 400.w,
+      width: cwidth.w,
       height: cheight.h,
       decoration: BoxDecoration(
         color: AppColor.inputColor,

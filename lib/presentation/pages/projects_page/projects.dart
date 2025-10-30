@@ -1,3 +1,4 @@
+import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
 import 'package:dzandzi/theams/app_colors.dart';
@@ -27,7 +28,7 @@ class ProjectPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50.h),
+              SizedBox(height: 10.h),
 
               /// ✅ Back Button Row (fixed)
               InkWell(
@@ -35,7 +36,7 @@ class ProjectPage extends StatelessWidget {
                   Get.back();
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(2.0.r),
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -43,7 +44,7 @@ class ProjectPage extends StatelessWidget {
                         height: 24.h,
                         width: 24.w,
                       ),
-                      const Spacer(),
+                      Spacer(),
                       Text(
                         "Projects",
                         style: GoogleFonts.roboto(
@@ -51,7 +52,7 @@ class ProjectPage extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const Spacer(flex: 2),
+                      Spacer(),
                     ],
                   ),
                 ),
@@ -76,18 +77,23 @@ class ProjectPage extends StatelessWidget {
               SizedBox(height: 30.h),
 
               /// ✅ Create Project
-              Row(
-                children: [
-                  Icon(Icons.add, color: AppColors.deepBlue),
-                  const SizedBox(width: 6),
-                  Text(
-                    "Create Project",
-                    style: GoogleFonts.roboto(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
+              InkWell(
+                onTap: () {
+                  Get.to(ProjectDocument());
+                },
+                child: Row(
+                  children: [
+                    Icon(Icons.add, color: AppColors.deepBlue),
+                    const SizedBox(width: 6),
+                    Text(
+                      "Create Project",
+                      style: GoogleFonts.roboto(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
 
               SizedBox(height: 10.h),

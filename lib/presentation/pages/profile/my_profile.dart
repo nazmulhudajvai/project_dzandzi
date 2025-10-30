@@ -1,7 +1,7 @@
 import 'package:dzandzi/presentation/pages/profile/help_support.dart';
 import 'package:dzandzi/presentation/pages/profile/pesonal_info.dart';
 import 'package:dzandzi/presentation/pages/profile/terms_conditions.dart';
-import 'package:dzandzi/presentation/widgets/custom_bottom_nav.dart';
+import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

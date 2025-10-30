@@ -1,4 +1,5 @@
 import 'package:dzandzi/presentation/pages/document/add_document.dart';
+import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav2.dart';
 import 'package:dzandzi/presentation/widgets/custom_document_card.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:dzandzi/theams/app_color2.dart';
@@ -17,132 +18,152 @@ class DocumentView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Custom "Back" navigation row
-                Row(
-                  children: [
-                    const Icon(Icons.arrow_back, color: AppColors.blueColor),
-                    SizedBox(width: 8.w),
-                    Text(
-                      'Back to Company View',
-                      style: TextStyle(
-                        color: AppColor.blueColor,
-                        fontSize: 16,
-                        fontStyle: GoogleFonts.roboto().fontStyle,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 24.h),
-
-                // "Document" Title
-                Text(
-                  'Document',
-                  style: TextStyle(
-                    color: AppColors.textclrblack,
-                    fontSize: 24.sp,
-                    fontStyle: GoogleFonts.roboto().fontStyle,
-                    fontWeight: FontWeight.w500,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsetsGeometry.only(right: 15.w, left: 15.w),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Icon(Icons.arrow_back, color: AppColors.headerColor),
                   ),
-                ),
-                SizedBox(height: 20.h),
+                  SizedBox(width: 8.w),
+                  Text(
+                    'Back to Company View',
+                    style: TextStyle(
+                      color: AppColor.blueColor,
+                      fontSize: 16,
+                      fontStyle: GoogleFonts.roboto().fontStyle,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 14.h),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                    vertical: 16.h,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Custom "Back" navigation row
 
-                // Search bar and filter icon
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        cursorColor: AppColors.textcolor,
-                        decoration: InputDecoration(
-                          hintText: '   Search here.....',
-                          hintStyle: TextStyle(color: AppColors.textcolor),
-                          suffixIcon: Icon(
-                            Icons.search,
-                            color: AppColors.textcolor,
-                          ),
-                          filled: true,
-                          fillColor: AppColors.textFieldColor2,
-                          contentPadding: EdgeInsets.symmetric(
-                            vertical: 12.h,
-                            horizontal: 16.w,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(48.r),
+                      // "Document" Title
+                      Text(
+                        'Document',
+                        style: TextStyle(
+                          color: AppColors.textclrblack,
+                          fontSize: 24.sp,
+                          fontStyle: GoogleFonts.roboto().fontStyle,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: 20.h),
 
-                            borderSide: BorderSide(
-                              color: AppColors.borderColor,
+                      // Search bar and filter icon
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              cursorColor: AppColors.textcolor,
+                              decoration: InputDecoration(
+                                hintText: '   Search here.....',
+                                hintStyle: TextStyle(
+                                  color: AppColors.textcolor,
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.search,
+                                  color: AppColors.textcolor,
+                                ),
+                                filled: true,
+                                fillColor: AppColors.textFieldColor2,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 12.h,
+                                  horizontal: 16.w,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(48.r),
+
+                                  borderSide: BorderSide(
+                                    color: AppColors.borderColor,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(48.r),
+                                  borderSide: BorderSide(
+                                    color: AppColors.borderColor,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(48.r),
+                                  borderSide: BorderSide(
+                                    color: AppColors.borderColor,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(48.r),
-                            borderSide: BorderSide(
-                              color: AppColors.borderColor,
+                          SizedBox(width: 10.w),
+                          IconButton(
+                            icon: const Icon(Icons.filter_list),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20.h),
+
+                      // Upload button
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton.icon(
+                          icon: Image.asset(
+                            "assets/icon/upload.png",
+                            height: 20.h,
+                            width: 20.w,
+                          ),
+                          label: Text(
+                            'Upload Document',
+                            style: TextStyle(
+                              color: AppColors.deepBlue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15.sp,
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(48.r),
-                            borderSide: BorderSide(
-                              color: AppColors.borderColor,
-                            ),
+                          onPressed: () {
+                            Get.to(AddDocument());
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+
+                      // List of Document Cards
+                      Column(
+                        children: List.generate(
+                          4,
+                          (index) => const DocumentCard(
+                            projectName: 'Housezeo',
+                            uploadDate: '1/10/2023',
+                            fileSize: '3.2MB',
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10.w),
-                    IconButton(
-                      icon: const Icon(Icons.filter_list),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-
-                // Upload button
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton.icon(
-                    icon: Image.asset(
-                      "assets/icon/upload.png",
-                      height: 20.h,
-                      width: 20.w,
-                    ),
-                    label: Text(
-                      'Upload Document',
-                      style: TextStyle(
-                        color: AppColors.deepBlue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.sp,
-                      ),
-                    ),
-                    onPressed: () {
-                      Get.to(AddDocument());
-                    },
+                    ],
                   ),
                 ),
-                SizedBox(height: 10.h),
-
-                // List of Document Cards
-                Column(
-                  children: List.generate(
-                    4,
-                    (index) => const DocumentCard(
-                      projectName: 'Housezeo',
-                      uploadDate: '1/10/2023',
-                      fileSize: '3.2MB',
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
+      bottomNavigationBar: CustomBottomNav2(),
     );
   }
 }

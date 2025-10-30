@@ -1,31 +1,24 @@
-import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
-import 'package:dzandzi/presentation/pages/Employees/employee_view.dart';
-import 'package:dzandzi/presentation/pages/document/document_view.dart';
-import 'package:dzandzi/presentation/pages/home/home_view.dart';
-import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
-import 'package:dzandzi/presentation/pages/profile/my_profile.dart';
-import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
-
-import 'package:dzandzi/theams/app_colors.dart';
-import 'package:dzandzi/theams/app_color2.dart';
+import 'package:dzandzi/presentation/pages/Employees/all_roles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../../controllers/bottom_navbar_controller2.dart';
+import '../../../theams/app_color2.dart';
+import '../../pages/document/document_view.dart';
+import '../../pages/home/home_view.dart';
+import '../../pages/inventory/inventory_view.dart';
+import '../../pages/projects_page/projects.dart';
 
-import '../../../core/routes/app_pages.dart';
-
-// ✅ add this import for route names
-
-class CustomBottomNav extends StatelessWidget {
-  final BottomNavController controller = Get.find();
+class CustomBottomNav2 extends StatelessWidget {
+  final BottomNavbarController2 controller = Get.put(BottomNavbarController2());
 
   final List<_NavItem> items = [
-    _NavItem(iconPath: 'assets/image/ihome.svg', label: 'Home'),
-    _NavItem(iconPath: 'assets/image/iproject.svg', label: 'Projects'),
+    _NavItem(iconPath: 'assets/image/iover.svg', label: 'Overview'),
+    _NavItem(iconPath: 'assets/image/itask.svg', label: 'Tasks'),
     _NavItem(iconPath: 'assets/image/ipeople.svg', label: 'Employees'),
     _NavItem(iconPath: 'assets/image/iinventory.svg', label: 'Inventory'),
-    _NavItem(iconPath: 'assets/image/iprofile.svg', label: 'Profile'),
+    _NavItem(iconPath: 'assets/image/idoc.svg', label: 'Document'),
   ];
 
   @override
@@ -56,19 +49,19 @@ class CustomBottomNav extends StatelessWidget {
                 // ✅ Route navigation logic
                 switch (index) {
                   case 0:
-                    Get.to(HomeView());
+                    // Get.to(HomeView());
                     break;
                   case 1:
-                    Get.to(ProjectPage());
+                    // Get.to(ProjectPage());
                     break;
                   case 2:
-                    Get.to(EmployeesView());
+                    Get.to(AllRoles());
                     break;
                   case 3:
-                    Get.to(InventoryView());
+                    // Get.to(InventoryView());
                     break;
                   case 4:
-                    Get.to(ProfileView());
+                    Get.to(DocumentView());
                     break;
                 }
               },
