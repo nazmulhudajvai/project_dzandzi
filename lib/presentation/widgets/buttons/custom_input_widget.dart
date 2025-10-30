@@ -3,10 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:ui' as ui; // For BackdropFilter
-import '../../res/assets/image_assets.dart';
-import '../../theams/app_colors.dart';
-import '../../theams/app_color2.dart';
+import 'dart:ui' as ui;
+
+import '../../theams/app_color2.dart'; // For BackdropFilter
 
 class CustomInputController extends GetxController {
   final RxBool isObscured;
@@ -52,7 +51,7 @@ class CustomInputWidget extends StatelessWidget {
     this.backIcon = false,
     this.backIcon2 = false,
     this.textAlign = false,
-    this.leadingIcon= '',
+    this.leadingIcon = '',
     this.imageIcon = '',
     this.backImage = '',
     this.keyboardType = TextInputType.text,
