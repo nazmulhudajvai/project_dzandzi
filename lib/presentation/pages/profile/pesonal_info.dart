@@ -95,19 +95,20 @@ class PersonalInfo extends StatelessWidget {
                 Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Custom_details(
                           title: 'First Name',
                           details: 'Rahim',
-                          width: 180,
-                          height: 44,
+                          width: 170.w,
+                          height: 44.h,
                         ),
-                        SizedBox(width: 8.w),
+                        SizedBox(width: 5.w),
                         Custom_details(
                           title: 'Last Name',
                           details: 'Rehman',
-                          width: 180,
-                          height: 44,
+                          width: 170.w,
+                          height: 44.h,
                         ),
                       ],
                     ),
@@ -195,15 +196,15 @@ class Custom_details extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         Container(
-          width: width.w,
-          height: height.h,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             color: AppColors.textFieldColor,
             borderRadius: BorderRadius.circular(100),
             border: Border.all(color: AppColors.startTitle),
           ),
           child: Padding(
-            padding: EdgeInsets.only(left: 18.0, right: 18.0, top: 12),
+            padding: EdgeInsets.only(left: 18.0, right: 10.0, top: 15),
             child: Text(
               details,
               style: GoogleFonts.roboto(
