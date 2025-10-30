@@ -9,6 +9,8 @@ class AppColors {
   static const Color smallUsercolor = Color(0xFF676767);
 
   static const Color grey13 = Color(0xFF4F4E4E);
+  static const Color downTextcolor = Color(0xFF787878);
+  static const Color downTextcolor2 = Color(0xFF252525);
   static const Color defaultTextColor = Color(0xFF101828);
   static const Color textColor = Color(0xFF101828);
   static const Color greydeep = Color(0xFF0F172B);
@@ -35,7 +37,8 @@ class AppColors {
   static const Color projecSectiontColor2 = Color(0xFF002E5D);
   static const Color black12 = Color(0xFF314158);
   static const Color editTextColor = Color(0xFF45556C);
-  static const Color black = Colors.black;
+  static const Color black = Color(0xFF000000);
+ 
 
   static const Color textFieldColor = Color(0xFFEFEFEF);
   static const Color whiteColor = Color(0xFFFFFFFF);

@@ -1,20 +1,21 @@
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
-import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
-import 'package:dzandzi/theams/app_color.dart';
+ import 'package:dzandzi/theams/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProjectPage extends StatelessWidget {
-  ProjectPage({Key? key}) : super(key: key);
+class ProjectTask extends StatelessWidget {
+  ProjectTask({Key? key}) : super(key: key);
 
   final List<Map<String, dynamic>> projectData = [
-    {"name": "BuildSync", "progress": 50, "days": 14},
-    {"name": "SitePulse", "progress": 30, "days": 14},
-    {"name": "ConstructFlow", "progress": 80, "days": 14},
-    {"name": "ProStruct", "progress": 50, "days": 14},
+    {"name": "Foundation inspection", "progress": 50, "days": 14},
+    {"name": "Electrical wiring - 2nd floor", "progress": 85, "days": 14},
+    {"name": "Electrical wiring - 2nd floor", "progress": 85, "days": 14},
+    {"name": "Electrical wiring - 2nd floor", "progress": 85, "days": 14},
+    
+    
   ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +26,19 @@ class ProjectPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 50.h),
-            Row(
-              children: [
-                SvgPicture.asset('assets/image/back_arrow.svg',height: 24.h,width: 24.w),
-                SizedBox(width: 125.w),
-                Text(
-                  "Projects",
-                  style: GoogleFonts.roboto(
-                    fontSize:24.sp ,
-                    fontWeight:FontWeight.w600 ,
-                  ),
-                ),
-              ],
-            ),
+         
+            
             SizedBox(height: 40.h),
 
 
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    search_bar(),
-                    SizedBox(width: 5.w),
+                     Text(
+                  "Active Task",
+                  style: GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w500),
+
+                ),
                     IconButton(icon: Icon(Icons.filter_list),onPressed: (){
 
                     filter_list(context);
@@ -54,26 +47,16 @@ class ProjectPage extends StatelessWidget {
                   ],
                 ),
 
-              SizedBox(height: 30.h),
+        
 
-            Row(
-              children: [
-                  Icon(Icons.add, color: AppColors.deepBlue),
-                const SizedBox(width: 6),
-                  Text(
-                  "Create Project",
-                  style: GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-              ],
-            ),
-
+            
 
             Expanded(
               child: ListView.builder(
                 itemCount: projectData.length,
                 itemBuilder: (context, index) {
                   final data = projectData[index];
-                  return project_card(title: data["name"], progress: data["progress"], days: data["days"], isdayshow: true,);
+                  return project_card(title: data["name"], progress: data["progress"], days: data["days"], isdayshow: false,isComplete: true,);
                 },
               ),
             ),

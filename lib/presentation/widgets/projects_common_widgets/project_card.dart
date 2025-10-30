@@ -8,12 +8,19 @@ class project_card extends StatelessWidget {
     super.key,
     required this.title,
     required this.progress,
-    required this.days,
+      this.days=0,  
+      required this.isdayshow,
+         this.isActive=false,   this.isInComplete=false,   this.isComplete=false,
   });
 
   final String title;
   final int progress;
   final int days;
+  final bool isdayshow;
+  final bool isActive;
+  final bool isInComplete;
+  final bool isComplete;
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +52,35 @@ class project_card extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Container(
+              isActive? Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color:AppColors.activeStatus,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
-                  "Active",
+                  'Active',
                   style: GoogleFonts.roboto(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
                     color: AppColors.whiteColor,
                   ),
                 ),
-              ),
+              ):isInComplete?Text(
+                  'In Progress',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.inProgressText,
+                  ),
+                ):isComplete?Text(
+                  'Complete',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.activeStatus,
+                  ),
+                ):SizedBox(),
              
             ],
           ),
@@ -95,7 +116,7 @@ class project_card extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-          Row(
+     Row(
             children: [
                 Icon(Icons.person, size: 12.sp,color: AppColors.smallUsercolor),
                 SizedBox(width: 4.w),
@@ -105,15 +126,22 @@ class project_card extends StatelessWidget {
                   color: AppColors.smallUsercolor,
                 )),
                 SizedBox(width: 160.w),
-                Icon(Icons.calendar_month, size: 12.sp),
-                SizedBox(width:8.w ),
-              Text("$days Days left",style: GoogleFonts.roboto(
+
+
+                isdayshow?Row(
+                  children: [
+                    Icon(Icons.calendar_month, size: 12.sp),
+                    SizedBox(width:8.w ),
+                   Text("$days Days left",style: GoogleFonts.roboto(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                   color: AppColors.greydeep,
                 )),
+                  ],
+                ):SizedBox(),
+               
             ],
-          )
+          ) 
         ],
       ),
     );

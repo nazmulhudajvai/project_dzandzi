@@ -10,7 +10,7 @@ abstract class Routes {
   static const SplashView = _Paths.SplashView;
   static const Notification = _Paths.Notification;
   static const HOME = '/home';
-  static const PROJECT = '/projects';
+  static const PROJECT = _Paths.ProjectsPage;
   static const EMPLOYEES = '/employees';
   static const INVENTORY = '/inventory';
   static const PROFILE = '/profile';
