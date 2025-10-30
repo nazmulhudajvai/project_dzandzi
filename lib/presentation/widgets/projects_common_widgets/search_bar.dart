@@ -10,18 +10,22 @@ class search_bar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300.w,
+      width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 12.r),
       decoration: BoxDecoration(
         color: AppColors.textFieldColor2,
         borderRadius: BorderRadius.circular(25.r),
+        border: Border.all(
+          color: AppColors.borderColor,
+        ),
       ),
       child: Row(
         children: [
           Expanded(
             child: TextField(
+              cursorColor: AppColors.textColor,
               decoration: InputDecoration(
-                hintText: "Search here.....",
+                hintText: "Search here...",
                 hintStyle: GoogleFonts.roboto(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w400,

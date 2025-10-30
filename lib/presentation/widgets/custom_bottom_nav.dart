@@ -1,5 +1,6 @@
 import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
 import 'package:dzandzi/presentation/pages/home/home_view.dart';
+import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
 import 'package:dzandzi/presentation/pages/profile/my_profile.dart';
 import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
 
@@ -62,7 +63,7 @@ class CustomBottomNav extends StatelessWidget {
                     // Get.to(ProjectsView());
                     break;
                   case 3:
-                    // Get.to(ProjectsView());
+                    Get.to(InventoryView());
                     break;
                   case 4:
                     Get.to(ProfileView());

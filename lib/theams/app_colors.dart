@@ -50,6 +50,7 @@ class AppColors {
   static const Color milestoneInterior = Color(0xFFE67D2A);
   static const Color ongoingIcon = Color(0xFFEF9853);
   static const Color oragelight = Color(0xFFF18733);
+  static const Color orageDeep = Color(0xFFF18733);
 
   static const Color completeProjectSection1 = Color(0xFF0D886C);
   static const Color completeProjectSection2 = Color(0xFF10C59B);

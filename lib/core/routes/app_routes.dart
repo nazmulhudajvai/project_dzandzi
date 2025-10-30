@@ -15,6 +15,7 @@ abstract class Routes {
   static const EMPLOYEES = '/employees';
   static const INVENTORY = '/inventory';
   static const PROFILE = '/profile';
+  static const InventoryView = _Paths.InventoryView;
 }
 
 abstract class _Paths {
@@ -28,4 +29,5 @@ abstract class _Paths {
   static const Notification = '/notification';
   static const HOME = '/home';
   static const Document = '/document';
+  static const InventoryView = '/inventory';
 }
