@@ -8,7 +8,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+<<<<<<< HEAD
+import '../../../../theams/app_color.dart';
+=======
 import '../../../theams/app_colors.dart';
+>>>>>>> a0793cfec666fe107cf62c008ad7f097e93847f3
 import '../../../theams/app_color2.dart';
 import '../../controllers/bottom_navbar_controller.dart';
 import '../projects_page/assigned_project_manager.dart';
