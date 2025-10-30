@@ -30,7 +30,7 @@ class CustomCardProgressCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 400.w,
-      height: 142.h,
+      height: 152.h,
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
