@@ -1,7 +1,9 @@
 import 'package:dzandzi/presentation/pages/document/document_view.dart';
 import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
-
+import 'package:dzandzi/presentation/pages/projects_page/Project_peichart.dart';
+import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
+
 import 'package:dzandzi/presentation/pages/splash/splash_view.dart';
 import 'package:dzandzi/presentation/pages/task/task%20_view.dart';
 import 'package:get/get.dart';
@@ -15,7 +17,7 @@ class AppPages {
   AppPages._();
 
   // Define the initial route
-  static const initial = _Paths.SplashView;
+  static const initial = _Paths.ProjectsPage;
 
   static final routes = [
     // Projects page Route
@@ -31,7 +33,7 @@ class AppPages {
     GetPage(name: Routes.Document, page: () => DocumentView()),
 
     //  GetPage(name: Routes.PROJECT, page: () => ProjectsView()),
-    GetPage(name: Routes.PROJECT, page: () =>  Project_all_File()),
+    GetPage(name: Routes.PROJECT, page: () =>  ProjectPage()),
     // GetPage(name: Routes.EMPLOYEES, page: () => EmployeesView()),
     // GetPage(name: Routes.INVENTORY, page: () => InventoryView()),
     GetPage(name: Routes.PROFILE, page: () => ProfileView()),

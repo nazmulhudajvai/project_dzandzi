@@ -1,12 +1,15 @@
 
+import 'package:dzandzi/presentation/pages/projects_page/Project_peichart.dart';
+import 'package:dzandzi/presentation/widgets/employee_profile_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/Project_Overview_milestone.dart';
+import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_metric_card.dart';
  
 import 'package:dzandzi/theams/app_colors.dart';
  
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+
  
 import 'package:google_fonts/google_fonts.dart';
  
@@ -22,16 +25,14 @@ class Project_Overview extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 1.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                
-             
-                SizedBox(height: 24.h),
+             Project_peichart(),
 
-              
-              
+                SizedBox(height: 24.h),             
                 GridView.count(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10.w,
@@ -231,15 +232,176 @@ class Project_Overview extends StatelessWidget {
                 SizedBox(height: 24.h),
  
                 // "Document" Title
-                Text(
-                  'Active Task',
-                  style: TextStyle(
-                    color: AppColors.titleText,
-                    fontSize: 20.sp,
-                    fontStyle: GoogleFonts.roboto().fontStyle,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      'Active Task',
+                      style:GoogleFonts.roboto(
+                        color: AppColors.titleText,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w500,
+                      )
+                    ),
+                    Spacer(),
+                    Text(
+                      'View All',
+                      style:GoogleFonts.roboto(
+                        color: AppColors.grey14,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                      )
+                    ),
+                  ],
                 ),
+                SizedBox(height: 30.h),
+
+                 project_card(title: 'Foundation inspection',isProgress: false, progress: 50, isdayshow: false),
+                 project_card(title: 'Foundation inspection',isProgress: false, progress: 70, isdayshow: false),
+                 project_card(title: 'Foundation inspection',isProgress: false, progress: 80, isdayshow: false),
+                 SizedBox(height: 30.h),
+                  Row(
+                  children: [
+                    Text(
+                      'Today On Site',
+                      style:GoogleFonts.roboto(
+                        color: AppColors.titleText,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w500,
+                      )
+                    ),
+                    Spacer(),
+                    Text(
+                      'View All',
+                      style:GoogleFonts.roboto(
+                        color: AppColors.grey14,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                      )
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30.h),
+
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(children: [
+                    EmployeeProfileCard(imagePath: 'assets/image/damyPic.png', name: 'John Doe', role: 'Owner'),
+                    SizedBox(width: 10.w),
+                    EmployeeProfileCard(imagePath: 'assets/image/damyPic.png', name: 'John Doe', role: 'Owner'),
+                    SizedBox(width: 10.w),
+                    EmployeeProfileCard(imagePath: 'assets/image/damyPic.png', name: 'John Doe', role: 'Owner'),
+                    SizedBox(width: 10.w),
+                    EmployeeProfileCard(imagePath: 'assets/image/damyPic.png', name: 'John Doe', role: 'Owner'),
+                  ],),
+                ),
+                  SizedBox(height: 30.h),
+                  Row(
+                  children: [
+                    Text(
+                      'Recent Activity',
+                      style:GoogleFonts.roboto(
+                        color: AppColors.titleText,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w500,
+                      )
+                    ),
+                    Spacer(),
+                    Text(
+                      'View All',
+                      style:GoogleFonts.roboto(
+                        color: AppColors.grey14,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w600,
+                      )
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30.h),
+
+                Row(children: [
+                  Text('Rahim Updated Inventory',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                  Spacer(),
+                   Text('11:20 AM',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                ]),
+                Divider(),
+                Row(children: [
+                  Text('Rahim Updated Inventory',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                  Spacer(),
+                   Text('11:20 AM',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                ]),
+                Divider(),
+                Row(children: [
+                  Text('Rahim Updated Inventory',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                  Spacer(),
+                   Text('11:20 AM',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                ]),
+                Divider(),
+                Row(children: [
+                  Text('Rahim Updated Inventory',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                  Spacer(),
+                   Text('11:20 AM',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                ]),
+                Divider(),
+                Row(children: [
+                  Text('Oli Updated Inventory',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                  Spacer(),
+                   Text('11:20 AM',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                ]),
+                Divider(),
+                Row(children: [
+                  Text('Rafsan Updated Inventory',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                  Spacer(),
+                   Text('11:20 AM',style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textclr,
+                  )),
+                ]),
+                Divider(),
                
               ],
             ),

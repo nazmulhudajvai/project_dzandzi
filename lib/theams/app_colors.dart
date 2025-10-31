@@ -48,6 +48,7 @@ class AppColors {
   static const Color subtitleColor = Color(0xFF62748E);
   static const Color subtitle2Color = Color(0xFF62748E);
   static const Color hintTextColor = Color(0xFF808284);
+  static const Color textclr = Color(0xFF5D5D5D);
 
   static const Color onGoingSection = Color(0xFFE67E2C);
   static const Color onGoingSection2 = Color(0xFFF69448);
