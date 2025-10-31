@@ -1,14 +1,15 @@
-import 'package:dzandzi/presentation/controllers/bottom_navbar_view.dart';
-import 'package:dzandzi/presentation/controllers/bottom_navbar_view2.dart';
+ 
 import 'package:dzandzi/presentation/controllers/project_tabBarControler.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_Overview.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_emploly.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_inventory.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_task.dart';
+import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_build_sync_card.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -36,20 +37,40 @@ class Project_all_File extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          'Project Menu',
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        backgroundColor:AppColors.pageBackgroundColor,
-        elevation: 0,
-      ),
+      backgroundColor: AppColors.pageBackgroundColor,
+     
       body: Column(
         children: [
+          SizedBox(height: 40.h),
+           Container(
+            color: AppColors.pageBackgroundColor,
+                padding: EdgeInsets.all(12.0.r),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: SvgPicture.asset(
+                        'assets/image/back_arrow.svg',
+                        height: 24.h,
+                        width: 24.w,
+                      ),
+                    ),
+                    Spacer(),
+                    Text(
+                      "Projects",
+                      style: GoogleFonts.roboto(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              ), SizedBox(height: 20.h),
+              ProjectBuildSyncCard(title: 'Build Sync', progress: 50,),
+             
           
           Container(
             color:AppColors.pageBackgroundColor,

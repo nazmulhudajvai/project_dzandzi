@@ -1,4 +1,5 @@
-import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
+
+import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
 import 'package:dzandzi/theams/app_colors.dart';
@@ -77,28 +78,25 @@ class ProjectPage extends StatelessWidget {
               SizedBox(height: 30.h),
 
               
-              InkWell(
-                onTap: () {
-                  Get.to(ProjectDocument());
-                },
-                child: Row(
-                  children: [
-                    Icon(Icons.add, color: AppColors.deepBlue),
-                    const SizedBox(width: 6),
-                    Text(
-                      "Create Project",
-                      style: GoogleFonts.roboto(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                      ),
+              Row(
+                children: [
+                  GestureDetector(onTap: () {
+                    Get.to(Project_all_File());
+                  }, child: Icon(Icons.add, color: AppColors.deepBlue)),
+                  const SizedBox(width: 6),
+                  Text(
+                    "Create Project",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
 
               SizedBox(height: 10.h),
 
-              /// ✅ Project List
+             
               Expanded(
                 child: ListView.builder(
                   itemCount: projectData.length,
@@ -118,6 +116,7 @@ class ProjectPage extends StatelessWidget {
           ),
         ),
       ),
+      // bottomNavigationBar: BottomNavView2(),
     );
   }
 
