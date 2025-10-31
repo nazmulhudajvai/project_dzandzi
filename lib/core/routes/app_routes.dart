@@ -17,6 +17,7 @@ abstract class Routes {
   static const PROFILE = '/profile';
   static const InventoryView = _Paths.InventoryView;
   static const EmployeesView = _Paths.EmployeesView;
+  static const TaskView = _Paths.TaskView;
 }
 
 abstract class _Paths {
@@ -32,4 +33,5 @@ abstract class _Paths {
   static const Document = '/document';
   static const InventoryView = '/inventory';
   static const EmployeesView = '/employee';
+  static const TaskView = '/task';
 }

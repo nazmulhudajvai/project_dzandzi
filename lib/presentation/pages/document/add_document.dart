@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
@@ -173,6 +174,8 @@ class _AddDocumentState extends State<AddDocument> {
                 ),
                 SizedBox(height: 24.h),
                 FileUploadCard(onFilesSelected: _addFilesToQueue),
+                SizedBox(height: 24.h),
+                CustomButton(title: 'Upload', radius: 100, height: 43),
                 SizedBox(height: 24.h),
                 if (_uploadQueue.isNotEmpty)
                   UploadQueue(

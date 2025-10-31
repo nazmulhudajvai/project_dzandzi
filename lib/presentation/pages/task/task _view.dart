@@ -1,26 +1,18 @@
-import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
+import 'package:dzandzi/presentation/pages/document/add_document.dart';
+import 'package:dzandzi/presentation/pages/task/create_new_task.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav2.dart';
-import 'package:dzandzi/presentation/widgets/custom_document_card.dart';
-import 'package:dzandzi/presentation/widgets/employee_profile_card.dart';
-import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../theams/app_color2.dart';
-import '../../widgets/buttons/custom_button.dart';
-import '../../widgets/buttons/custom_input_widget.dart';
-import '../../widgets/employee/employee_card.dart';
-import '../common/company_details.dart';
 
-class AllRoles extends StatelessWidget {
-  AllRoles({Key? key}) : super(key: key);
+class TaskView extends StatelessWidget {
+  const TaskView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       backgroundColor: AppColor.background2Color,
       body: SafeArea(
@@ -62,9 +54,9 @@ class AllRoles extends StatelessWidget {
                     children: [
                       // Custom "Back" navigation row
 
-                      // "Document" Title
+                      // "Task" Title
                       Text(
-                        'Employee',
+                        'Task',
                         style: TextStyle(
                           color: AppColors.textclrblack,
                           fontSize: 24.sp,
@@ -124,67 +116,37 @@ class AllRoles extends StatelessWidget {
                           ),
                         ],
                       ),
+
                       SizedBox(height: 20.h),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'All Role',
-                          style: TextStyle(
-                            color: AppColors.defaultTextColor,
-                            fontSize: 20.sp,
-                            fontStyle: GoogleFonts.roboto().fontStyle,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-                      GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        mainAxisSpacing: 16.h,
-                        crossAxisSpacing: 16.w,
-                        childAspectRatio: 157.w / 153.h,
-                        physics: const NeverScrollableScrollPhysics(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee1.png',
-                            name: 'John Doe',
-                            role: 'Software Engineer',
+                          Text(
+                            'Active Task',
+                            style: TextStyle(
+                              color: AppColors.defaultTextColor,
+                              fontSize: 15.sp,
+                              fontStyle: GoogleFonts.roboto().fontStyle,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee2.png',
-                            name: 'Jane Smith',
-                            role: 'Product Manager',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee1.png',
-                            name: 'Alice Johnson',
-                            role: 'UX Designer',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee2.png',
-                            name: 'Bob Brown',
-                            role: 'Data Analyst',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee1.png',
-                            name: 'John Doe',
-                            role: 'Software Engineer',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee2.png',
-                            name: 'Jane Smith',
-                            role: 'Product Manager',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee1.png',
-                            name: 'Alice Johnson',
-                            role: 'UX Designer',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/employee/employee2.png',
-                            name: 'Bob Brown',
-                            role: 'Data Analyst',
+                          TextButton.icon(
+                            icon: Image.asset(
+                              "assets/icon/add.png",
+                              height: 15.h,
+                              width: 15.w,
+                            ),
+                            label: Text(
+                              'Create Task',
+                              style: TextStyle(
+                                color: AppColors.deepBlue,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.sp,
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.to(CreateNewTaskView());
+                            },
                           ),
                         ],
                       ),
