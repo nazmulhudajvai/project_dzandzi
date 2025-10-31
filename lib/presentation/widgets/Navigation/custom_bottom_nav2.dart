@@ -1,4 +1,6 @@
 import 'package:dzandzi/presentation/pages/Employees/all_roles.dart';
+import 'package:dzandzi/presentation/pages/employee2/overview.dart';
+import 'package:dzandzi/presentation/pages/task/task%20_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,10 +51,10 @@ class CustomBottomNav2 extends StatelessWidget {
                 // ✅ Route navigation logic
                 switch (index) {
                   case 0:
-                    // Get.to(HomeView());
+                    Get.to(Overview());
                     break;
                   case 1:
-                    // Get.to(ProjectPage());
+                    Get.to(TaskView());
                     break;
                   case 2:
                     Get.to(AllRoles());

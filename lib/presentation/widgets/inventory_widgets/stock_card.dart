@@ -3,13 +3,13 @@ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class InStockCard extends StatelessWidget {
+class StockCard extends StatelessWidget {
   final String heading;
   final String costText;
   final int quantity;
   final String unit;
 
-  const InStockCard({
+  const StockCard({
     super.key,
     required this.heading,
     required this.costText,
@@ -30,6 +30,7 @@ class InStockCard extends StatelessWidget {
   }
 
   String _displayPrice(String input) {
+    // return first token (e.g. "€50" from "€50 Materials")
     final trimmed = input.trim();
     if (trimmed.isEmpty) return trimmed;
     return trimmed.split(RegExp(r'\s+')).first;

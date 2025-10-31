@@ -1,4 +1,6 @@
-import 'package:dzandzi/presentation/widgets/inventory_widgets/in_stock_card.dart';
+import 'package:dzandzi/presentation/controllers/inventory_controllers/filter_controller.dart';
+import 'package:dzandzi/presentation/widgets/inventory_widgets/filter_bottom_sheet.dart';
+import 'package:dzandzi/presentation/widgets/inventory_widgets/stock_card.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/inventory_cards.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
 import 'package:dzandzi/presentation/widgets/text_property.dart';
@@ -7,9 +9,13 @@ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:dzandzi/presentation/pages/inventory/item_detail.dart';
 
 class OverviewTab extends StatelessWidget {
-  const OverviewTab({super.key});
+  // initialize filter controller (holds data + filtered results)
+  final FilterController filterController = Get.put(FilterController());
+
+   OverviewTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,15 +78,58 @@ class OverviewTab extends StatelessWidget {
             Expanded(child: search_bar()),
             SizedBox(width: 16.w),
             GestureDetector(
-              onTap: () {
-                Get.snackbar('Filter', 'Tapped to filter inventory items');
+              onTap: () async {
+                // open filter sheet; sheet will update FilterController when Apply tapped
+                await showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+                  ),
+                  builder: (context) => FilterBottomSheet(),
+                );
               },
               child: Image.asset(ImageAssets.filter, width: 24.w, height: 13.h),
             ),
           ],
         ),
         SizedBox(height: 16.h),
-        InStockCard(),
+        // render filtered items reactively
+        Obx(() {
+          final items = filterController.filteredItems;
+          if (items.isEmpty) {
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              child: TextProperty(
+                text: 'No items match the selected filters',
+                textColor: AppColors.subtitleColor,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+              ),
+            );
+          }
+
+          return Column(
+            children: items
+                .map((it) => Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => ItemDetail(item: it));
+                          },
+                          child: StockCard(
+                            heading: it.heading,
+                            costText: it.costText,
+                            quantity: it.quantity,
+                            unit: it.unit,
+                          ),
+                        ),
+                        SizedBox(height: 12.h),
+                      ],
+                    ))
+                .toList(),
+          );
+        }),
       ],
     );
   }

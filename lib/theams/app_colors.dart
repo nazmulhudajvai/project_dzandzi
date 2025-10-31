@@ -89,10 +89,15 @@ class AppColors {
   static const Color lightBlue2 = Color(0xFFDBECFF); //#DBECFF
 
 
+
   static const Color downTextcolor = Color(0xFF787878);
   static const Color downTextcolor2 = Color(0xFF252525);
   
 
 
 
+  static const Color grey17 = Color(0xFF565656); //#565656
+  static const Color greenColor = Color(0xFF22C55E); //#22C55E
+  static const Color darkColor = Color(0xFF1E2939); //#1E2939
+  static const Color grey18 = Color(0xFF6A7282); //#6A7282
 }

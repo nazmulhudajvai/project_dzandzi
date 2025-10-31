@@ -1,3 +1,4 @@
+import 'package:dzandzi/presentation/pages/inventory/add_inventory.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav2.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/custom_tabbar_view.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/cutom_tabbar_widget.dart';
@@ -23,7 +24,7 @@ class InventoryView extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                InkWell(
+                GestureDetector(
                   onTap: () {
                     Get.back();
                   },
@@ -50,7 +51,7 @@ class InventoryView extends StatelessWidget {
             SizedBox(height: 30.h),
             GestureDetector(
               onTap: () {
-                Get.snackbar('Add item', 'Tapped to add inventory');
+                Get.to(AddInventory());
               },
               child: Row(
                 children: [
