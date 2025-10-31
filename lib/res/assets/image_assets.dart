@@ -7,6 +7,11 @@ class ImageAssets {
   static const String inStock = 'assets/icon/inStock.png';
   static const String needAttention = 'assets/icon/needAttention.png';
   static const String filter = 'assets/icon/filter.png';
+  static const String edit = 'assets/icon/edit.png';
+  static const String delete = 'assets/icon/delete.png';
+  static const String dollar = 'assets/icon/dollar.png';
+  static const String hexa = 'assets/icon/hexa.png';
+  static const String mapLoc = 'assets/icon/mapLoc.png';
 
 
   //Icons
