@@ -30,37 +30,37 @@ class ProjectPage extends StatelessWidget {
             children: [
               SizedBox(height: 10.h),
 
-              /// ✅ Back Button Row (fixed)
-              InkWell(
-                onTap: () {
-                  Get.back();
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(2.0.r),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
+       
+              Padding(
+                padding: EdgeInsets.all(2.0.r),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: SvgPicture.asset(
                         'assets/image/back_arrow.svg',
                         height: 24.h,
                         width: 24.w,
                       ),
-                      Spacer(),
-                      Text(
-                        "Projects",
-                        style: GoogleFonts.roboto(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    ),
+                    Spacer(),
+                    Text(
+                      "Projects",
+                      style: GoogleFonts.roboto(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Spacer(),
-                    ],
-                  ),
+                    ),
+                    Spacer(),
+                  ],
                 ),
               ),
 
               SizedBox(height: 40.h),
 
-              /// ✅ Search + Filter Row
+             
               Row(
                 children: [
                   Expanded(child: search_bar()),
@@ -76,7 +76,7 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 30.h),
 
-              /// ✅ Create Project
+              
               InkWell(
                 onTap: () {
                   Get.to(ProjectDocument());
@@ -108,6 +108,8 @@ class ProjectPage extends StatelessWidget {
                       title: data["name"],
                       progress: data["progress"],
                       days: data["days"],
+                      isdayshow: false,
+                      isProgress:true,
                     );
                   },
                 ),

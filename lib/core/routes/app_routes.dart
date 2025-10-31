@@ -11,7 +11,7 @@ abstract class Routes {
   static const Notification = _Paths.Notification;
   static const HOME = _Paths.HOME;
   static const Document = _Paths.Document;
-  static const PROJECT = '/projects';
+  static const PROJECT = _Paths.ProjectsPage;
   static const EMPLOYEES = '/employees';
   static const INVENTORY = '/inventory';
   static const PROFILE = '/profile';

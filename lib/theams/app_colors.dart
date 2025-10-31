@@ -8,6 +8,9 @@ class AppColors {
   static const Color searchColor = Color(0xFFC2C1C1);
   static const Color smallUsercolor = Color(0xFF676767);
   static const Color grey13 = Color(0xFF4F4E4E);
+  static const Color greymetarial = Color(0xFF4F4E4E);
+  static const Color persondegi = Color(0xFF4F4E4E);
+  static const Color tabbarBackg = Color(0xFFA6A6A6);
   static const Color defaultTextColor = Color(0xFF101828);
   static const Color textColor = Color(0xFF101828);
   static const Color greydeep = Color(0xFF0F172B);
@@ -27,6 +30,8 @@ class AppColors {
   static const Color lightblue = Color(0xFF2A91EB);
   static const Color totalValueColor1 = Color(0xFF1544A6);
   static const Color copyButton = Color(0xFF395575);
+  static const Color indicatorbackground = Color(0xFF98C2F1);
+  static const Color personcolor = Color(0xFFC5C5C5);
 
   static const Color liniarIndicatorColor = Color(0xFF032D5C);
   static const Color titleText = Color(0xFF18181B);
@@ -46,6 +51,7 @@ class AppColors {
 
   static const Color onGoingSection = Color(0xFFE67E2C);
   static const Color onGoingSection2 = Color(0xFFF69448);
+  static const Color mediumorg = Color(0xFFF28128);
   static const Color paintColor = Color(0xFFF59E0B);
   static const Color milestoneInterior = Color(0xFFE67D2A);
   static const Color ongoingIcon = Color(0xFFEF9853);
@@ -81,4 +87,12 @@ class AppColors {
   static const Color txtcolor2 = Color(0xFF003049); //#003049
   static const Color greyborder = Color(0xFFD1D5DB); //#D1D5DB
   static const Color lightBlue2 = Color(0xFFDBECFF); //#DBECFF
+
+
+  static const Color downTextcolor = Color(0xFF787878);
+  static const Color downTextcolor2 = Color(0xFF252525);
+  
+
+
+
 }
