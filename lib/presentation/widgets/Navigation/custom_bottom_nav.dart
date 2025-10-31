@@ -1,21 +1,14 @@
 import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
 import 'package:dzandzi/presentation/pages/Employees/employee_view.dart';
-import 'package:dzandzi/presentation/pages/document/document_view.dart';
 import 'package:dzandzi/presentation/pages/home/home_view.dart';
 import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
 import 'package:dzandzi/presentation/pages/profile/my_profile.dart';
 import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
-
-import 'package:dzandzi/theams/app_colors.dart';
 import 'package:dzandzi/theams/app_color2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
-import '../../../core/routes/app_pages.dart';
-
-// ✅ add this import for route names
 
 class CustomBottomNav extends StatelessWidget {
   final BottomNavController controller = Get.find();
