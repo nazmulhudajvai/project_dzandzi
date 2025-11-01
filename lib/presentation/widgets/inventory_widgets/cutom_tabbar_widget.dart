@@ -18,6 +18,7 @@ class CustomTabBarWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(50.r),
         ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: List.generate(controller.selectedTabs.length, (
             selectedTabIndex,

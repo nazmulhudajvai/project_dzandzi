@@ -90,7 +90,7 @@ class CustomTextfield extends StatelessWidget {
           filled: true,
           fillColor: fillColor ?? const Color(0xFFFFFFFF),
           contentPadding: EdgeInsets.symmetric(
-            vertical: 10.h,
+            vertical: 14.h,
             horizontal: 20.w,
           ),
           border: InputBorder.none,
