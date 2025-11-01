@@ -1,4 +1,3 @@
- 
 import 'package:dzandzi/presentation/controllers/project_tabBarControler.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_Overview.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_emploly.dart';
@@ -38,42 +37,46 @@ class Project_all_File extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
-     
+
       body: Column(
         children: [
           SizedBox(height: 40.h),
-           Container(
-            color: AppColors.pageBackgroundColor,
-                padding: EdgeInsets.all(12.0.r),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: SvgPicture.asset(
-                        'assets/image/back_arrow.svg',
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                    ),
-                    Spacer(),
-                    Text(
-                      "Projects",
-                      style: GoogleFonts.roboto(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-              ), SizedBox(height: 20.h),
-              ProjectBuildSyncCard(title: 'Build Sync', progress: 50,),
-             
-          
           Container(
-            color:AppColors.pageBackgroundColor,
+            color: AppColors.pageBackgroundColor,
+            padding: EdgeInsets.all(12.0.r),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: SvgPicture.asset(
+                    'assets/image/back_arrow.svg',
+                    height: 24.h,
+                    width: 24.w,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "Projects",
+                  style: GoogleFonts.roboto(
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Spacer(),
+              ],
+            ),
+          ),
+          SizedBox(height: 20.h),
+          ProjectBuildSyncCard(
+            title: 'Build Sync',
+            progress: 50,
+            padding: EdgeInsets.all(12.r),
+          ),
+
+          Container(
+            color: AppColors.pageBackgroundColor,
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -114,7 +117,6 @@ class Project_all_File extends StatelessWidget {
             }),
           ),
         ],
-        
       ),
     );
   }

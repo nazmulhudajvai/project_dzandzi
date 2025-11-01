@@ -15,7 +15,7 @@ class OverviewTab extends StatelessWidget {
   // initialize filter controller (holds data + filtered results)
   final FilterController filterController = Get.put(FilterController());
 
-   OverviewTab({super.key});
+  OverviewTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,9 @@ class OverviewTab extends StatelessWidget {
                   context: context,
                   isScrollControlled: true,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(16.r),
+                    ),
                   ),
                   builder: (context) => FilterBottomSheet(),
                 );
@@ -111,22 +113,24 @@ class OverviewTab extends StatelessWidget {
 
           return Column(
             children: items
-                .map((it) => Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => ItemDetail(item: it));
-                          },
-                          child: StockCard(
-                            heading: it.heading,
-                            costText: it.costText,
-                            quantity: it.quantity,
-                            unit: it.unit,
-                          ),
+                .map(
+                  (it) => Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => ItemDetail(item: it));
+                        },
+                        child: StockCard(
+                          heading: it.heading,
+                          costText: it.costText,
+                          quantity: it.quantity,
+                          unit: it.unit,
                         ),
-                        SizedBox(height: 12.h),
-                      ],
-                    ))
+                      ),
+                      SizedBox(height: 12.h),
+                    ],
+                  ),
+                )
                 .toList(),
           );
         }),
