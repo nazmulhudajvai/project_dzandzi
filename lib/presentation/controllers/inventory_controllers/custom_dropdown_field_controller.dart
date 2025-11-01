@@ -2,7 +2,14 @@ import 'package:get/get.dart';
 
 class CustomDropdownFieldController extends GetxController {
   
-// stock status
+//project selection
+  var selectedProject = ''.obs;
+
+  void updateSelectedProject(String newValue) {
+    selectedProject.value = newValue;
+  }
+
+  // stock status
   var selectedStatus = ''.obs;
 
   void updateSelectedStatus(String newValue) {
