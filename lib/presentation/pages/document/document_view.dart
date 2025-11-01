@@ -14,36 +14,40 @@ class DocumentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use SafeArea to avoid system UI (like notches)
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsGeometry.only(right: 15.w, left: 15.w),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Icon(Icons.arrow_back, color: AppColors.headerColor),
-                  ),
-                  SizedBox(width: 8.w),
-                  Text(
-                    'Back to Company View',
-                    style: TextStyle(
-                      color: AppColor.blueColor,
-                      fontSize: 16,
-                      fontStyle: GoogleFonts.roboto().fontStyle,
-                      fontWeight: FontWeight.w500,
+              padding: EdgeInsets.symmetric(vertical: 12.h),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: AppColors.liniarIndicatorColor,
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(width: 8.w),
+                    Text(
+                      'Back to Company View',
+                      style: TextStyle(
+                        color: AppColors.liniarIndicatorColor,
+                        fontSize: 16.sp,
+                        fontStyle: GoogleFonts.roboto().fontStyle,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 14.h),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -54,9 +58,6 @@ class DocumentView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Custom "Back" navigation row
-
-                      // "Document" Title
                       Text(
                         'Document',
                         style: TextStyle(
@@ -67,8 +68,6 @@ class DocumentView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20.h),
-
-                      // Search bar and filter icon
                       Row(
                         children: [
                           Expanded(
@@ -91,7 +90,6 @@ class DocumentView extends StatelessWidget {
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(48.r),
-
                                   borderSide: BorderSide(
                                     color: AppColors.borderColor,
                                   ),
@@ -119,8 +117,6 @@ class DocumentView extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 20.h),
-
-                      // Upload button
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton.icon(
@@ -143,8 +139,6 @@ class DocumentView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10.h),
-
-                      // List of Document Cards
                       Column(
                         children: List.generate(
                           4,

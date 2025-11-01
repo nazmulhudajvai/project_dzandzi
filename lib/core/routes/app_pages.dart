@@ -17,7 +17,7 @@ class AppPages {
   AppPages._();
 
   // Define the initial route
-  static const initial = _Paths.ProjectsPage;
+  static const initial = _Paths.SplashView;
 
   static final routes = [
     // Projects page Route
@@ -33,7 +33,7 @@ class AppPages {
     GetPage(name: Routes.Document, page: () => DocumentView()),
 
     //  GetPage(name: Routes.PROJECT, page: () => ProjectsView()),
-    GetPage(name: Routes.PROJECT, page: () =>  ProjectPage()),
+    GetPage(name: Routes.PROJECT, page: () => ProjectPage()),
     // GetPage(name: Routes.EMPLOYEES, page: () => EmployeesView()),
     // GetPage(name: Routes.INVENTORY, page: () => InventoryView()),
     GetPage(name: Routes.PROFILE, page: () => ProfileView()),

@@ -16,7 +16,7 @@ import '../../widgets/employee/employee_card.dart';
 import '../common/company_details.dart';
 
 class AllRoles extends StatelessWidget {
-  AllRoles({Key? key}) : super(key: key);
+  const AllRoles({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,29 +27,34 @@ class AllRoles extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsGeometry.only(right: 15.w, left: 15.w),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Icon(Icons.arrow_back, color: AppColors.headerColor),
-                  ),
-                  SizedBox(width: 8.w),
-                  Text(
-                    'Back to Company View',
-                    style: TextStyle(
-                      color: AppColor.blueColor,
-                      fontSize: 16,
-                      fontStyle: GoogleFonts.roboto().fontStyle,
-                      fontWeight: FontWeight.w500,
+              padding: EdgeInsets.symmetric(vertical: 12.h),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: AppColors.liniarIndicatorColor,
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(width: 8.w),
+                    Text(
+                      'Back to Company View',
+                      style: TextStyle(
+                        color: AppColors.liniarIndicatorColor,
+                        fontSize: 16.sp,
+                        fontStyle: GoogleFonts.roboto().fontStyle,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 14.h),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -60,9 +65,6 @@ class AllRoles extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Custom "Back" navigation row
-
-                      // "Document" Title
                       Text(
                         'Employee',
                         style: TextStyle(
@@ -73,8 +75,6 @@ class AllRoles extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20.h),
-
-                      // Search bar and filter icon
                       Row(
                         children: [
                           Expanded(
@@ -97,7 +97,6 @@ class AllRoles extends StatelessWidget {
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(48.r),
-
                                   borderSide: BorderSide(
                                     color: AppColors.borderColor,
                                   ),
