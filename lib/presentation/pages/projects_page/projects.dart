@@ -1,4 +1,3 @@
-
 import 'package:dzandzi/presentation/controllers/bottom_navbar_view2.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
@@ -33,7 +32,6 @@ class ProjectPage extends StatelessWidget {
             children: [
               SizedBox(height: 10.h),
 
-       
               Padding(
                 padding: EdgeInsets.all(2.0.r),
                 child: Row(
@@ -63,7 +61,6 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 40.h),
 
-             
               Row(
                 children: [
                   Expanded(child: search_bar()),
@@ -79,12 +76,14 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 30.h),
 
-              
               Row(
                 children: [
-                  GestureDetector(onTap: () {
-                    Get.to(Project_all_File());
-                  }, child: Icon(Icons.add, color: AppColors.deepBlue)),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(Project_all_File());
+                    },
+                    child: Icon(Icons.add, color: AppColors.deepBlue),
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     "Create Project",
@@ -98,20 +97,24 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 10.h),
 
-             
               Expanded(
-                child: ListView.builder(
-                  itemCount: projectData.length,
-                  itemBuilder: (context, index) {
-                    final data = projectData[index];
-                    return project_card(
-                      title: data["name"],
-                      progress: data["progress"],
-                      days: data["days"],
-                      isdayshow: false,
-                      isProgress:true,
-                    );
+                child: InkWell(
+                  onTap: () {
+                    Get.to(Project_all_File());
                   },
+                  child: ListView.builder(
+                    itemCount: projectData.length,
+                    itemBuilder: (context, index) {
+                      final data = projectData[index];
+                      return project_card(
+                        title: data["name"],
+                        progress: data["progress"],
+                        days: data["days"],
+                        isdayshow: false,
+                        isProgress: true,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],

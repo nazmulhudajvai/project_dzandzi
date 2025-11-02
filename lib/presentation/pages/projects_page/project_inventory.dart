@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Project_inventory extends StatelessWidget {
   Project_inventory({Key? key}) : super(key: key);
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,111 +22,119 @@ class Project_inventory extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.w,
-                    vertical: 16.h,
+                    vertical: 02.h,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Container(
+                        padding: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteColor,
+                          borderRadius: BorderRadius.circular(12.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.1),
+                              spreadRadius: 1,
+                              blurRadius: 10,
+                              offset: const Offset(0, 5),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Inventory Use',
+                              style: TextStyle(
+                                color: AppColors.grey13,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
 
+                            SizedBox(height: 7.h),
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 7.r,
+                                  backgroundColor: AppColors.inProgressText,
+                                ),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Cement',
+                                  style: TextStyle(
+                                    color: AppColors.grey13,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  '23%',
+                                  style: TextStyle(
+                                    color: AppColors.textcolor2,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 7.h),
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 7.r,
+                                  backgroundColor: AppColors.inventoryText,
+                                ),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Steel',
+                                  style: TextStyle(
+                                    color: AppColors.grey13,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  '25%',
+                                  style: TextStyle(
+                                    color: AppColors.textcolor2,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 7.h),
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 7.r,
+                                  backgroundColor: AppColors.paintColor,
+                                ),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Paint',
+                                  style: TextStyle(
+                                    color: AppColors.grey13,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+                                  '20%',
+                                  style: TextStyle(
+                                    color: AppColors.textcolor2,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
 
-                       Container(
-                  padding: EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(12.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
-                        spreadRadius: 1,
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 7.r,
-                            backgroundColor: AppColors.inProgressText,
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            'Cement',
-                            style: TextStyle(
-                              color: AppColors.grey13,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            '23%',
-                            style: TextStyle(
-                              color: AppColors.textcolor2,
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 7.h),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 7.r,
-                            backgroundColor: AppColors.inventoryText,
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            'Steel',
-                            style: TextStyle(
-                              color: AppColors.grey13,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            '25%',
-                            style: TextStyle(
-                              color: AppColors.textcolor2,
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 7.h),
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 7.r,
-                            backgroundColor: AppColors.paintColor,
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            'Paint',
-                            style: TextStyle(
-                              color: AppColors.grey13,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            '20%',
-                            style: TextStyle(
-                              color: AppColors.textcolor2,
-                              fontSize: 14.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                  
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -138,27 +146,56 @@ class Project_inventory extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                            icon:   Icon(Icons.filter_list),
+                            icon: Icon(Icons.filter_list),
                             onPressed: () {
-                              filter_Emply(context, Offset(454,500));
-                            },  
+                              filter_Emply(context, Offset(454, 500));
+                            },
                           ),
                         ],
                       ),
                       SizedBox(height: 20.h),
 
                       InventoryItemCard(
-                         quantity: '120 Bags',materialName:'Cement ' , materialTitle: 'Metarial', price: '500', statusText: 'Sufficient', statusColor: AppColors.greenTextcolor), 
+                        quantity: '120 Bags',
+                        materialName: 'Cement ',
+                        materialTitle: 'Metarial',
+                        price: '500',
+                        statusText: 'Sufficient',
+                        statusColor: AppColors.greenTextcolor,
+                      ),
                       InventoryItemCard(
-                         quantity: '180 Bags',materialName:'Bag' , materialTitle: 'Metarial', price: '800', statusText: 'Sufficient', statusColor: AppColors.inventoryText), 
+                        quantity: '180 Bags',
+                        materialName: 'Bag',
+                        materialTitle: 'Metarial',
+                        price: '800',
+                        statusText: 'Sufficient',
+                        statusColor: AppColors.inventoryText,
+                      ),
                       InventoryItemCard(
-                         quantity: '700 Gallons',materialName:'Paint' , materialTitle: 'Metarial', price: '300', statusText: 'Medium', statusColor: AppColors.mediumorg), 
+                        quantity: '700 Gallons',
+                        materialName: 'Paint',
+                        materialTitle: 'Metarial',
+                        price: '300',
+                        statusText: 'Medium',
+                        statusColor: AppColors.mediumorg,
+                      ),
                       InventoryItemCard(
-                         quantity: '120 Units',materialName:'Dril ' , materialTitle: 'Metarial', price: '900', statusText: 'Sufficient', statusColor: AppColor.greenColor), 
-                    
+                        quantity: '120 Units',
+                        materialName: 'Dril ',
+                        materialTitle: 'Metarial',
+                        price: '900',
+                        statusText: 'Sufficient',
+                        statusColor: AppColor.greenColor,
+                      ),
+
                       InventoryItemCard(
-                         quantity: '700 Bags',materialName:'Cement ' , materialTitle: 'Metarial', price: '850', statusText: 'Low', statusColor: AppColors.inventoryRedText), 
-                    
+                        quantity: '700 Bags',
+                        materialName: 'Cement ',
+                        materialTitle: 'Metarial',
+                        price: '850',
+                        statusText: 'Low',
+                        statusColor: AppColors.inventoryRedText,
+                      ),
                     ],
                   ),
                 ),
@@ -170,6 +207,7 @@ class Project_inventory extends StatelessWidget {
       // bottomNavigationBar: CustomBottomNav2(),
     );
   }
+
   // Updated signature: accepts tapPosition to position the popup where user tapped
   Future<Object?> filter_Emply(BuildContext context, Offset tapPosition) {
     final screenSize = MediaQuery.of(context).size;
@@ -184,7 +222,8 @@ class Project_inventory extends StatelessWidget {
     // top should be slightly below the tap so it appears like a contextual menu
     double top = tapPosition.dy;
     // ensure it doesn't go off the bottom
-    final maxTop = screenSize.height - 200.0; // keep some margin; adjust if needed
+    final maxTop =
+        screenSize.height - 200.0; // keep some margin; adjust if needed
     if (top > maxTop) top = maxTop;
 
     return showGeneralDialog(
@@ -231,12 +270,18 @@ class Project_inventory extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View All',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
+                            right: 50.0.r,
+                            top: 10.r,
+                            bottom: 10.r,
+                            left: 10.r,
+                          ),
+                          child: Text(
+                            'View All',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 10.h),
@@ -246,29 +291,41 @@ class Project_inventory extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View Sufficient',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
+                            right: 50.0.r,
+                            top: 10.r,
+                            bottom: 10.r,
+                            left: 10.r,
+                          ),
+                          child: Text(
+                            'View Sufficient',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 10.h),
                       GestureDetector(
                         onTap: () {
                           Get.back();
-                          
+
                           // Navigator.of(context).pop();
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View Low',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
+                            right: 50.0.r,
+                            top: 10.r,
+                            bottom: 10.r,
+                            left: 10.r,
+                          ),
+                          child: Text(
+                            'View Low',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                     ],
