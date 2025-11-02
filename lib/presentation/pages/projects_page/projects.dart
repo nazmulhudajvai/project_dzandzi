@@ -1,5 +1,7 @@
 
+import 'package:dzandzi/presentation/controllers/bottom_navbar_view2.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
+import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
 import 'package:dzandzi/theams/app_colors.dart';
@@ -116,7 +118,7 @@ class ProjectPage extends StatelessWidget {
           ),
         ),
       ),
-      // bottomNavigationBar: BottomNavView2(),
+      bottomNavigationBar: CustomBottomNav(),
     );
   }
 

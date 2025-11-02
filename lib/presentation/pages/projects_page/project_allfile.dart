@@ -4,6 +4,7 @@ import 'package:dzandzi/presentation/pages/projects_page/Project_emploly.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_inventory.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_task.dart';
+import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_build_sync_card.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -118,6 +119,7 @@ class Project_all_File extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: CustomBottomNav(),
     );
   }
 }
