@@ -37,12 +37,18 @@ class Project_employ extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.filter_list),
-                            onPressed: () {
-                              filter_Emply(context);
-                            },
-                          ),
+                          GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTapDown: (TapDownDetails details) {
+                  // pass the global tap position to three_dot
+                  three_dot(context, details.globalPosition);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      right: 0.r, top: 0.r, bottom: 0.r, left: 15.r),
+                  child: Icon(Icons.filter_list),
+                ),
+              ),
                         ],
                       ),
                       SizedBox(height: 20.h),
@@ -107,61 +113,119 @@ class Project_employ extends StatelessWidget {
       // bottomNavigationBar: CustomBottomNav2(),
     );
   }
-  Future<Object?> filter_Emply(BuildContext context) {
+  // Updated signature: accepts tapPosition to position the popup where user tapped
+  Future<Object?> three_dot(BuildContext context, Offset tapPosition) {
+    final screenSize = MediaQuery.of(context).size;
+    // approximate dialog width to prevent overflow (tweak if you change dialog width)
+    const double dialogWidth = 220.0;
+    // calculate right offset from global tap x so we can use Positioned(right: ...)
+    double right = screenSize.width - tapPosition.dx - 8.0; // small margin
+    // if right would be negative or too large, clamp it
+    if (right < 8.0) right = 8.0;
+    if (right > screenSize.width - 8.0) right = 8.0;
+
+    // top should be slightly below the tap so it appears like a contextual menu
+    double top = tapPosition.dy;
+    // ensure it doesn't go off the bottom
+    final maxTop = screenSize.height - 200.0; // keep some margin; adjust if needed
+    if (top > maxTop) top = maxTop;
+
     return showGeneralDialog(
       context: context,
       barrierDismissible: true,
       barrierLabel: '',
       pageBuilder: (context, anim1, anim2) {
-        return Material(
-          color: Colors.transparent,
-          child: Stack(
-            children: [
-              // Tap outside to close
-              GestureDetector(
+        return Stack(
+          children: [
+            // full-screen transparent layer to allow tapping outside to dismiss
+            Positioned.fill(
+              child: GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
                 child: Container(color: Colors.transparent),
               ),
+            ),
 
-              Positioned(
-                top: 150,
-                right: 40,
-                child: Material(
-                  color: Colors.transparent,
-                  child: Container(
-                    width: 150.w,
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 10,
-                          offset: Offset(0, 4),
+            Positioned(
+              top: top,
+              right: right,
+              child: Material(
+                color: Colors.transparent,
+                child: Container(
+                  width: dialogWidth,
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
+                          child: Text('View All',
+                              style: GoogleFonts.roboto(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                              )),
                         ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        buildFilterOption(context, 'Active'),
-                        buildFilterOption(context, 'Complete'),
-                        buildFilterOption(context, 'On-going'),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 10.h),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
+                          child: Text('View Engineer',
+                              style: GoogleFonts.roboto(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                              )),
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                         
+                          // Navigator.of(context).pop();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
+                          child: Text('View Designer',
+                              style: GoogleFonts.roboto(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                              )),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
       transitionBuilder: (context, anim1, anim2, child) {
         return FadeTransition(opacity: anim1, child: child);
       },
-      transitionDuration: const Duration(milliseconds: 200),
+      transitionDuration: Duration(milliseconds: 200),
     );
   }
 
