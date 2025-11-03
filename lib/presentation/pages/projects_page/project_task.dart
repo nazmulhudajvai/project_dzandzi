@@ -1,12 +1,8 @@
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
-import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../task/create_new_task.dart';
 
 class ProjectTask extends StatelessWidget {
   ProjectTask({Key? key}) : super(key: key);
