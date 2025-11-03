@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../theams/app_colors.dart';
 import '../../theams/app_color2.dart';
 
 class Custom_back_button extends StatelessWidget {

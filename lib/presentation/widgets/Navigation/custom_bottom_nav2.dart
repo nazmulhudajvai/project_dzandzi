@@ -1,5 +1,6 @@
 import 'package:dzandzi/presentation/pages/Employees/all_roles.dart';
 import 'package:dzandzi/presentation/pages/employee2/overview.dart';
+import 'package:dzandzi/presentation/pages/inventory_request/inventory_request.dart';
 import 'package:dzandzi/presentation/pages/task/task%20_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +23,8 @@ class CustomBottomNav2 extends StatelessWidget {
     _NavItem(iconPath: 'assets/image/iinventory.svg', label: 'Inventory'),
     _NavItem(iconPath: 'assets/image/idoc.svg', label: 'Document'),
   ];
+
+  CustomBottomNav2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +63,7 @@ class CustomBottomNav2 extends StatelessWidget {
                     Get.to(AllRoles());
                     break;
                   case 3:
-                    // Get.to(InventoryView());
+                    Get.to(InventoryRequest());
                     break;
                   case 4:
                     Get.to(DocumentView());

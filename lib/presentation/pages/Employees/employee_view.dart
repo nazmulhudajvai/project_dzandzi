@@ -11,7 +11,7 @@ import 'all_roles.dart';
 import 'invite_user.dart';
 
 class EmployeeView extends StatelessWidget {
-  EmployeeView({Key? key}) : super(key: key);
+  EmployeeView({super.key});
 
   final List<Map<String, dynamic>> employeeData = [
     {"name": "BuildSync", "email": 'buildsync@mail.com'},

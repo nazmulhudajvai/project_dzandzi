@@ -4,7 +4,6 @@ import '../pages/home/home_view.dart';
 import '../pages/projects_page/projects.dart';
 import '../pages/inventory/inventory_view.dart';
 import '../pages/document/document_view.dart';
-import '../pages/profile/my_profile.dart';
 import '../controllers/bottom_navbar_controller2.dart';
 import '../widgets/Navigation/custom_bottom_nav2.dart';
 

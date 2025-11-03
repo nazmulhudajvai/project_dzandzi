@@ -14,6 +14,8 @@ class BottomNavView extends StatelessWidget {
     Center(child: Text('Profile Page')),
   ];
 
+  BottomNavView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {

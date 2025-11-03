@@ -27,21 +27,31 @@ class ProjectDocument extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: Text("Name",
-                          style: GoogleFonts.roboto(
-                              fontSize: 16, fontWeight: FontWeight.w500)),
+                      child: Text(
+                        "Name",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                            SizedBox(width: 40.w),
+                    SizedBox(width: 40.w),
                     Expanded(
                       flex: 2,
-                      child: Text("Type",
-                          style: GoogleFonts.roboto(
-                              fontSize: 16, fontWeight: FontWeight.w500)),
+                      child: Text(
+                        "Type",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                     Text(
                       "Action",
                       style: GoogleFonts.roboto(
-                          fontSize: 16, fontWeight: FontWeight.w500),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
@@ -85,15 +95,25 @@ class ProjectDocument extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-              flex: 3,
-              child: Text(name,
-                  style: GoogleFonts.roboto(
-                      fontSize: 14, fontWeight: FontWeight.w400))),
+            flex: 3,
+            child: Text(
+              name,
+              style: GoogleFonts.roboto(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
           Expanded(
-              flex: 2,
-              child: Text(type,
-                  style: GoogleFonts.roboto(
-                      fontSize: 14, fontWeight: FontWeight.w400))),
+            flex: 2,
+            child: Text(
+              type,
+              style: GoogleFonts.roboto(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
           Expanded(
             flex: 1,
             child: Align(
@@ -107,7 +127,11 @@ class ProjectDocument extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.only(
-                      right: 0.r, top: 0.r, bottom: 0.r, left: 15.r),
+                    right: 0.r,
+                    top: 0.r,
+                    bottom: 0.r,
+                    left: 15.r,
+                  ),
                   child: Icon(Icons.more_horiz),
                 ),
               ),
@@ -118,7 +142,12 @@ class ProjectDocument extends StatelessWidget {
     );
   }
 
-  Widget divider() => Center(child: SizedBox(width: 340.w, child: Divider(height: 1.h, thickness: 1)));
+  Widget divider() => Center(
+    child: SizedBox(
+      width: 340.w,
+      child: Divider(height: 1.h, thickness: 1),
+    ),
+  );
 
   // Updated signature: accepts tapPosition to position the popup where user tapped
   Future<Object?> three_dot(BuildContext context, Offset tapPosition) {
@@ -134,7 +163,8 @@ class ProjectDocument extends StatelessWidget {
     // top should be slightly below the tap so it appears like a contextual menu
     double top = tapPosition.dy;
     // ensure it doesn't go off the bottom
-    final maxTop = screenSize.height - 200.0; // keep some margin; adjust if needed
+    final maxTop =
+        screenSize.height - 200.0; // keep some margin; adjust if needed
     if (top > maxTop) top = maxTop;
 
     return showGeneralDialog(
@@ -181,12 +211,18 @@ class ProjectDocument extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View PDF',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
+                            right: 50.0.r,
+                            top: 10.r,
+                            bottom: 10.r,
+                            left: 10.r,
+                          ),
+                          child: Text(
+                            'View PDF',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 10.h),
@@ -196,12 +232,18 @@ class ProjectDocument extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View Details',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
+                            right: 50.0.r,
+                            top: 10.r,
+                            bottom: 10.r,
+                            left: 10.r,
+                          ),
+                          child: Text(
+                            'View Details',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 10.h),
@@ -213,12 +255,18 @@ class ProjectDocument extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('Download',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
+                            right: 50.0.r,
+                            top: 10.r,
+                            bottom: 10.r,
+                            left: 10.r,
+                          ),
+                          child: Text(
+                            'Download',
+                            style: GoogleFonts.roboto(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -240,8 +288,9 @@ class ProjectDocument extends StatelessWidget {
     showDialog(
       context: context,
       barrierDismissible: true,
-      barrierColor:
-          AppColor.blackColor.withOpacity(0.6), // fully transparent background
+      barrierColor: AppColor.blackColor.withOpacity(
+        0.6,
+      ), // fully transparent background
       builder: (context) {
         return Dialog(
           backgroundColor: AppColor.whiteColor, // semi-transparent box
@@ -331,15 +380,20 @@ class ProjectDocument extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset('assets/image/download_icon.svg',
-                          height: 16.h, width: 16.w),
+                      SvgPicture.asset(
+                        'assets/image/download_icon.svg',
+                        height: 16.h,
+                        width: 16.w,
+                      ),
                       SizedBox(width: 15.w),
-                      Text("Download PDF",
-                          style: GoogleFonts.roboto(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.inProgressText,
-                          ))
+                      Text(
+                        "Download PDF",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.inProgressText,
+                        ),
+                      ),
                     ],
                   ),
                   onTap: () {
@@ -347,7 +401,7 @@ class ProjectDocument extends StatelessWidget {
                     downloadOption(context);
                   },
                 ),
-                SizedBox(height: 10.h)
+                SizedBox(height: 10.h),
               ],
             ),
           ),
@@ -356,16 +410,14 @@ class ProjectDocument extends StatelessWidget {
     );
   }
 
-
-
-
   void downloadOption(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: true,
-      barrierColor:
-          AppColor.blackColor.withOpacity(0.6), // fully transparent background
-          
+      barrierColor: AppColor.blackColor.withOpacity(
+        0.6,
+      ), // fully transparent background
+
       builder: (context) {
         return Dialog(
           backgroundColor: AppColor.whiteColor, // semi-transparent box
@@ -378,7 +430,7 @@ class ProjectDocument extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              
+
               children: [
                 Text(
                   "Are you sure to download ",
@@ -388,32 +440,39 @@ class ProjectDocument extends StatelessWidget {
                     color: AppColors.black,
                   ),
                 ),
-                
-                   
+
                 SizedBox(height: 30.h),
                 GestureDetector(
                   onTap: () {
                     Get.back();
-                    Get.snackbar('Downloading ..', ' you downloadin a Pdf file');
+                    Get.snackbar(
+                      'Downloading ..',
+                      ' you downloadin a Pdf file',
+                    );
                   },
                   child: Container(
                     height: 44.h,
                     decoration: BoxDecoration(
-                      border:Border.all(color: AppColors.inProgressText),
-                      borderRadius: BorderRadius.circular(30.r)
+                      border: Border.all(color: AppColors.inProgressText),
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset('assets/image/download_icon.svg',
-                            height: 16.h, width: 16.w),
+                        SvgPicture.asset(
+                          'assets/image/download_icon.svg',
+                          height: 16.h,
+                          width: 16.w,
+                        ),
                         SizedBox(width: 15.w),
-                        Text("Download PDF",
-                            style: GoogleFonts.roboto(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.inProgressText,
-                            ))
+                        Text(
+                          "Download PDF",
+                          style: GoogleFonts.roboto(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.inProgressText,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -421,22 +480,24 @@ class ProjectDocument extends StatelessWidget {
                 SizedBox(height: 10.h),
                 GestureDetector(
                   onTap: () {
-                      Get.back();
-                    },
+                    Get.back();
+                  },
                   child: Container(
                     height: 44.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border:Border.all(color: AppColors.liniarIndicatorColor),
-                      borderRadius: BorderRadius.circular(30.r)
+                      border: Border.all(color: AppColors.liniarIndicatorColor),
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Center(
-                      child: Text("Cencel",
-                          style: GoogleFonts.roboto(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.liniarIndicatorColor,
-                          )),
+                      child: Text(
+                        "Cencel",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.liniarIndicatorColor,
+                        ),
+                      ),
                     ),
                   ),
                 ),

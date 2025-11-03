@@ -1,20 +1,20 @@
- import 'package:dzandzi/theams/app_colors.dart';
+import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
- 
+
 class EmployeeProfileCard extends StatelessWidget {
   final String imagePath;
   final String name;
   final String role;
- 
+
   const EmployeeProfileCard({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.name,
     required this.role,
-  }) : super(key: key);
- 
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,4 +60,3 @@ class EmployeeProfileCard extends StatelessWidget {
     );
   }
 }
- 

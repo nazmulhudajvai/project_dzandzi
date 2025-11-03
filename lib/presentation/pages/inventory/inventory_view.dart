@@ -1,5 +1,4 @@
 import 'package:dzandzi/presentation/pages/inventory/add_inventory.dart';
-import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav2.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/custom_tabbar_view.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/cutom_tabbar_widget.dart';
 import 'package:dzandzi/res/assets/image_assets.dart';

@@ -1,4 +1,3 @@
-
 import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
@@ -10,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProjectPage extends StatelessWidget {
-  ProjectPage({Key? key}) : super(key: key);
+  ProjectPage({super.key});
 
   final List<Map<String, dynamic>> projectData = [
     {"name": "BuildSync", "progress": 50, "days": 14},
@@ -31,7 +30,6 @@ class ProjectPage extends StatelessWidget {
             children: [
               SizedBox(height: 10.h),
 
-       
               Padding(
                 padding: EdgeInsets.all(2.0.r),
                 child: Row(
@@ -61,7 +59,6 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 40.h),
 
-             
               Row(
                 children: [
                   Expanded(child: search_bar()),
@@ -77,12 +74,14 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 30.h),
 
-              
               Row(
                 children: [
-                  GestureDetector(onTap: () {
-                    Get.to(Project_all_File());
-                  }, child: Icon(Icons.add, color: AppColors.deepBlue)),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(Project_all_File());
+                    },
+                    child: Icon(Icons.add, color: AppColors.deepBlue),
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     "Create Project",
@@ -96,7 +95,6 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 10.h),
 
-             
               Expanded(
                 child: ListView.builder(
                   itemCount: projectData.length,
@@ -107,7 +105,7 @@ class ProjectPage extends StatelessWidget {
                       progress: data["progress"],
                       days: data["days"],
                       isdayshow: false,
-                      isProgress:true,
+                      isProgress: true,
                     );
                   },
                 ),

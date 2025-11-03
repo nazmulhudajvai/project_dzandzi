@@ -107,7 +107,7 @@ class ItemDetail extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: '${item.unit}',
+                                text: item.unit,
                                 style: TextStyle(
                                   color: AppColors.subtitleColor,
                                   fontSize: 14.sp,
@@ -193,7 +193,7 @@ class ItemDetail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20.h,),
+                    SizedBox(height: 20.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -230,7 +230,7 @@ class ItemDetail extends StatelessWidget {
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w400,
                                 ),
-                                SizedBox(height: 6.h,),
+                                SizedBox(height: 6.h),
                                 TextProperty(
                                   text: item.category,
                                   textColor: AppColors.textColor,
@@ -239,7 +239,6 @@ class ItemDetail extends StatelessWidget {
                                 ),
                               ],
                             ),
-                           
                           ],
                         ),
                         Row(
@@ -259,8 +258,8 @@ class ItemDetail extends StatelessWidget {
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w400,
                                 ),
-                                SizedBox(height: 6.h,),
-                                TextProperty( 
+                                SizedBox(height: 6.h),
+                                TextProperty(
                                   text: _displayPrice(item.costText),
                                   textColor: AppColors.textColor,
                                   fontSize: 14.sp,
@@ -268,7 +267,6 @@ class ItemDetail extends StatelessWidget {
                                 ),
                               ],
                             ),
-                           
                           ],
                         ),
                       ],
@@ -276,7 +274,7 @@ class ItemDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              
+
               SizedBox(height: 20.h),
               Container(
                 padding: EdgeInsets.all(12.w),
@@ -301,23 +299,23 @@ class ItemDetail extends StatelessWidget {
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RichText(text: 
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Skyline Tower   ',
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Skyline Tower   ',
                                 style: TextStyle(
                                   color: AppColors.black12,
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            TextSpan(
-                              text: '2nd Floor',
+                              TextSpan(
+                                text: '2nd Floor',
                                 style: TextStyle(
                                   color: AppColors.subtitleColor,
                                   fontSize: 14.sp,
@@ -329,30 +327,30 @@ class ItemDetail extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         TextProperty(
-                      text: '12 Pieces',
-                      textColor: AppColors.blueColor ,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
+                          text: '12 Pieces',
+                          textColor: AppColors.blueColor,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RichText(text: 
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Green Vally Site   ',
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Green Vally Site   ',
                                 style: TextStyle(
                                   color: AppColors.black12,
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            TextSpan(
-                              text: 'Roof Framing',
+                              TextSpan(
+                                text: 'Roof Framing',
                                 style: TextStyle(
                                   color: AppColors.subtitleColor,
                                   fontSize: 14.sp,
@@ -364,30 +362,30 @@ class ItemDetail extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         TextProperty(
-                      text: '18  Pieces',
-                      textColor: AppColors.blueColor ,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
+                          text: '18  Pieces',
+                          textColor: AppColors.blueColor,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        RichText(text: 
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Lakeview   ',
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Lakeview   ',
                                 style: TextStyle(
                                   color: AppColors.black12,
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            TextSpan(
-                              text: 'Deck Construction',
+                              TextSpan(
+                                text: 'Deck Construction',
                                 style: TextStyle(
                                   color: AppColors.subtitleColor,
                                   fontSize: 14.sp,
@@ -399,11 +397,11 @@ class ItemDetail extends StatelessWidget {
                         ),
                         SizedBox(width: 8.w),
                         TextProperty(
-                      text: '8 Pieces',
-                      textColor: AppColors.blueColor ,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
+                          text: '8 Pieces',
+                          textColor: AppColors.blueColor,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ],
                     ),
                   ],

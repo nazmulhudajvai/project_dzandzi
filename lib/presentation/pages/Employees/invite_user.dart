@@ -13,7 +13,7 @@ import '../../widgets/employee/employee_card.dart';
 import '../common/company_details.dart';
 
 class InviteUser extends StatelessWidget {
-  InviteUser({Key? key}) : super(key: key);
+  const InviteUser({super.key});
 
   @override
   Widget build(BuildContext context) {

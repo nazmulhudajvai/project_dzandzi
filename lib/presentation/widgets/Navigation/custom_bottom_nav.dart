@@ -21,6 +21,8 @@ class CustomBottomNav extends StatelessWidget {
     _NavItem(iconPath: 'assets/image/iprofile.svg', label: 'Profile'),
   ];
 
+  CustomBottomNav({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {

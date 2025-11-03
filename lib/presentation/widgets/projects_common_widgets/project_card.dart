@@ -3,7 +3,6 @@ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class project_card extends StatelessWidget {
@@ -78,7 +77,7 @@ class project_card extends StatelessWidget {
                           ),
                         ),
                       )
-                    : (isProgress==true && progress >= 1 && progress <= 99)
+                    : (isProgress == true && progress >= 1 && progress <= 99)
                     ? Text(
                         'In Progress',
                         style: GoogleFonts.roboto(

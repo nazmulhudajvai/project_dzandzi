@@ -6,8 +6,8 @@ import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:google_fonts/google_fonts.dart';
 
 class Project_employ extends StatelessWidget {
-  Project_employ({Key? key}) : super(key: key);
- 
+  const Project_employ({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,6 @@ class Project_employ extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -26,7 +25,6 @@ class Project_employ extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                     
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -107,6 +105,7 @@ class Project_employ extends StatelessWidget {
       // bottomNavigationBar: CustomBottomNav2(),
     );
   }
+
   Future<Object?> filter_Emply(BuildContext context) {
     return showGeneralDialog(
       context: context,

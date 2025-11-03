@@ -9,13 +9,13 @@ class KeyMetricCard extends StatelessWidget {
   final Color valueColor;
 
   const KeyMetricCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.iconBackgroundColor,
     required this.title,
     required this.value,
     required this.valueColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
