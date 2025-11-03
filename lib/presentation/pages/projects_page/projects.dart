@@ -78,12 +78,7 @@ class ProjectPage extends StatelessWidget {
 
               Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(Project_all_File());
-                    },
-                    child: Icon(Icons.add, color: AppColors.deepBlue),
-                  ),
+                  Icon(Icons.add, color: AppColors.deepBlue),
                   const SizedBox(width: 6),
                   Text(
                     "Create Project",
@@ -98,23 +93,26 @@ class ProjectPage extends StatelessWidget {
               SizedBox(height: 10.h),
 
               Expanded(
-                child: InkWell(
-                  onTap: () {
-                    Get.to(Project_all_File());
-                  },
-                  child: ListView.builder(
-                    itemCount: projectData.length,
-                    itemBuilder: (context, index) {
-                      final data = projectData[index];
-                      return project_card(
+                child: ListView.builder(
+                  itemCount: projectData.length,
+                  itemBuilder: (context, index) {
+                    final data = projectData[index];
+                    return InkWell(
+                      child: project_card(
                         title: data["name"],
                         progress: data["progress"],
                         days: data["days"],
                         isdayshow: false,
                         isProgress: true,
-                      );
-                    },
-                  ),
+                      ),
+
+                      onTap: () {
+                          Get.to(()=>Project_all_File(
+                 
+                    ));
+                      },
+                    );
+                  },
                 ),
               ),
             ],
