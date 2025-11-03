@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 // fixed "theams" → "themes"
 import '../../../../res/assets/image_assets.dart';
 import '../../../theams/app_colors.dart';
@@ -36,10 +37,10 @@ class _SplashPageState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: AppColor.blueLiteColor,
       body: Center(
         child: Container(
-          margin: const EdgeInsets.all(10),
+          margin: EdgeInsets.all(10),
           width: 400.w,
           height: 142.h,
           decoration: BoxDecoration(
@@ -64,7 +65,7 @@ class _SplashPageState extends State<SplashView> {
             ),
             child: Center(
               child: Text(
-                "Welcome To DzanDzi",
+                "WELCOME",
                 style: GoogleFonts.roboto(
                   fontSize: 32.sp,
                   fontWeight: FontWeight.w700,
