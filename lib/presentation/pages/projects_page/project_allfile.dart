@@ -6,12 +6,16 @@ import 'package:dzandzi/presentation/pages/projects_page/project_inventory.dart'
 import 'package:dzandzi/presentation/pages/projects_page/project_task.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_build_sync_card.dart';
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../employee2/overview.dart';
+import 'Project_peichart.dart';
 
 class Project_all_File extends StatelessWidget {
   Project_all_File({super.key});
@@ -75,7 +79,29 @@ class Project_all_File extends StatelessWidget {
             progress: 50,
             padding: EdgeInsets.all(12.r),
           ),
-
+          InkWell(
+            onTap: () {
+              Get.to(Overview());
+            },
+            child: Container(
+              width: 323.w,
+              height: 52.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: AppColor.blueColor, width: 1),
+              ),
+              child: Center(
+                child: Text(
+                  'Enter Project',
+                  style: GoogleFonts.roboto(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w500,
+                    color: AppColor.blueColor,
+                  ),
+                ),
+              ),
+            ),
+          ),
           Container(
             color: AppColors.pageBackgroundColor,
             padding: const EdgeInsets.symmetric(vertical: 10),

@@ -27,6 +27,7 @@ class Project_Overview extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Project_peichart(),
                 GridView.count(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10.w,

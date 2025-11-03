@@ -149,7 +149,7 @@ class HomeView extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 CustomCardProgressCards(
-                  heading: 'Ongoing',
+                  heading: 'On-going Project',
                   value: '56',
                   iconPath: 'assets/image/iongoing.svg',
                   startColor: AppColors.orangeDeep,
@@ -159,9 +159,9 @@ class HomeView extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 CustomCardProgressCards(
-                  heading: 'Done',
+                  heading: 'Complete',
                   value: '56',
-                  iconPath: 'assets/image/itp.svg',
+                  iconPath: 'assets/image/idone.svg',
                   startColor: AppColors.completeProjectSection1,
                   endColor: AppColors.completeProjectSection2,
                   boxsColor: AppColors.completeProjectSection2.withOpacity(.4),
