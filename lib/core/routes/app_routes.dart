@@ -4,6 +4,7 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
 
+  static const BOTTOMNAVIGATION = _Paths.BOTTOMNAVIGATION;
   static const LOGIN = _Paths.LOGIN;
   static const SIGNUP = _Paths.SIGNUP;
   static const OTP = _Paths.OTP;
@@ -23,6 +24,7 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
 
+  static const BOTTOMNAVIGATION = '/bottomnavigation';
   static const LOGIN = '/login';
   static const SplashView = '/';
   static const ProjectsPage = '/projectpage';

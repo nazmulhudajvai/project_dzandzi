@@ -5,15 +5,10 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../theams/app_colors.dart';
 import 'package:dzandzi/presentation/pages/projects_page/create_new_project.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../theams/app_colors.dart';
 import '../../../theams/app_color2.dart';
 import '../../controllers/home_controller.dart';
-import '../../widgets/Navigation/custom_bottom_nav.dart';
 
 class HomeView extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
@@ -213,7 +208,7 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNav(),
+      // bottomNavigationBar: CustomBottomNav(),
     );
   }
 }

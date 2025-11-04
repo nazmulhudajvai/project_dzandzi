@@ -1,3 +1,4 @@
+import 'package:dzandzi/presentation/bottom_navigation2/view/second_bottom_navigation_view.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
 import 'package:dzandzi/theams/app_colors.dart';
@@ -113,6 +114,7 @@ class EmployeeView extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(height: 100.h),
             ],
           ),
         ),
@@ -186,7 +188,7 @@ class EmployeeView extends StatelessWidget {
 
         // Navigate based on which option is tapped
         if (label == 'All Roles') {
-          Get.to(AllRoles()); // or your desired page
+          Get.to(SecondBottomNavigationScreen()); // or your desired page
         }
         // You can add more conditions for others if needed:
         else if (label == 'Admin') {

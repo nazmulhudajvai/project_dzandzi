@@ -83,7 +83,6 @@ class InventoryView extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNav(),
     );
   }
 }

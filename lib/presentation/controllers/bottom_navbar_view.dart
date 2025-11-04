@@ -1,7 +1,6 @@
 import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../widgets/Navigation/custom_bottom_nav.dart';
 
 class BottomNavView extends StatelessWidget {
   final BottomNavController controller = Get.put(BottomNavController());
@@ -25,7 +24,6 @@ class BottomNavView extends StatelessWidget {
           index: controller.selectedIndex.value,
           children: pages,
         ),
-        bottomNavigationBar: CustomBottomNav(),
       );
     });
   }

@@ -6,6 +6,7 @@ class AppColor {
   static const Color default2Color = Color(0xFF306CAF);
   static const Color yellowColor = Color(0xFFEEA100);
   static const Color yellowColor1 = Color(0xFFEEA100);
+  static const Color bottomNavIconColor = Color(0xFF797979);
 
   static const Color defaultColor1 = Color(0x4D0B2088);
   static const Color redAlphaColor = Color(0xCCF44336);

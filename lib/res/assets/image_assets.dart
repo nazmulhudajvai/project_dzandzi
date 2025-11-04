@@ -14,6 +14,19 @@ class ImageAssets {
   static const String mapLoc = 'assets/icon/mapLoc.png';
 
 
+
+
+
+  static const String home = 'assets/image/ihome.svg';
+  static const String project = 'assets/image/iproject.svg';
+  static const String people = 'assets/image/ipeople.svg';
+  static const String inventory = 'assets/image/iinventory.svg';
+  static const String profile = 'assets/image/iprofile.svg';
+  static const String document = 'assets/image/idoc.svg';
+  static const String overview = 'assets/image/iover.svg';
+  static const String task = 'assets/image/itask.svg';
+
+
   //Icons
   // static const String check = 'assets/icons/check.svg';
 

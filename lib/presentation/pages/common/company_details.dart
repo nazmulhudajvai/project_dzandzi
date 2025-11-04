@@ -1,3 +1,5 @@
+import 'package:dzandzi/presentation/bottom_navigation_bar/view/bottom_navigation_view.dart';
+import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -113,7 +115,7 @@ class CompanyDetailsView extends StatelessWidget {
 
               InkWell(
                 onTap: () {
-                  Get.to(HomeView());
+                  Get.to(BottomNavigationScreen());
                 },
                 child: CustomButton(
                   title: 'Confirm',

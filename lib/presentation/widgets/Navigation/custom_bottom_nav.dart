@@ -25,106 +25,115 @@ class CustomBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // list of pages rendered for each tab (keeps state via IndexedStack)
+    final List<Widget> pages = [
+      HomeView(),
+      ProjectPage(),
+      EmployeeView(),
+      InventoryView(),
+      ProfileView(),
+    ];
+
+    // height of the bottom nav area
+    final double navHeight = 70.h;
+
     return Obx(() {
-      return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 4,
-              offset: Offset(0, -2),
+      return Scaffold(
+        // render pages and overlay the bottom nav so it stays visible
+        body: Stack(
+          children: [
+            // give pages bottom padding equal to navHeight so content is not hidden
+            Padding(
+              padding: EdgeInsets.only(bottom: navHeight),
+              child: IndexedStack(
+                index: controller.selectedIndex.value,
+                children: pages,
+              ),
             ),
-          ],
-        ),
-        padding: EdgeInsets.only(bottom: 10.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(items.length, (index) {
-            final item = items[index];
-            final isSelected = controller.selectedIndex.value == index;
-
-            return GestureDetector(
-              onTap: () {
-                controller.changeTab(index);
-
-                // ✅ Route navigation logic
-                switch (index) {
-                  case 0:
-                    Get.to(HomeView());
-                    break;
-                  case 1:
-                    Get.to(ProjectPage());
-                    break;
-                  case 2:
-                    Get.to(EmployeeView());
-                    break;
-                  case 3:
-                    Get.to(InventoryView());
-                    break;
-                  case 4:
-                    Get.to(ProfileView());
-                    break;
-                }
-              },
+            // bottom nav over the pages
+            Align(
+              alignment: Alignment.bottomCenter,
               child: Container(
-                color: Colors.transparent,
-                width: MediaQuery.of(context).size.width / items.length,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: 200),
-                      height: 6.h,
-                      width: 20.w,
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? AppColor.blueLiteColor
-                            : Colors.transparent,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 3.h),
-                    Container(
-                      width: 32.w,
-                      height: 32.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: isSelected
-                            ? AppColor.blueLiteColor.withOpacity(0.2)
-                            : Colors.transparent,
-                      ),
-                      padding: EdgeInsets.all(6.w),
-                      child: SvgPicture.asset(
-                        item.iconPath,
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.contain,
-                        colorFilter: ColorFilter.mode(
-                          isSelected ? AppColor.blueLiteColor : Colors.grey,
-                          BlendMode.srcIn,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 3.h),
-                    Text(
-                      item.label,
-                      style: TextStyle(
-                        fontSize: 11.sp,
-
-                        color: isSelected
-                            ? AppColor.blueLiteColor
-                            : Colors.grey,
-                      ),
+                height: navHeight,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 4,
+                      offset: Offset(0, -2),
                     ),
                   ],
                 ),
+                padding: EdgeInsets.only(bottom: 10.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: List.generate(items.length, (index) {
+                    final item = items[index];
+                    final isSelected = controller.selectedIndex.value == index;
+                    return GestureDetector(
+                      onTap: () {
+                        controller.changeTab(index);
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                        width: MediaQuery.of(context).size.width / items.length,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AnimatedContainer(
+                              duration: Duration(milliseconds: 200),
+                              height: 6.h,
+                              width: 20.w,
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? AppColor.blueLiteColor
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 3.h),
+                            Container(
+                              width: 32.w,
+                              height: 32.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: isSelected
+                                    ? AppColor.blueLiteColor.withOpacity(0.2)
+                                    : Colors.transparent,
+                              ),
+                              padding: EdgeInsets.all(6.w),
+                              child: SvgPicture.asset(
+                                item.iconPath,
+                                width: double.infinity,
+                                height: double.infinity,
+                                fit: BoxFit.contain,
+                                colorFilter: ColorFilter.mode(
+                                  isSelected ? AppColor.blueLiteColor : Colors.grey,
+                                  BlendMode.srcIn,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 3.h),
+                            Text(
+                              item.label,
+                              style: TextStyle(
+                                fontSize: 11.sp,
+                                color: isSelected ? AppColor.blueLiteColor : Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
               ),
-            );
-          }),
+            ),
+          ],
         ),
       );
     });

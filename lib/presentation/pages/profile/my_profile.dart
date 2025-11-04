@@ -161,7 +161,6 @@ class ProfileView extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNav(),
     );
   }
 }
