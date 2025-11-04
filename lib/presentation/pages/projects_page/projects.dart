@@ -1,3 +1,4 @@
+
 import 'package:dzandzi/presentation/controllers/bottom_navbar_view2.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
@@ -11,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProjectPage extends StatelessWidget {
-  ProjectPage({Key? key}) : super(key: key);
+  ProjectPage({super.key});
 
   final List<Map<String, dynamic>> projectData = [
     {"name": "BuildSync", "progress": 50, "days": 14},
@@ -78,7 +79,16 @@ class ProjectPage extends StatelessWidget {
 
               Row(
                 children: [
+
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(Project_all_File());
+                    },
+                    child: Icon(Icons.add, color: AppColors.deepBlue),
+                  ),
+
                   Icon(Icons.add, color: AppColors.deepBlue),
+
                   const SizedBox(width: 6),
                   Text(
                     "Create Project",
@@ -97,6 +107,14 @@ class ProjectPage extends StatelessWidget {
                   itemCount: projectData.length,
                   itemBuilder: (context, index) {
                     final data = projectData[index];
+
+                    return project_card(
+                      title: data["name"],
+                      progress: data["progress"],
+                      days: data["days"],
+                      isdayshow: false,
+                      isProgress: true,
+
                     return InkWell(
                       child: project_card(
                         title: data["name"],
@@ -111,6 +129,7 @@ class ProjectPage extends StatelessWidget {
                  
                     ));
                       },
+
                     );
                   },
                 ),

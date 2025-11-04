@@ -1,6 +1,5 @@
 import 'package:dzandzi/presentation/controllers/inventory_controllers/custom_dropdown_field_controller.dart';
 import 'package:dzandzi/presentation/controllers/inventory_controllers/filter_controller.dart';
-import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
 import 'package:dzandzi/presentation/widgets/custom_button_ak.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/custom_dropdown_field.dart';
 import 'package:dzandzi/presentation/widgets/text_property.dart';
@@ -71,7 +70,14 @@ class FilterBottomSheet extends StatelessWidget {
             SizedBox(height: 4.h),
             CustomDropdownField(
               hintText: 'All Categories',
-              items: ['All', 'Materials', 'Tools', 'Hardware', 'Electrcal', 'Plumbing'],
+              items: [
+                'All',
+                'Materials',
+                'Tools',
+                'Hardware',
+                'Electrcal',
+                'Plumbing',
+              ],
               selectedValue: controller.selectedCategory,
             ),
             SizedBox(height: 20.h),
@@ -93,7 +99,7 @@ class FilterBottomSheet extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(width: 20.w,),
+                SizedBox(width: 20.w),
                 Expanded(
                   child: CustomButtonAk(
                     borderRadius: 50.r,
@@ -102,9 +108,12 @@ class FilterBottomSheet extends StatelessWidget {
                       // apply filter using values from dropdown controller
                       final String status = controller.selectedStatus.value;
                       final String category = controller.selectedCategory.value;
-                      filterController.applyFilter(status: status, category: category);
+                      filterController.applyFilter(
+                        status: status,
+                        category: category,
+                      );
                       Navigator.of(context).pop(); // close sheet after apply
-                    }
+                    },
                   ),
                 ),
               ],

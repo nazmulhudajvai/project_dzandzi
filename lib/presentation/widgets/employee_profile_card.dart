@@ -10,11 +10,11 @@ class EmployeeProfileCard extends StatelessWidget {
   final String role;
 
   const EmployeeProfileCard({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.name,
     required this.role,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

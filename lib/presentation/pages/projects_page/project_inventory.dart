@@ -8,7 +8,9 @@ import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:google_fonts/google_fonts.dart';
 
 class Project_inventory extends StatelessWidget {
+
   Project_inventory({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +46,7 @@ class Project_inventory extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Inventory Use',
-                              style: TextStyle(
-                                color: AppColors.grey13,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
 
-                            SizedBox(height: 7.h),
                             Row(
                               children: [
                                 CircleAvatar(
@@ -79,16 +72,33 @@ class Project_inventory extends StatelessWidget {
                                 ),
                               ],
                             ),
+
+                            Text(
+                              'Inventory Use',
+                              style: TextStyle(
+                                color: AppColors.grey13,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                             SizedBox(height: 7.h),
                             Row(
                               children: [
                                 CircleAvatar(
                                   radius: 7.r,
+
                                   backgroundColor: AppColors.inventoryText,
                                 ),
                                 SizedBox(width: 8.w),
                                 Text(
                                   'Steel',
+
+                                  backgroundColor: AppColors.inProgressText,
+                                ),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Cement',
+
                                   style: TextStyle(
                                     color: AppColors.grey13,
                                     fontSize: 14.sp,
@@ -97,7 +107,11 @@ class Project_inventory extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 Text(
+
                                   '25%',
+
+                                  '23%',
+
                                   style: TextStyle(
                                     color: AppColors.textcolor2,
                                     fontSize: 14.sp,
@@ -105,6 +119,46 @@ class Project_inventory extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            SizedBox(height: 7.h),
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 7.r,
+
+                                  backgroundColor: AppColors.paintColor,
+                                ),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Paint',
+
+                                  backgroundColor: AppColors.inventoryText,
+                                ),
+                                SizedBox(width: 8.w),
+                                Text(
+                                  'Steel',
+
+                                  style: TextStyle(
+                                    color: AppColors.grey13,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                Spacer(),
+                                Text(
+
+                                  '20%',
+
+                                  '25%',
+
+                                  style: TextStyle(
+                                    color: AppColors.textcolor2,
+                                    fontSize: 14.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+
                             SizedBox(height: 7.h),
                             Row(
                               children: [
@@ -131,6 +185,7 @@ class Project_inventory extends StatelessWidget {
                                 ),
                               ],
                             ),
+
                           ],
                         ),
                       ),

@@ -1,7 +1,5 @@
 import 'package:dzandzi/presentation/pages/document/document_view.dart';
 import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
-import 'package:dzandzi/presentation/pages/projects_page/Project_peichart.dart';
-import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
 import 'package:dzandzi/presentation/pages/splash/splash_view.dart';
 import 'package:dzandzi/presentation/pages/task/task%20_view.dart';

@@ -2,6 +2,9 @@
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class project_card extends StatelessWidget {
@@ -52,6 +55,39 @@ class project_card extends StatelessWidget {
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
                 ),
+
+                isActive
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.activeStatus,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          'Active',
+                          style: GoogleFonts.roboto(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.whiteColor,
+                          ),
+                        ),
+                      )
+                    : (isProgress == true && progress >= 1 && progress <= 99)
+                    ? Text(
+                        'In Progress',
+                        style: GoogleFonts.roboto(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.inProgressText,
+                        ),
+                      )
+                    : (progress == 100)
+                    ? Text(
+                        'Complete',
+
               ),
               isActive
                   ? Container(
@@ -65,6 +101,7 @@ class project_card extends StatelessWidget {
                       ),
                       child: Text(
                         'Active',
+
                         style: GoogleFonts.roboto(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,

@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // fixed "theams" → "themes"
-import '../../../../res/assets/image_assets.dart';
-import '../../../theams/app_colors.dart';
 import '../../../theams/app_color2.dart';
 
 class SwitchController extends GetxController {

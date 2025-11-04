@@ -3,23 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
- 
+
 class Project_Over_metric_card extends StatelessWidget {
   final String icon;
   final Color iconBackgroundColor;
   final String title;
   final String value;
   final Color valueColor;
- 
+
   const Project_Over_metric_card({
-    Key? key,
+    super.key,
     required this.icon,
     required this.iconBackgroundColor,
     required this.title,
     required this.value,
     required this.valueColor,
-  }) : super(key: key);
- 
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,15 +43,14 @@ class Project_Over_metric_card extends StatelessWidget {
           Row(
             children: [
               Container(
-                
                 padding: EdgeInsets.all(6.w),
                 decoration: BoxDecoration(
                   color: iconBackgroundColor,
                   shape: BoxShape.circle,
                 ),
                 child: SvgPicture.asset(
-                  '$icon',
-                   
+                  icon,
+
                   height: 16.h,
                   width: 16.w,
                   color: AppColors.whiteColor,
@@ -65,7 +64,7 @@ class Project_Over_metric_card extends StatelessWidget {
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.greymetarial,
-                  ),  
+                  ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -87,4 +86,3 @@ class Project_Over_metric_card extends StatelessWidget {
     );
   }
 }
- 

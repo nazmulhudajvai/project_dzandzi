@@ -16,7 +16,7 @@ import '../../widgets/employee/employee_card.dart';
 import '../common/company_details.dart';
 
 class AllRoles extends StatelessWidget {
-  const AllRoles({Key? key}) : super(key: key);
+  const AllRoles({super.key});
 
   @override
   Widget build(BuildContext context) {

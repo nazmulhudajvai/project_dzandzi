@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProjectTask extends StatelessWidget {
-  ProjectTask({Key? key}) : super(key: key);
+  ProjectTask({super.key});
 
   final List<Map<String, dynamic>> projectData = [
     {"name": "Foundation inspection", "progress": 30, "days": 14},

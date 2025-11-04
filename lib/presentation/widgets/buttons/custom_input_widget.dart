@@ -37,7 +37,7 @@ class CustomInputController extends GetxController {
 }
 
 class CustomInputWidget extends StatelessWidget {
-  CustomInputWidget({
+  const CustomInputWidget({
     super.key,
     this.hintText = '',
     this.backIconTap2,

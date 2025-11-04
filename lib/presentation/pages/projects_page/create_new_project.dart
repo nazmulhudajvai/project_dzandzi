@@ -1,17 +1,13 @@
 import 'package:dzandzi/presentation/pages/projects_page/assign_project_manager.dart';
-import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../theams/app_colors.dart';
 import '../../../theams/app_color2.dart';
 import '../../controllers/bottom_navbar_controller.dart';
-import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/buttons/custom_input_widget.dart';
-import '../home/home_view.dart';
 
 // Make sure this path is correct
 

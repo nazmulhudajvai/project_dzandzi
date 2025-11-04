@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 
-import '../../../../core/routes/app_pages.dart';
 import '../../../../theams/app_colors.dart';
 import '../../../../theams/app_color2.dart';
 import '../../../widgets/buttons/custom_input_widget.dart';

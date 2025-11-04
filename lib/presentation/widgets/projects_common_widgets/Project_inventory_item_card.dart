@@ -1,4 +1,3 @@
-import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,7 +79,7 @@ class InventoryItemCard extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
-                  color:AppColors.greymetarial,
+                  color: AppColors.greymetarial,
                 ),
               ),
               SizedBox(height: 4.h),
@@ -89,7 +88,7 @@ class InventoryItemCard extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.black
+                  color: AppColors.black,
                 ),
               ),
               SizedBox(height: 2.h),
