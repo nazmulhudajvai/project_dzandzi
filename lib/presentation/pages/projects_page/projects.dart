@@ -87,8 +87,6 @@ class ProjectPage extends StatelessWidget {
                     },
                     child: Icon(Icons.add, color: AppColors.deepBlue)),
 
-                  
-
                   const SizedBox(width: 6),
                   Text(
                     "Create Project",

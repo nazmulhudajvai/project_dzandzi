@@ -30,140 +30,142 @@ class SignUpView extends StatelessWidget {
       body: SafeArea(
         child: Container(
           margin: EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Create Your Account',
-                style: GoogleFonts.roboto(
-                  color: AppColor.grayBC,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w600,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Create Your Account',
+                  style: GoogleFonts.roboto(
+                    color: AppColor.grayBC,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.left,
-              ),
-
-              SizedBox(height: 30.h),
-              Text(
-                'First Name',
-                style: GoogleFonts.roboto(
-                  color: AppColor.greyBC,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+            
+                SizedBox(height: 30.h),
+                Text(
+                  'First Name',
+                  style: GoogleFonts.roboto(
+                    color: AppColor.greyBC,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 5.h),
-              CustomInputWidget(
-                cwidth: 396.w,
-                radius: 50.r,
-                cheight: 50.h,
-                hintText: 'Enter First name',
-                onChanged: (String value) {},
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Last Name',
-                style: GoogleFonts.roboto(
-                  color: AppColor.greyBC,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                SizedBox(height: 5.h),
+                CustomInputWidget(
+                  cwidth: 396.w,
+                  radius: 50.r,
+                  cheight: 50.h,
+                  hintText: 'Enter First name',
+                  onChanged: (String value) {},
                 ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 5.h),
-              CustomInputWidget(
-                cwidth: 396.w,
-                radius: 50.r,
-                cheight: 50.h,
-                hintText: 'Enter Last name',
-                onChanged: (String value) {},
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Email Address',
-                style: GoogleFonts.roboto(
-                  color: AppColor.greyBC,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                SizedBox(height: 10.h),
+                Text(
+                  'Last Name',
+                  style: GoogleFonts.roboto(
+                    color: AppColor.greyBC,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 5.h),
-              CustomInputWidget(
-                cwidth: 396.w,
-                radius: 50.r,
-                cheight: 50.h,
-                hintText: 'Enter email address',
-                onChanged: (String value) {},
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Telephone Number',
-                style: GoogleFonts.roboto(
-                  color: AppColor.greyBC,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                SizedBox(height: 5.h),
+                CustomInputWidget(
+                  cwidth: 396.w,
+                  radius: 50.r,
+                  cheight: 50.h,
+                  hintText: 'Enter Last name',
+                  onChanged: (String value) {},
                 ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 5.h),
-              CustomInputWidget(
-                cwidth: 396.w,
-                radius: 50.r,
-                cheight: 50.h,
-                hintText: 'Enter Telephone Number',
-                onChanged: (String value) {},
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Password',
-                style: GoogleFonts.roboto(
-                  color: AppColor.greyBC,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                SizedBox(height: 10.h),
+                Text(
+                  'Email Address',
+                  style: GoogleFonts.roboto(
+                    color: AppColor.greyBC,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 5.h),
-              CustomInputWidget(
-                cwidth: 396.w,
-                radius: 50.r,
-                cheight: 50.h,
-                hintText: '********',
-                onChanged: (String value) {},
-                obscureText: true,
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Confirm Password',
-                style: GoogleFonts.roboto(
-                  color: AppColor.greyBC,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                SizedBox(height: 5.h),
+                CustomInputWidget(
+                  cwidth: 396.w,
+                  radius: 50.r,
+                  cheight: 50.h,
+                  hintText: 'Enter email address',
+                  onChanged: (String value) {},
                 ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 5.h),
-              CustomInputWidget(
-                cwidth: 396.w,
-                radius: 50.r,
-                cheight: 50.h,
-                hintText: '********',
-                onChanged: (String value) {},
-                obscureText: true,
-              ),
-              SizedBox(height: 50.h),
-              CustomButton(
-                title: 'Register',
-                radius: 100,
-                height: 50.h,
-                width: 369.9.w,
-                onPress: () async {
-                  Get.to(CompanyDetailsView());
-                },
-              ),
-            ],
+                SizedBox(height: 10.h),
+                Text(
+                  'Telephone Number',
+                  style: GoogleFonts.roboto(
+                    color: AppColor.greyBC,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.h),
+                CustomInputWidget(
+                  cwidth: 396.w,
+                  radius: 50.r,
+                  cheight: 50.h,
+                  hintText: 'Enter Telephone Number',
+                  onChanged: (String value) {},
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  'Password',
+                  style: GoogleFonts.roboto(
+                    color: AppColor.greyBC,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.h),
+                CustomInputWidget(
+                  cwidth: 396.w,
+                  radius: 50.r,
+                  cheight: 50.h,
+                  hintText: '********',
+                  onChanged: (String value) {},
+                  obscureText: true,
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  'Confirm Password',
+                  style: GoogleFonts.roboto(
+                    color: AppColor.greyBC,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 5.h),
+                CustomInputWidget(
+                  cwidth: 396.w,
+                  radius: 50.r,
+                  cheight: 50.h,
+                  hintText: '********',
+                  onChanged: (String value) {},
+                  obscureText: true,
+                ),
+                SizedBox(height: 50.h),
+                CustomButton(
+                  title: 'Register',
+                  radius: 100,
+                  height: 50.h,
+                  width: 369.9.w,
+                  onPress: () async {
+                    Get.to(CompanyDetailsView());
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
