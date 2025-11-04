@@ -217,7 +217,7 @@ class CustomInputWidget extends StatelessWidget {
                     fontSize: fontSize.sp,
                     fontWeight: fontWeight,
                     fontFamily: fontFamily,
-                    color: Colors.white,
+                    color: AppColor.blackColor,
                   ),
                 ),
               ),
