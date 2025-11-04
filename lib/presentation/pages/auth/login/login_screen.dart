@@ -1,204 +1,154 @@
+// import 'package:dzandzi/presentation/pages/common/company_details.dart';
+// import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
+// import 'package:dzandzi/presentation/widgets/buttons/custom_input_widget.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
-// import '../../../../theams/app_color.dart';
+// import '../../../../theams/app_color2.dart';
 
-// import '../../home/home_view.dart';
-// import '../otp/forget_password_view.dart';
-// import '../sign_up/sign_up_screen.dart';
-
-// class LoginController extends GetxController {
+// // Controller for UI state only
+// class SignUpController extends GetxController {
 //   var isRemembered = false.obs;
 
-//   TextEditingController emailController = TextEditingController();
+//   TextEditingController phoneController = TextEditingController();
 //   TextEditingController passwordController = TextEditingController();
-
-//   // Dummy login method
-//   void login() {
-//     final email = emailController.text.trim();
-//     final password = passwordController.text.trim();
-
-//     if (email.isEmpty || password.isEmpty) {
-//       Get.snackbar('Error', 'Please fill all fields');
-//       return;
-//     }
-
-//     Get.snackbar('Success', 'Logged in successfully!');
-//   }
+//   TextEditingController usernameController = TextEditingController();
 // }
 
-// class LoginScreen extends StatelessWidget {
-//   LoginScreen({super.key});
+// class LoginView extends StatelessWidget {
+//   LoginView({super.key});
 
-//   final LoginController controller = Get.put(LoginController());
+//   final SignUpController controller = Get.put(SignUpController());
 
 //   @override
 //   Widget build(BuildContext context) {
 //     final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
-
-//     return GestureDetector(
-//       onTap: () => FocusScope.of(context).unfocus(),
-//       child: Scaffold(
-//         backgroundColor: AppColor.blackLiteColor,
-//         body: SafeArea(
-//           child: Stack(
-//             children: [
-//               // Logo
-//               if (!isKeyboardOpen)
-//                 Positioned(
-//                   top: 120.h,
-//                   left: 0,
-//                   right: 0,
-//                   child: Image.asset('assets/image/logo.png', height: 80.h),
+//     return Scaffold(
+//       backgroundColor: AppColor.background2Color,
+//       body: SafeArea(
+//         child: Container(
+//           margin: EdgeInsets.all(12),
+//           child: SingleChildScrollView(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Text(
+//                   'Create Your Account',
+//                   style: GoogleFonts.roboto(
+//                     color: AppColor.grayBC,
+//                     fontSize: 32,
+//                     fontWeight: FontWeight.w600,
+//                   ),
+//                   textAlign: TextAlign.left,
 //                 ),
-
-//               // Form
-//               AnimatedPositioned(
-//                 duration: const Duration(milliseconds: 200),
-//                 curve: Curves.easeIn,
-//                 top: isKeyboardOpen ? 60.h : 220.h,
-//                 left: 0,
-//                 right: 0,
-//                 bottom: 0,
-//                 child: ListView(
-//                   padding: EdgeInsets.symmetric(horizontal: 30.w),
-//                   children: [
-//                     SizedBox(height: 10.h),
-//                     Text(
-//                       'Welcome back, Champion!',
-//                       style: GoogleFonts.inter(
-//                         color: AppColor.whiteColor,
-//                         fontSize: 24,
-//                         fontWeight: FontWeight.w700,
-//                         letterSpacing: 1.2,
-//                       ),
-//                       textAlign: TextAlign.center,
-//                     ),
-//                     SizedBox(height: 6.h),
-//                     Text(
-//                       'Login to your account',
-//                       style: GoogleFonts.roboto(
-//                         color: AppColor.textGreyColor,
-//                         fontSize: 16,
-//                       ),
-//                       textAlign: TextAlign.center,
-//                     ),
-//                     SizedBox(height: 25.h),
-
-//                     // Email
-//                     Text(
-//                       'Phone Number',
-//                       style: GoogleFonts.inter(
-//                         color: AppColor.whiteColor,
-//                         fontSize: 14,
-//                         fontWeight: FontWeight.w400,
-//                       ),
-//                     ),
-
-//                     SizedBox(height: 18.h),
-
-//                     // Password
-//                     Text(
-//                       'Password',
-//                       style: GoogleFonts.inter(
-//                         color: AppColor.whiteColor,
-//                         fontSize: 14,
-//                         fontWeight: FontWeight.w400,
-//                       ),
-//                     ),
-
-//                     SizedBox(height: 16.h),
-
-//                     // Remember Me + Forgot Password
-//                     Padding(
-//                       padding: EdgeInsets.only(right: 10.w),
-//                       child: Row(
-//                         children: [
-//                           GestureDetector(
-//                             onTap: () => controller.isRemembered.toggle(),
-//                             child: Obx(
-//                               () => Container(
-//                                 width: 17,
-//                                 height: 17,
-//                                 decoration: BoxDecoration(
-//                                   border: Border.all(
-//                                     color: controller.isRemembered.value
-//                                         ? AppColor.greenColor
-//                                         : AppColor.whiteLiteColor,
-//                                   ),
-//                                 ),
-//                                 child: controller.isRemembered.value
-//                                     ? Icon(
-//                                         Icons.check,
-//                                         color: AppColor.greenColor,
-//                                         size: 14,
-//                                       )
-//                                     : null,
-//                               ),
-//                             ),
-//                           ),
-//                           SizedBox(width: 8.w),
-//                           Text(
-//                             'Remember me',
-//                             style: GoogleFonts.inter(
-//                               color: AppColor.whiteLiteColor,
-//                               fontSize: 12,
-//                             ),
-//                           ),
-//                           const Spacer(),
-//                           InkWell(
-//                             onTap: () => Get.to(() => SignUpView()),
-//                             child: Text(
-//                               'Forget Password?',
-//                               style: GoogleFonts.inter(
-//                                 color: AppColor.greenColor,
-//                                 fontSize: 12,
-//                                 decoration: TextDecoration.underline,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-
-//                     SizedBox(height: 40.h),
-
-//                     // Login Button
-//                     SizedBox(height: 20.h),
-
-//                     // Register
-//                     Row(
-//                       mainAxisAlignment: MainAxisAlignment.center,
-//                       children: [
-//                         Text(
-//                           'Don’t have an account?',
-//                           style: GoogleFonts.inter(
-//                             color: AppColor.whiteLiteColor,
-//                             fontSize: 14,
-//                           ),
-//                         ),
-//                         SizedBox(width: 6.w),
-//                         GestureDetector(
-//                           onTap: () => Get.to(() => SignUpView()),
-//                           child: Text(
-//                             'Register',
-//                             style: GoogleFonts.inter(
-//                               color: AppColor.greenColor,
-//                               fontSize: 14,
-//                               fontWeight: FontWeight.w700,
-//                             ),
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                     SizedBox(height: 20.h),
-//                   ],
+            
+//                 SizedBox(height: 30.h),
+//                 Text(
+//                   'First Name',
+//                   style: GoogleFonts.roboto(
+//                     color: AppColor.greyBC,
+//                     fontSize: 16,
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                   textAlign: TextAlign.left,
 //                 ),
-//               ),
-//             ],
+//                 SizedBox(height: 5.h),
+//                 CustomInputWidget(
+//                   cwidth: 396.w,
+//                   radius: 50.r,
+//                   cheight: 50.h,
+//                   hintText: 'Enter First name',
+//                   onChanged: (String value) {},
+//                 ),
+//                 SizedBox(height: 10.h),
+//                 Text(
+//                   'Last Name',
+//                   style: GoogleFonts.roboto(
+//                     color: AppColor.greyBC,
+//                     fontSize: 16,
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                   textAlign: TextAlign.left,
+//                 ),
+//                 SizedBox(height: 5.h),
+//                 CustomInputWidget(
+//                   cwidth: 396.w,
+//                   radius: 50.r,
+//                   cheight: 50.h,
+//                   hintText: 'Enter Last name',
+//                   onChanged: (String value) {},
+//                 ),
+//                 SizedBox(height: 10.h),
+//                 Text(
+//                   'Email Address',
+//                   style: GoogleFonts.roboto(
+//                     color: AppColor.greyBC,
+//                     fontSize: 16,
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                   textAlign: TextAlign.left,
+//                 ),
+//                 SizedBox(height: 5.h),
+//                 CustomInputWidget(
+//                   cwidth: 396.w,
+//                   radius: 50.r,
+//                   cheight: 50.h,
+//                   hintText: 'Enter email address',
+//                   onChanged: (String value) {},
+//                 ),
+//                 SizedBox(height: 10.h),
+//                 Text(
+//                   'Telephone Number',
+//                   style: GoogleFonts.roboto(
+//                     color: AppColor.greyBC,
+//                     fontSize: 16,
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                   textAlign: TextAlign.left,
+//                 ),
+//                 SizedBox(height: 5.h),
+//                 CustomInputWidget(
+//                   cwidth: 396.w,
+//                   radius: 50.r,
+//                   cheight: 50.h,
+//                   hintText: 'Enter Telephone Number',
+//                   onChanged: (String value) {},
+//                 ),
+//                 SizedBox(height: 10.h),
+//                 Text(
+//                   'Password',
+//                   style: GoogleFonts.roboto(
+//                     color: AppColor.greyBC,
+//                     fontSize: 16,
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                   textAlign: TextAlign.left,
+//                 ),
+//                 SizedBox(height: 5.h),
+//                 CustomInputWidget(
+//                   cwidth: 396.w,
+//                   radius: 50.r,
+//                   cheight: 50.h,
+//                   hintText: '********',
+//                   onChanged: (String value) {},
+//                   obscureText: true,
+//                 ),
+//                 SizedBox(height: 10.h),
+               
+//                 SizedBox(height: 50.h),
+//                 CustomButton(
+//                   title: 'Register',
+//                   radius: 100,
+//                   height: 50.h,
+//                   width: 369.9.w,
+//                   onPress: () async {
+//                     Get.to(CompanyDetailsView());
+//                   },
+//                 ),
+//               ],
+//             ),
 //           ),
 //         ),
 //       ),
