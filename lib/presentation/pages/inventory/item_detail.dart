@@ -111,13 +111,6 @@ class ItemDetail extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                              ),
-                              TextSpan(
-                                text: item.unit,
-                                style: TextStyle(
-                                  color: AppColors.subtitleColor,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w500,
 
                                 TextSpan(
                                   text: '${item.unit}',

@@ -1,5 +1,4 @@
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/Project_inventory_item_card.dart';
-import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_employ_widget.dart';
 import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +92,7 @@ class Project_inventory extends StatelessWidget {
                                 Text(
                                   'Steel',
 
-                                  backgroundColor: AppColors.inProgressText,
+                                  selectionColor: AppColors.inProgressText,
                                 ),
                                 SizedBox(width: 8.w),
                                 Text(
@@ -109,8 +108,6 @@ class Project_inventory extends StatelessWidget {
                                 Text(
 
                                   '25%',
-
-                                  '23%',
 
                                   style: TextStyle(
                                     color: AppColors.textcolor2,
@@ -130,8 +127,7 @@ class Project_inventory extends StatelessWidget {
                                 SizedBox(width: 8.w),
                                 Text(
                                   'Paint',
-
-                                  backgroundColor: AppColors.inventoryText,
+                                  selectionColor: AppColors.inventoryText,
                                 ),
                                 SizedBox(width: 8.w),
                                 Text(
@@ -147,9 +143,6 @@ class Project_inventory extends StatelessWidget {
                                 Text(
 
                                   '20%',
-
-                                  '25%',
-
                                   style: TextStyle(
                                     color: AppColors.textcolor2,
                                     fontSize: 14.sp,
