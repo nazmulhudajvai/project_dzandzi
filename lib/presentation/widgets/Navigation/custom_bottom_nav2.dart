@@ -64,10 +64,9 @@ class CustomBottomNav2 extends StatelessWidget {
                     Get.to(AllRoles());
                     break;
                   case 3:
-
                     Get.to(InventoryRequest());
 
-                    Get.to(Project_inventory());
+                    // Get.to(Project_inventory());
 
                     break;
                   case 4:

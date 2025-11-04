@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class NumberSelector extends StatelessWidget {
   final NumberController controller = Get.put(NumberController());
 
- NumberSelector({super.key});
+  NumberSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class NumberSelector extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        border: Border.all(
-          color: AppColors.borderColor. withOpacity(0.5),
-        ),
+        border: Border.all(color: AppColors.borderColor.withOpacity(0.5)),
         color: AppColors.textFieldColor,
       ),
       child: Row(
@@ -28,7 +26,11 @@ class NumberSelector extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   '${controller.currentValue}',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.hintTextColor,
+                  ),
                 ),
               ),
             ),
@@ -42,14 +44,14 @@ class NumberSelector extends StatelessWidget {
                   onTap: () {
                     controller.increment();
                   },
-                  child: Icon(Icons.arrow_drop_up, size: 16,),
+                  child: Icon(Icons.arrow_drop_up, size: 19),
                 ),
-            
+
                 GestureDetector(
                   onTap: () {
                     controller.decrement();
                   },
-                  child: Icon(Icons.arrow_drop_down, size: 16,),
+                  child: Icon(Icons.arrow_drop_down, size: 19),
                 ),
               ],
             ),
