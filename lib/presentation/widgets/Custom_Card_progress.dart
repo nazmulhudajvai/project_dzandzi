@@ -29,8 +29,7 @@ class CustomCardProgressCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400.w,
-      height: 152.h,
+      width: double.infinity,
       padding: EdgeInsets.all(10.w),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -49,7 +48,7 @@ class CustomCardProgressCards extends StatelessWidget {
         ],
       ),
       child: Container(
-        margin: EdgeInsets.all(4),
+        margin: EdgeInsets.all(4.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -59,7 +58,7 @@ class CustomCardProgressCards extends StatelessWidget {
                   width: 40.w,
                   height: 40.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
+                    shape: BoxShape.circle,
                     color: boxsColor,
                   ),
                   child: Padding(
@@ -84,7 +83,7 @@ class CustomCardProgressCards extends StatelessWidget {
                   width: 48.w,
                   height: 48.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
+                    shape: BoxShape.circle,
                     color: AppColor.whiteColor,
                   ),
                   child: Padding(

@@ -144,7 +144,6 @@ class Project_all_File extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: CustomBottomNav(),
     );
   }
 }

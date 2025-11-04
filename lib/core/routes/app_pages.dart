@@ -1,3 +1,4 @@
+import 'package:dzandzi/presentation/bottom_navigation_bar/view/bottom_navigation_view.dart';
 import 'package:dzandzi/presentation/pages/document/document_view.dart';
 import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
 import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
@@ -25,17 +26,20 @@ class AppPages {
     GetPage(name: _Paths.SIGNUP, page: () => SignUpView()),
     // // OTP Route
     // // GetPage(name: _Paths.OTP, page: () => OtpVerifyView()),
-    GetPage(name: Routes.HOME, page: () => HomeView()),
 
-    GetPage(name: Routes.Document, page: () => DocumentView()),
+    GetPage(name: Routes.BOTTOMNAVIGATION, page: () => BottomNavigationScreen()),
 
-    //  GetPage(name: Routes.PROJECT, page: () => ProjectsView()),
-    GetPage(name: Routes.PROJECT, page: () => ProjectPage()),
-    // GetPage(name: Routes.EMPLOYEES, page: () => EmployeesView()),
-    // GetPage(name: Routes.INVENTORY, page: () => InventoryView()),
-    GetPage(name: Routes.PROFILE, page: () => ProfileView()),
+    // GetPage(name: Routes.HOME, page: () => HomeView()),
 
-    GetPage(name: Routes.InventoryView, page: () => InventoryView()),
-    GetPage(name: Routes.TaskView, page: () => TaskView()),
+    // GetPage(name: Routes.Document, page: () => DocumentView()),
+
+    // //  GetPage(name: Routes.PROJECT, page: () => ProjectsView()),
+    // GetPage(name: Routes.PROJECT, page: () => ProjectPage()),
+    // // GetPage(name: Routes.EMPLOYEES, page: () => EmployeesView()),
+    // // GetPage(name: Routes.INVENTORY, page: () => InventoryView()),
+    // GetPage(name: Routes.PROFILE, page: () => ProfileView()),
+
+    // GetPage(name: Routes.InventoryView, page: () => InventoryView()),
+    // GetPage(name: Routes.TaskView, page: () => TaskView()),
   ];
 }

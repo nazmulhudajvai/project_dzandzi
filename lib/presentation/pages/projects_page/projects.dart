@@ -118,11 +118,11 @@ class ProjectPage extends StatelessWidget {
                   },
                 ),
               ),
+              
             ],
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNav(),
     );
   }
 

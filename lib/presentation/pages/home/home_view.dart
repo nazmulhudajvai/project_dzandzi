@@ -1,19 +1,15 @@
 import 'package:dzandzi/presentation/controllers/bottom_navbar_controller.dart';
 import 'package:dzandzi/presentation/widgets/Custom_Card_progress.dart';
+import 'package:dzandzi/res/assets/image_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../theams/app_colors.dart';
 import 'package:dzandzi/presentation/pages/projects_page/create_new_project.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../theams/app_colors.dart';
 import '../../../theams/app_color2.dart';
 import '../../controllers/home_controller.dart';
-import '../../widgets/Navigation/custom_bottom_nav.dart';
 
 class HomeView extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
@@ -163,10 +159,10 @@ class HomeView extends StatelessWidget {
                 CustomCardProgressCards(
                   heading: 'Complete',
                   value: '56',
-                  iconPath: 'assets/image/idone.svg',
+                  iconPath: ImageAssets.done,
                   startColor: AppColors.completeProjectSection1,
                   endColor: AppColors.completeProjectSection2,
-                  boxsColor: AppColors.completeProjectSection2.withOpacity(.4),
+                  boxsColor: AppColors.completeProjectSection2.withOpacity(0.4),
                   iconPath2: 'assets/image/ifrwd.svg',
                 ),
                 SizedBox(height: 16.h),
@@ -175,16 +171,19 @@ class HomeView extends StatelessWidget {
                   onTap: () {
                     Get.to(CreateNewProjectView());
                   },
-                  child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 16.w, right: 16.w),
                     child: Container(
-                      width: 350.w,
-                      height: 52.h,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.h,
+                        horizontal: 16.w,
+                      ),
                       decoration: BoxDecoration(
                         border: Border.all(
                           width: 1,
                           color: AppColors.liniarIndicatorColor,
                         ),
-                        borderRadius: BorderRadius.circular(100),
+                        borderRadius: BorderRadius.circular(100.r),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -213,7 +212,7 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNav(),
+      // bottomNavigationBar: CustomBottomNav(),
     );
   }
 }
