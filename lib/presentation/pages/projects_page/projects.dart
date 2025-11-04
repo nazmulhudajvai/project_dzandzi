@@ -1,5 +1,6 @@
 
 import 'package:dzandzi/presentation/controllers/bottom_navbar_view2.dart';
+import 'package:dzandzi/presentation/pages/projects_page/create_new_project.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
@@ -80,14 +81,13 @@ class ProjectPage extends StatelessWidget {
               Row(
                 children: [
 
-                  GestureDetector(
+                  GestureDetector( 
                     onTap: () {
-                      Get.to(Project_all_File());
+                      Get.to(()=>CreateNewProjectView());                      
                     },
-                    child: Icon(Icons.add, color: AppColors.deepBlue),
-                  ),
+                    child: Icon(Icons.add, color: AppColors.deepBlue)),
 
-                  Icon(Icons.add, color: AppColors.deepBlue),
+                  
 
                   const SizedBox(width: 6),
                   Text(
@@ -108,12 +108,17 @@ class ProjectPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final data = projectData[index];
 
-                    return project_card(
-                      title: data["name"],
-                      progress: data["progress"],
-                      days: data["days"],
-                      isdayshow: false,
-                      isProgress: true,
+                    return InkWell(
+                      onTap: () {
+                        Get.to(()=>Project_all_File());
+                      },
+                      child: project_card(
+                        title: data["name"],
+                        progress: data["progress"],
+                        days: data["days"],
+                        isdayshow: false,
+                        isProgress: true,
+                      ),
                     );
                   },
                 ),
