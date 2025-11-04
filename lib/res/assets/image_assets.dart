@@ -25,6 +25,7 @@ class ImageAssets {
   static const String document = 'assets/image/idoc.svg';
   static const String overview = 'assets/image/iover.svg';
   static const String task = 'assets/image/itask.svg';
+  static const String done = 'assets/image/idone.svg';
 
 
   //Icons

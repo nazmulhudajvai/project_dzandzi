@@ -1,14 +1,8 @@
 import 'package:dzandzi/presentation/bottom_navigation2/controller/second_bottom_navigation_bar_controller.dart';
-import 'package:dzandzi/presentation/bottom_navigation_bar/controller/bottom_navigation_bar_controller.dart';
 import 'package:dzandzi/presentation/pages/Employees/all_roles.dart';
-import 'package:dzandzi/presentation/pages/Employees/employee_view.dart';
 import 'package:dzandzi/presentation/pages/document/document_view.dart';
 import 'package:dzandzi/presentation/pages/employee2/overview.dart';
-import 'package:dzandzi/presentation/pages/home/home_view.dart';
-import 'package:dzandzi/presentation/pages/inventory/inventory_view.dart';
 import 'package:dzandzi/presentation/pages/inventory_request/inventory_request.dart';
-import 'package:dzandzi/presentation/pages/profile/my_profile.dart';
-import 'package:dzandzi/presentation/pages/projects_page/projects.dart';
 import 'package:dzandzi/presentation/pages/task/task%20_view.dart';
 import 'package:dzandzi/res/assets/image_assets.dart';
 import 'package:dzandzi/theams/app_color2.dart';
