@@ -1,3 +1,7 @@
+import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
+import 'package:dzandzi/presentation/widgets/inventory_widgets/custom_textfield.dart';
+import 'package:dzandzi/presentation/widgets/inventory_widgets/number_selector.dart';
+import 'package:dzandzi/presentation/widgets/text_property.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,53 +46,9 @@ class RequestMaterial extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 24.h),
-                Text(
-                  'Upload Files',
-                  style: TextStyle(
-                    color: AppColors.txtcolor2,
-                    fontSize: 20.sp,
-                    fontStyle: GoogleFonts.roboto().fontStyle,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+
                 SizedBox(height: 20.h),
-                Text(
-                  'Document Tittle*',
-                  style: TextStyle(
-                    color: AppColors.textFeieldTitle,
-                    fontSize: 16.sp,
-                    fontStyle: GoogleFonts.roboto().fontStyle,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: 8.h),
-                TextField(
-                  cursorColor: Colors.grey,
-                  decoration: InputDecoration(
-                    hintText: 'Type name',
-                    hintStyle: const TextStyle(color: Colors.grey),
-                    filled: true,
-                    fillColor: AppColors.textFieldColor,
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 12.h,
-                      horizontal: 16.w,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColors.greyborder),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColors.greyborder),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(48.r),
-                      borderSide: const BorderSide(color: AppColors.greyborder),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20.h),
+
                 Text(
                   'Project*',
                   style: TextStyle(
@@ -140,7 +100,16 @@ class RequestMaterial extends StatelessWidget {
                       .toList(),
                   onChanged: (String? newValue) {},
                 ),
-                SizedBox(height: 24.h),
+                SizedBox(height: 20.h),
+
+                TextProperty(
+                  text: 'Quantity to Use*',
+                  textColor: AppColors.textFeieldTitle,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+                SizedBox(height: 6.h),
+                NumberSelector(),
                 Text(
                   'Unit Type*',
                   style: TextStyle(
@@ -244,6 +213,20 @@ class RequestMaterial extends StatelessWidget {
                       .toList(),
                   onChanged: (String? newValue) {},
                 ),
+                SizedBox(height: 20),
+                TextProperty(
+                  text: 'Require Date',
+                  textColor: AppColors.textFeieldTitle,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+                SizedBox(height: 6.h),
+                CustomTextfield(
+                  fillColor: AppColors.textFieldColor,
+                  fieldText: 'fieldText',
+                ),
+                SizedBox(height: 20.sp),
+                CustomButton(title: 'Submit Request', radius: 100, height: 43),
               ],
             ),
           ),
