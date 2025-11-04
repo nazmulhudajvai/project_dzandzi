@@ -1,4 +1,5 @@
 import 'package:dzandzi/presentation/controllers/inventory_controllers/filter_controller.dart';
+import 'package:dzandzi/presentation/pages/inventory/use_in_project.dart';
 import 'package:dzandzi/presentation/widgets/text_property.dart';
 import 'package:dzandzi/res/assets/image_assets.dart';
 import 'package:dzandzi/theams/app_color2.dart';
@@ -68,42 +69,47 @@ class ItemDetail extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 30.h),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
-                decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(10.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      spreadRadius: 0,
-                      blurRadius: 20,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextProperty(
-                          text: item.heading,
-                          textColor: AppColors.textColor,
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        SizedBox(height: 8.h),
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: '${item.quantity} ',
-                                style: TextStyle(
-                                  color: AppColors.blueColor,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.w700,
+              GestureDetector(
+                onTap: () {
+                  Get.to(UseInProject());
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+                  decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(10.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        spreadRadius: 0,
+                        blurRadius: 20,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextProperty(
+                            text: item.heading,
+                            textColor: AppColors.textColor,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          SizedBox(height: 8.h),
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '${item.quantity} ',
+                                  style: TextStyle(
+                                    color: AppColors.blueColor,
+                                    fontSize: 24.sp,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
                               TextSpan(
@@ -112,31 +118,39 @@ class ItemDetail extends StatelessWidget {
                                   color: AppColors.subtitleColor,
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w500,
+
+                                TextSpan(
+                                  text: '${item.unit}',
+                                  style: TextStyle(
+                                    color: AppColors.subtitleColor,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+                        ],
+                      ),
+                      SizedBox(width: 8.w),
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.w,
+                          vertical: 2.h,
                         ),
-                      ],
-                    ),
-                    SizedBox(width: 8.w),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                        vertical: 2.h,
+                        decoration: BoxDecoration(
+                          color: _statusColor,
+                          borderRadius: BorderRadius.circular(50.r),
+                        ),
+                        child: TextProperty(
+                          text: _status,
+                          textColor: AppColors.whiteColor,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                        color: _statusColor,
-                        borderRadius: BorderRadius.circular(50.r),
-                      ),
-                      child: TextProperty(
-                        text: _status,
-                        textColor: AppColors.whiteColor,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 20.h),

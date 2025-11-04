@@ -11,6 +11,7 @@ import '../../../theams/app_color2.dart';
 import '../../pages/document/document_view.dart';
 import '../../pages/home/home_view.dart';
 import '../../pages/inventory/inventory_view.dart';
+import '../../pages/projects_page/project_inventory.dart';
 import '../../pages/projects_page/projects.dart';
 
 class CustomBottomNav2 extends StatelessWidget {
@@ -63,7 +64,11 @@ class CustomBottomNav2 extends StatelessWidget {
                     Get.to(AllRoles());
                     break;
                   case 3:
+
                     Get.to(InventoryRequest());
+
+                    Get.to(Project_inventory());
+
                     break;
                   case 4:
                     Get.to(DocumentView());

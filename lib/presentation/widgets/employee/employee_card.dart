@@ -1,8 +1,60 @@
-import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+import 'package:dzandzi/theams/app_colors.dart';
+
+class EmployeeCardController extends GetxController {
+  void showOptionsDialog(BuildContext context) {
+    Get.dialog(
+      Dialog(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.edit, color: Colors.black87),
+                title: Text(
+                  'Edit',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                onTap: () {
+                  Get.back(); // Close dialog
+                  // TODO: Add your edit logic here
+                },
+              ),
+              Divider(height: 1, color: Colors.grey[300]),
+              ListTile(
+                leading: const Icon(Icons.delete, color: Colors.red),
+                title: Text(
+                  'Delete',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
+                ),
+                onTap: () {
+                  Get.back(); // Close dialog
+                  // TODO: Add your delete logic here
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class EmployeeCard extends StatelessWidget {
   const EmployeeCard({super.key, required this.title, required this.email});
@@ -12,6 +64,8 @@ class EmployeeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(EmployeeCardController());
+
     return Container(
       width: 390.w,
       margin: EdgeInsets.only(bottom: 10.r),
@@ -81,8 +135,9 @@ class EmployeeCard extends StatelessWidget {
                         ),
                       ),
 
-                      /// ✅ Menu icon on the right
+                      /// Menu icon with GetX dialog
                       InkWell(
+                        onTap: () => controller.showOptionsDialog(context),
                         child: SvgPicture.asset(
                           'assets/image/imenu.svg',
                           height: 20.h,

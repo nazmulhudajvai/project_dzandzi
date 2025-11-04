@@ -32,6 +32,9 @@ class AppColors {
   static const Color copyButton = Color(0xFF395575);
   static const Color indicatorbackground = Color(0xFF98C2F1);
   static const Color personcolor = Color(0xFFC5C5C5);
+  static const Color chartPurple = Color(0xFF5851E1);
+  static const Color chartOrange = Color(0xFFFF8042);
+  static const Color chartYellow = Color(0xFFFFBB28);
 
   static const Color liniarIndicatorColor = Color(0xFF032D5C);
   static const Color titleText = Color(0xFF18181B);
@@ -40,6 +43,8 @@ class AppColors {
   static const Color black12 = Color(0xFF314158);
   static const Color editTextColor = Color(0xFF45556C);
   static const Color black = Colors.black;
+  static const Color chartColor = Color(0xFF074993);
+  static const Color chartGradColor = Color(0xFF1E90FF);
 
   static const Color textFieldColor = Color(0xFFEFEFEF);
   static const Color whiteColor = Color(0xFFFFFFFF);

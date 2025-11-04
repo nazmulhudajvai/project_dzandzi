@@ -18,61 +18,69 @@ class InventoryView extends StatelessWidget {
       backgroundColor: AppColor.backgroundColor,
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(16.w, 60.h, 16.w, 30.h),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height -
+                MediaQuery.of(context).padding.top,
+          ),
+          child: IntrinsicHeight(
+            child: Column(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Image.asset(
-                    ImageAssets.back,
-                    width: 19.sp,
-                    height: 16.sp,
-                  ),
-                ),
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      'Inventory',
-                      style: TextStyle(
-                        color: AppColor.textColor,
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.bold,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Image.asset(
+                        ImageAssets.back,
+                        width: 19.sp,
+                        height: 16.sp,
                       ),
                     ),
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          'Inventory',
+                          style: TextStyle(
+                            color: AppColor.textColor,
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30.h),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(AddInventory());
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.add, color: AppColor.defaultColor, size: 20.sp),
+                      SizedBox(width: 10.sp),
+                      Text(
+                        'Add Inventory',
+                        style: TextStyle(
+                          color: AppColor.textColor,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+                SizedBox(height: 20.h),
+                CustomTabBarWidget(),
+                SizedBox(height: 20.h),
+                CustomTabbarView(),
+                SizedBox(height: 20.h),
               ],
             ),
-            SizedBox(height: 30.h),
-            GestureDetector(
-              onTap: () {
-                Get.to(AddInventory());
-              },
-              child: Row(
-                children: [
-                  Icon(Icons.add, color: AppColor.defaultColor, size: 20.sp),
-                  SizedBox(width: 10.sp),
-                  Text(
-                    'Add Inventory',
-                    style: TextStyle(
-                      color: AppColor.textColor,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20.h),
-            CustomTabBarWidget(),
-            SizedBox(height: 20.h),
-            CustomTabbarView(),
-            SizedBox(height: 20.h),
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: CustomBottomNav(),
