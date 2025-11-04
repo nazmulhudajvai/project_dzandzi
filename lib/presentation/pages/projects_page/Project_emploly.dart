@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_employ_widget.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +41,7 @@ class Project_employ extends StatelessWidget {
                 behavior: HitTestBehavior.translucent,
                 onTapDown: (TapDownDetails details) {
                   // pass the global tap position to three_dot
-                  three_dot(context, details.globalPosition);
+                  filter_Employee(context, details.globalPosition);
                 },
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -112,7 +114,7 @@ class Project_employ extends StatelessWidget {
     );
   }
 
-  Future<Object?> filter_Emply(BuildContext context) {
+  Future<Object?> filter_Employee(BuildContext context, Offset tapPosition) async {
 
   // Updated signature: accepts tapPosition to position the popup where user tapped
   Future<Object?> three_dot(BuildContext context, Offset tapPosition) {
@@ -246,4 +248,5 @@ class Project_employ extends StatelessWidget {
       ),
     );
   }
+}
 }

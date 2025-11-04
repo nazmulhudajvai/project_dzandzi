@@ -114,22 +114,6 @@ class ProjectPage extends StatelessWidget {
                       days: data["days"],
                       isdayshow: false,
                       isProgress: true,
-
-                    return InkWell(
-                      child: project_card(
-                        title: data["name"],
-                        progress: data["progress"],
-                        days: data["days"],
-                        isdayshow: false,
-                        isProgress: true,
-                      ),
-
-                      onTap: () {
-                          Get.to(()=>Project_all_File(
-                 
-                    ));
-                      },
-
                     );
                   },
                 ),
