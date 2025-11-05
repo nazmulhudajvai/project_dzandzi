@@ -67,7 +67,7 @@ class HelpSupport extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5.h),
-                CustomInputWidget(
+                CustomInputWidget(controller: null,
                   cwidth: 396.w,
                   radius: 50.r,
                   cheight: 50.h,
@@ -86,7 +86,7 @@ class HelpSupport extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 5.h),
-                CustomInputWidget(
+                CustomInputWidget(controller: null,
                   cwidth: 396.w,
                   radius: 20.r,
                   width: 400.w,

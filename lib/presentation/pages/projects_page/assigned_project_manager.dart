@@ -63,7 +63,7 @@ class AssignedProjectManager extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               SizedBox(height: 5.h),
-              CustomInputWidget(
+              CustomInputWidget(controller: null,
                 cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50.h,
@@ -82,7 +82,7 @@ class AssignedProjectManager extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               SizedBox(height: 5.h),
-              CustomInputWidget(
+              CustomInputWidget(controller: null,
                 cwidth: 396.w,
                 radius: 50.r,
                 cheight: 50,

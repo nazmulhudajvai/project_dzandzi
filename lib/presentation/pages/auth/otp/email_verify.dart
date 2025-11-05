@@ -1,23 +1,20 @@
-import 'package:dzandzi/presentation/pages/common/company_details.dart';
-import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
-import 'package:dzandzi/presentation/widgets/buttons/custom_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../theams/app_color2.dart';
+import '../../../controllers/auth/forget_password_controller.dart';
+import '../../../widgets/buttons/custom_button.dart';
+import '../../../widgets/buttons/custom_input_widget.dart';
 import 'otp.dart';
 
-// Controller for UI state only
 
 class EmailVerifyView extends StatelessWidget {
   EmailVerifyView({super.key});
-
+  final ForgetPasswordController controller = Get.put(ForgetPasswordController());
 
   @override
   Widget build(BuildContext context) {
-    final isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       backgroundColor: AppColor.background2Color,
       body: SafeArea(
@@ -34,9 +31,7 @@ class EmailVerifyView extends StatelessWidget {
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
                   ),
-                  textAlign: TextAlign.left,
                 ),
-
                 SizedBox(height: 30.h),
                 Text(
                   'Email Address',
@@ -45,7 +40,6 @@ class EmailVerifyView extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
-                  textAlign: TextAlign.left,
                 ),
                 SizedBox(height: 5.h),
                 CustomInputWidget(
@@ -53,20 +47,19 @@ class EmailVerifyView extends StatelessWidget {
                   radius: 50.r,
                   cheight: 50.h,
                   hintText: 'Enter email address',
-                  onChanged: (String value) {},
+                  controller: controller.emailController,
+                  onChanged: (_) {},
                 ),
                 SizedBox(height: 50.h),
-
-
-                CustomButton(
+                Obx(() => controller.isLoading.value
+                    ? Center(child: CircularProgressIndicator())
+                    : CustomButton(
                   title: 'Send',
                   radius: 100,
                   height: 50.h,
                   width: 369.9.w,
-                  onPress: () async {
-                    Get.to(OtpView());
-                  },
-                ),
+                  onPress: controller.sendEmail,
+                )),
               ],
             ),
           ),

@@ -56,7 +56,7 @@ class CompanyDetailsView extends StatelessWidget {
                   radius: 50.r,
                   cheight: 50.h,
                   hintText: 'Enter Full name',
-                  onChanged: (String value) {},
+                  onChanged: (String value) {},controller: null,
                 ),
                 SizedBox(height: 10.h),
             
@@ -75,7 +75,7 @@ class CompanyDetailsView extends StatelessWidget {
                   radius: 50.r,
                   cheight: 50.h,
                   hintText: 'Enter email address',
-                  onChanged: (String value) {},
+                  onChanged: (String value) {},controller: null,
                 ),
                 SizedBox(height: 10.h),
                 Text(
@@ -93,7 +93,7 @@ class CompanyDetailsView extends StatelessWidget {
                   radius: 50.r,
                   cheight: 50.h,
                   hintText: 'Enter TIN Number',
-                  onChanged: (String value) {},
+                  onChanged: (String value) {},controller: null,
                 ),
                 SizedBox(height: 10.h),
                 Text(
@@ -111,7 +111,7 @@ class CompanyDetailsView extends StatelessWidget {
                   radius: 50.r,
                   cheight: 50.h,
                   hintText: 'Enter Details',
-                  onChanged: (String value) {},
+                  onChanged: (String value) {}, controller: null,
                 ),
                 SizedBox(height: 50.h),
             

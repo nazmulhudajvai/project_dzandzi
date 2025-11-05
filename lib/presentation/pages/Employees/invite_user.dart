@@ -81,7 +81,7 @@ class InviteUser extends StatelessWidget {
                 radius: 50.r,
                 cheight: 50.h,
                 hintText: 'Enter Last name',
-                onChanged: (String value) {},
+                onChanged: (String value) {},controller: null,
               ),
               SizedBox(height: 10.h),
               Text(
@@ -99,7 +99,7 @@ class InviteUser extends StatelessWidget {
                 cwidth: 396.w,
                 cheight: 50.h,
                 hintText: 'Enter email address',
-                onChanged: (String value) {},
+                onChanged: (String value) {},controller: null,
               ),
               SizedBox(height: 30.h),
               Row(
@@ -141,7 +141,7 @@ class InviteUser extends StatelessWidget {
                     cwidth: 256.w,
                     cheight: 44.h,
                     hintText: 'Enter Link',
-                    onChanged: (String value) {},
+                    onChanged: (String value) {},controller: null,
                   ),
                   SizedBox(width: 5.w),
                   Container(

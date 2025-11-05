@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 // fixed "theams" → "themes"
 import '../../../theams/app_color2.dart';
+import '../auth/login/login_screen.dart';
 
 class SwitchController extends GetxController {
   var isLoading = true.obs; // controls loading bar
@@ -28,7 +29,7 @@ class _SplashPageState extends State<SplashView> {
     // Simulate loading and navigate after 3 seconds
     Future.delayed(Duration(seconds: 3), () {
       controller.isLoading.value = false;
-      Get.to(SignUpView()); // navigate to next page
+      Get.to(LoginView()); // navigate to next page
     });
   }
 

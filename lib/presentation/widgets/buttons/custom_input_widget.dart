@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:ui' as ui;
-
-import '../../../theams/app_color2.dart'; // For BackdropFilter
+import '../../../theams/app_color2.dart'; // For colors
 
 class CustomInputController extends GetxController {
   final RxBool isObscured;
@@ -16,8 +14,8 @@ class CustomInputController extends GetxController {
     required this.textController,
     required bool obscureText,
     bool isInternalController = false,
-  }) : isObscured = obscureText.obs,
-       _isInternalController = isInternalController;
+  })  : isObscured = obscureText.obs,
+        _isInternalController = isInternalController;
 
   void toggleObscure() {
     isObscured.value = !isObscured.value;
@@ -88,7 +86,6 @@ class CustomInputWidget extends StatelessWidget {
     this.backgroundColor = AppColor.textAreaColor,
     this.leadingColor = AppColor.hintTextColor,
     this.maxLines = 1,
-    this.textEditingController,
     this.settingsIconWidget,
     this.leadingIconWidget,
     this.borderGradientColors = const [Colors.blue, Colors.cyan],
@@ -96,8 +93,10 @@ class CustomInputWidget extends StatelessWidget {
     required this.cheight,
     required this.radius,
     required this.cwidth,
+    this.controller, // ✅ Add controller
   });
 
+  final TextEditingController? controller; // ✅ This was missing
   final Widget? leadingIconWidget;
   final String hintText, hintFontFamily, fontFamily;
   final double borderRadius,
@@ -135,7 +134,6 @@ class CustomInputWidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final FontWeight fontWeight, hintFontWeight;
   final int maxLines;
-  final TextEditingController? textEditingController;
   final Widget? settingsIconWidget;
   final TextInputType keyboardType;
   final List<Color> borderGradientColors;
@@ -145,11 +143,12 @@ class CustomInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Use the controller passed from parent, or create a new one
     final inputController = Get.put(
       CustomInputController(
-        textController: textEditingController ?? TextEditingController(),
+        textController: controller ?? TextEditingController(),
         obscureText: obscureText,
-        isInternalController: textEditingController == null,
+        isInternalController: controller == null,
       ),
       tag: key?.toString() ?? UniqueKey().toString(),
     );
@@ -159,7 +158,6 @@ class CustomInputWidget extends StatelessWidget {
       height: cheight.h,
       decoration: BoxDecoration(
         color: AppColor.inputColor,
-
         border: Border.all(color: AppColor.border1Color, width: 0.5.sp),
         borderRadius: BorderRadius.circular(radius),
       ),
@@ -175,8 +173,7 @@ class CustomInputWidget extends StatelessWidget {
                   top: leadingTop.h,
                   left: leadingLeft.w,
                 ),
-                child:
-                    leadingIconWidget ??
+                child: leadingIconWidget ??
                     SvgPicture.asset(
                       leadingIcon,
                       width: leadingWidth.w,
@@ -189,8 +186,8 @@ class CustomInputWidget extends StatelessWidget {
               ),
             Expanded(
               child: Obx(
-                () => TextField(
-                  controller: inputController.textController,
+                    () => TextField(
+                  controller: inputController.textController, // ✅ Uses controller
                   onChanged: onChanged,
                   onTap: onTap,
                   readOnly: readOnly,
@@ -207,9 +204,7 @@ class CustomInputWidget extends StatelessWidget {
                     border: InputBorder.none,
                     contentPadding: contentPadding
                         ? EdgeInsets.symmetric(
-                            horizontal: horizontal.w,
-                            vertical: vertical.h,
-                          )
+                        horizontal: horizontal.w, vertical: vertical.h)
                         : null,
                   ),
                   keyboardType: keyboardType,
@@ -224,7 +219,7 @@ class CustomInputWidget extends StatelessWidget {
             ),
             if (obscureText)
               Obx(
-                () => Padding(
+                    () => Padding(
                   padding: EdgeInsets.only(right: 10.w),
                   child: GestureDetector(
                     onTap: inputController.toggleObscure,
@@ -232,15 +227,12 @@ class CustomInputWidget extends StatelessWidget {
                       inputController.isObscured.value
                           ? Icons.visibility_off
                           : Icons.visibility,
-                      size: 16.sp, // 👈 decreased height
-                      color: AppColor.blueLiteColor.withOpacity(
-                        0.8,
-                      ), // 👈 changed color
+                      size: 16.sp,
+                      color: AppColor.blueLiteColor.withOpacity(0.8),
                     ),
                   ),
                 ),
               ),
-
             if (backIcon)
               Padding(
                 padding: EdgeInsets.only(left: 10.w),
