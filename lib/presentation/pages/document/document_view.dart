@@ -1,3 +1,4 @@
+import 'package:dzandzi/presentation/controllers/document/document_controller.dart';
 import 'package:dzandzi/presentation/pages/document/add_document.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav2.dart';
 import 'package:dzandzi/presentation/widgets/custom_document_card.dart';
@@ -12,6 +13,8 @@ class DocumentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DocumentController controller = Get.put(DocumentController());
+
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
       body: SafeArea(
@@ -71,6 +74,7 @@ class DocumentView extends StatelessWidget {
                           Expanded(
                             child: TextField(
                               cursorColor: AppColors.textcolor,
+                              onChanged: controller.updateSearch,
                               decoration: InputDecoration(
                                 hintText: '   Search here.....',
                                 hintStyle: TextStyle(
@@ -132,19 +136,24 @@ class DocumentView extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Get.to(AddDocument());
+                            Get.to(() => const AddDocument());
                           },
                         ),
                       ),
                       SizedBox(height: 10.h),
-                      Column(
-                        children: List.generate(
-                          4,
-                          (index) => const DocumentCard(
-                            projectName: 'Housezeo',
-                            uploadDate: '1/10/2023',
-                            fileSize: '3.2MB',
-                          ),
+
+                      // 👇 Reactive list rendering
+                      Obx(
+                        () => Column(
+                          children: controller.filteredDocuments
+                              .map(
+                                (doc) => DocumentCard(
+                                  projectName: doc['projectName'],
+                                  uploadDate: doc['uploadDate'],
+                                  fileSize: doc['fileSize'],
+                                ),
+                              )
+                              .toList(),
                         ),
                       ),
                     ],
