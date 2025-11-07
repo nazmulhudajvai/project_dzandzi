@@ -139,7 +139,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   textAlign: TextAlign.left,
                 ),
                 SizedBox(height: 5.h),
-                CustomInputWidget(
+                CustomInputWidget(controller: null,
                   cwidth: 396.w,
                   radius: 50.r,
                   cheight: 50.h,
@@ -158,7 +158,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   textAlign: TextAlign.left,
                 ),
                 SizedBox(height: 5.h),
-                CustomInputWidget(
+                CustomInputWidget(controller: null,
                   cwidth: 396.w,
                   radius: 50.r,
                   cheight: 50.h,
@@ -183,7 +183,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   cheight: 50.h,
                   hintText: '********',
                   onChanged: (String value) {},
-                  obscureText: true,
+                  obscureText: true, controller: null,
                 ),
                 SizedBox(height: 50.h),
                 CustomButton(

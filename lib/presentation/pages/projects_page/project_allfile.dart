@@ -14,7 +14,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../employee2/overview.dart';
+import 'Project_peichart.dart';
 
 class Project_all_File extends StatelessWidget {
   Project_all_File( {super.key});
@@ -26,7 +28,6 @@ class Project_all_File extends StatelessWidget {
     'Employees',
     'Documents',
   ];
-// this is the list of project pages 
   final List<Widget> _pages = [
     Project_Overview(),
     ProjectTask(),

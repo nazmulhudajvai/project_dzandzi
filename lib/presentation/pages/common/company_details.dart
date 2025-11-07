@@ -1,4 +1,5 @@
 import 'package:dzandzi/presentation/bottom_navigation_bar/view/bottom_navigation_view.dart';
+import 'package:dzandzi/presentation/pages/auth/login/login_screen.dart';
 import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,7 @@ class CompanyDetailsView extends StatelessWidget {
                   radius: 50.r,
                   cheight: 50.h,
                   hintText: 'Enter Full name',
-                  onChanged: (String value) {},
+                  onChanged: (String value) {},controller: null,
                 ),
                 SizedBox(height: 10.h),
             
@@ -74,7 +75,7 @@ class CompanyDetailsView extends StatelessWidget {
                   radius: 50.r,
                   cheight: 50.h,
                   hintText: 'Enter email address',
-                  onChanged: (String value) {},
+                  onChanged: (String value) {},controller: null,
                 ),
                 SizedBox(height: 10.h),
                 Text(
