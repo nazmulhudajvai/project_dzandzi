@@ -1,4 +1,5 @@
 import 'package:dzandzi/presentation/controllers/inventory_controllers/filter_controller.dart';
+import 'package:dzandzi/presentation/controllers/inventory_controllers/inventory_controller.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/filter_bottom_sheet.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/stock_card.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/inventory_cards.dart';
@@ -13,12 +14,14 @@ import 'package:dzandzi/presentation/pages/inventory/item_detail.dart';
 
 class OverviewTab extends StatelessWidget {
   // initialize filter controller (holds data + filtered results)
-  final FilterController filterController = Get.put(FilterController());
+  
+  final InventoryController controller = Get.put(InventoryController());
 
   OverviewTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // controller.addItem(); // removed: addItem requires a positional argument; call it with a valid item where appropriate
     return Column(
       children: [
         Row(
@@ -97,13 +100,18 @@ class OverviewTab extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         // render filtered items reactively
+
         Obx(() {
-          final items = filterController.filteredItems;
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final items = controller.items;
           if (items.isEmpty) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 20.h),
               child: TextProperty(
-                text: 'No items match the selected filters',
+                text: 'No items found',
                 textColor: AppColors.subtitleColor,
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w400,
@@ -112,28 +120,65 @@ class OverviewTab extends StatelessWidget {
           }
 
           return Column(
-            children: items
-                .map(
-                  (it) => Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => ItemDetail(item: it));
-                        },
-                        child: StockCard(
-                          heading: it.heading,
-                          costText: it.costText,
-                          quantity: it.quantity,
-                          unit: it.unit,
-                        ),
-                      ),
-                      SizedBox(height: 12.h),
-                    ],
+            children: items.map((it) {
+              return Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => ItemDetail(item: it as dynamic));
+                    },
+                    child: StockCard(
+                      heading: it.title,
+                      costText: '${it.valuePerUnit} ${it.unit}',
+                      quantity: it.quantity,
+                      unit: it.unit,
+                    ),
                   ),
-                )
-                .toList(),
-          );
-        }),
+                  SizedBox(height: 12.h),
+                ],
+              );
+            }).toList(),
+          );}),
+
+
+
+        // Obx(() {
+        //   final items = filterController.filteredItems;
+        //   if (items.isEmpty) {
+        //     return Padding(
+        //       padding: EdgeInsets.symmetric(vertical: 20.h),
+        //       child: TextProperty(
+        //         text: 'No items match the selected filters',
+        //         textColor: AppColors.subtitleColor,
+        //         fontSize: 14.sp,
+        //         fontWeight: FontWeight.w400,
+        //       ),
+        //     );
+        //   }
+
+        //   return Column(
+        //     children: items
+        //         .map(
+        //           (it) => Column(
+        //             children: [
+        //               GestureDetector(
+        //                 onTap: () {
+        //                   Get.to(() => ItemDetail(item: it));
+        //                 },
+        //                 child: StockCard(
+        //                   heading: it.heading,
+        //                   costText: it.costText,
+        //                   quantity: it.quantity,
+        //                   unit: it.unit,
+        //                 ),
+        //               ),
+        //               SizedBox(height: 12.h),
+        //             ],
+        //           ),
+        //         )
+        //         .toList(),
+        //   );
+        // }),
       ],
     );
   }
