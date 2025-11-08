@@ -1,27 +1,21 @@
-
-import 'package:dzandzi/presentation/controllers/bottom_navbar_view2.dart';
+ 
+import 'package:dzandzi/presentation/controllers/project_pages_controler/project_list_view_controler.dart';
 import 'package:dzandzi/presentation/pages/projects_page/create_new_project.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
-import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
-import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
-import 'package:dzandzi/theams/app_colors.dart';
+ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+ 
 
 class ProjectPage extends StatelessWidget {
   ProjectPage({super.key});
 
-  final List<Map<String, dynamic>> projectData = [
-    {"name": "BuildSync", "progress": 50, "days": 14},
-    {"name": "SitePulse", "progress": 30, "days": 14},
-    {"name": "ConstructFlow", "progress": 80, "days": 14},
-    {"name": "ProStruct", "progress": 50, "days": 14},
-  ];
-
+  final ProjectController projectController = Get.put(ProjectController());
+  final TextEditingController searchController =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +27,6 @@ class ProjectPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 10.h),
-
               Padding(
                 padding: EdgeInsets.all(2.0.r),
                 child: Row(
@@ -60,12 +53,33 @@ class ProjectPage extends StatelessWidget {
                   ],
                 ),
               ),
-
               SizedBox(height: 40.h),
 
+              // Search + Filter
               Row(
                 children: [
-                  Expanded(child: search_bar()),
+                 Expanded(
+                        child: Container(
+                            width: double.infinity,
+      padding: EdgeInsets.only(left: 10.r,top: 5.r),
+                          decoration: BoxDecoration(
+        color: AppColors.textFieldColor2,
+        borderRadius: BorderRadius.circular(25.r),
+        border: Border.all(
+          color: AppColors.borderColor,
+        ),
+      ),
+                          child: TextField(
+                            controller: searchController,
+                            onChanged: projectController.updateSearch,
+                            decoration: InputDecoration(
+                              hintText: "Search projects",
+                              border:InputBorder.none ,
+                              suffixIcon: const Icon(Icons.search),
+                            ),
+                          ),
+                        ),
+                      ),
                   SizedBox(width: 5.w),
                   IconButton(
                     icon: Icon(Icons.filter_list),
@@ -78,15 +92,15 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 30.h),
 
+              // Create Project button
               Row(
                 children: [
-
-                  GestureDetector( 
+                  GestureDetector(
                     onTap: () {
-                      Get.to(()=>CreateNewProjectView());                      
+                      Get.to(() => CreateNewProjectView());
                     },
-                    child: Icon(Icons.add, color: AppColors.deepBlue)),
-
+                    child: Icon(Icons.add, color: AppColors.deepBlue),
+                  ),
                   const SizedBox(width: 6),
                   Text(
                     "Create Project",
@@ -100,28 +114,45 @@ class ProjectPage extends StatelessWidget {
 
               SizedBox(height: 10.h),
 
+              // Project List
               Expanded(
-                child: ListView.builder(
-                  itemCount: projectData.length,
-                  itemBuilder: (context, index) {
-                    final data = projectData[index];
+                child: Obx(() {
+                  if (projectController.isLoading.value) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (projectController.errorMessage.isNotEmpty) {
+                    return Center(
+                        child: Text(
+                            "Error: ${projectController.errorMessage}"));
+                  } else if (projectController.displayedProjects.isEmpty) {
+                    return const Center(child: Text("No projects found"));
+                  }
 
-                    return InkWell(
-                      onTap: () {
-                        Get.to(()=>Project_all_File());
-                      },
-                      child: project_card(
-                        title: data["name"],
-                        progress: data["progress"],
-                        days: data["days"],
-                        isdayshow: false,
-                        isProgress: true,
-                      ),
-                    );
-                  },
-                ),
+                  return ListView.builder(
+                    itemCount: projectController.displayedProjects.length,
+                    itemBuilder: (context, index) {
+                      final project =
+                          projectController.displayedProjects[index];
+                      return InkWell(
+                        onTap: () {
+                          Get.to(() => Project_all_File());
+                        },
+                        child: project_card(
+                          title: project.name,
+                          progress: project.taskProgress.averageProgress,
+                          days: project.startDate != null &&
+                                  project.endDate != null
+                              ? project.endDate!
+                                  .difference(project.startDate!)
+                                  .inDays
+                              : 0,
+                          isdayshow: false,
+                          isProgress: true,
+                        ),
+                      );
+                    },
+                  );
+                }),
               ),
-              
             ],
           ),
         ),
@@ -139,12 +170,10 @@ class ProjectPage extends StatelessWidget {
           color: Colors.transparent,
           child: Stack(
             children: [
-              // Tap outside to close
               GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
                 child: Container(color: Colors.transparent),
               ),
-
               Positioned(
                 top: 150,
                 right: 40,
@@ -168,7 +197,7 @@ class ProjectPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        buildFilterOption(context, 'Active'),
+                        buildFilterOption(context, 'All'),
                         buildFilterOption(context, 'Complete'),
                         buildFilterOption(context, 'On-going'),
                       ],
@@ -189,7 +218,10 @@ class ProjectPage extends StatelessWidget {
 
   Widget buildFilterOption(BuildContext context, String label) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pop(),
+      onTap: () {
+        projectController.updateFilter(label);
+        Navigator.of(context).pop();
+      },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8.0),
         child: Text(

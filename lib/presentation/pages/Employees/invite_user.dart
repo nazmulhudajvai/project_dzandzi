@@ -1,6 +1,4 @@
-import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
-import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
-import 'package:dzandzi/theams/app_colors.dart';
+ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,8 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../theams/app_color2.dart';
 import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/buttons/custom_input_widget.dart';
-import '../../widgets/employee/employee_card.dart';
-import '../common/company_details.dart';
+ import '../common/company_details.dart';
 
 class InviteUser extends StatelessWidget {
   const InviteUser({super.key});

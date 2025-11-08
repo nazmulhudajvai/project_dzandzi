@@ -39,7 +39,7 @@ class LoginController extends GetxController {
 
     try {
       final response = await http.post(
-        Uri.parse('http://10.10.13.83:3000/auth/login'),
+        Uri.parse('https://cc6d42d2c029.ngrok-free.app/auth/login'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode(body),
       );

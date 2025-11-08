@@ -1,7 +1,5 @@
 import 'package:dzandzi/presentation/bottom_navigation_bar/view/bottom_navigation_view.dart';
-import 'package:dzandzi/presentation/pages/auth/login/login_screen.dart';
-import 'package:dzandzi/presentation/widgets/Navigation/custom_bottom_nav.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,8 +8,7 @@ import '../../../theams/app_color2.dart';
 import '../../controllers/bottom_navbar_controller.dart';
 import '../../widgets/buttons/custom_button.dart';
 import '../../widgets/buttons/custom_input_widget.dart';
-import '../home/home_view.dart';
-
+ 
 // Make sure this path is correct
 
 class CompanyDetailsView extends StatelessWidget {

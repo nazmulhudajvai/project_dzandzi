@@ -15,7 +15,7 @@ class ProjectUsageView extends StatelessWidget {
         // CustomSearchBar(),
         Row(
           children: [
-            Expanded(child: search_bar()),
+            Expanded(child: search_bar(onChanged: (String value) {  },)),
             SizedBox(width: 16.w),
             Icon(
               Icons.filter_list,

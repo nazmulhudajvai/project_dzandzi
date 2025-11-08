@@ -75,7 +75,7 @@ class OverviewTab extends StatelessWidget {
         SizedBox(height: 16.h),
         Row(
           children: [
-            Expanded(child: search_bar()),
+            Expanded(child: search_bar(onChanged: (String value) {  },)),
             SizedBox(width: 16.w),
             GestureDetector(
               onTap: () async {

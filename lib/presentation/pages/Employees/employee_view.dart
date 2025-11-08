@@ -66,7 +66,7 @@ class EmployeeView extends StatelessWidget {
               /// ✅ Search + Filter
               Row(
                 children: [
-                  Expanded(child: search_bar()),
+                  Expanded(child: search_bar(onChanged: (String value) {  },)),
                   SizedBox(width: 5.w),
                   IconButton(
                     icon: Icon(Icons.filter_list),

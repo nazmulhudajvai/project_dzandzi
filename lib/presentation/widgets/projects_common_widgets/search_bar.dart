@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,7 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 
 class search_bar extends StatelessWidget {
-  const search_bar({super.key});
+   search_bar({super.key,required this.onChanged});
+
+ final ValueChanged<String>? onChanged; 
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,9 @@ class search_bar extends StatelessWidget {
           Expanded(
             child: TextField(
               cursorColor: AppColors.textColor,
+              onChanged: (value) {
+                onChanged?.call(value);
+              },
               decoration: InputDecoration(
                 hintText: "Search here...",
                 hintStyle: GoogleFonts.roboto(

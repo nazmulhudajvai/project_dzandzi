@@ -19,7 +19,7 @@ class ForgetPasswordController extends GetxController {
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  final String baseUrl = 'http://10.10.13.83:3000';
+  final String baseUrl = 'https://cc6d42d2c029.ngrok-free.app';
 
   /// Step 1: Send forget-password email
   Future<void> sendEmail() async {
