@@ -157,8 +157,8 @@ class CustomInputWidget extends StatelessWidget {
       width: cwidth.w,
       height: cheight.h,
       decoration: BoxDecoration(
-        color: AppColor.whiteColor,
-
+        color: AppColor.inputColor,
+        border: Border.all(color: AppColor.border1Color, width: 0.5.sp),
         borderRadius: BorderRadius.circular(radius),
       ),
       child: Padding(

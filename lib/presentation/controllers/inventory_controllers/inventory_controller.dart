@@ -7,6 +7,7 @@ class InventoryController extends GetxController {
   final AddInventoryApiService _service = AddInventoryApiService();
   var isLoading = false.obs;
   var items = <AddItemModel>[].obs;
+  var searchQuery = ''.obs;
 
   // observables for inventory cards
   var totalValue = 0.0.obs;
@@ -14,47 +15,132 @@ class InventoryController extends GetxController {
   var inStock = 0.obs;
   var needAttention = 0.obs;
 
-  Future<void> addItem(AddItemModel item) async {
-    isLoading.value = true;
+  // Computed filtered items based on search query
+  List<AddItemModel> get filteredItems {
+    if (searchQuery.value.isEmpty) {
+      return items;
+    }
+    return items.where((item) {
+      return item.title.toLowerCase().contains(searchQuery.value.toLowerCase());
+    }).toList();
+  }
 
-    final success = await _service.addItem(item.toJson());
+  void updateSearchQuery(String query) {
+    searchQuery.value = query;
+  }
 
-    isLoading.value = false;
+  void clearSearch() {
+    searchQuery.value = '';
+  }
 
-    if (success) {
-      // ✅ Update UI instantly
-      items.add(item);
+  Future<bool> addItem(AddItemModel item) async {
+    try {
+      isLoading.value = true;
 
-      Get.snackbar('Success', 'Item added successfully');
+      final success = await _service.addItem(item.toJson());
 
-      // Optional: fetchItems() if you want to sync with server
-      // await fetchItems();
-    } else {
-      Get.snackbar('Error', 'Failed to add item');
+      if (success) {
+        print('✅ Item added, refreshing list...');
+
+        // Refresh items from server to show the new item
+        await fetchItems();
+        await fetchInventoryInfo();
+
+        isLoading.value = false;
+        return true;
+      } else {
+        isLoading.value = false;
+        return false;
+      }
+    } catch (e) {
+      print('❌ addItem exception: $e');
+      isLoading.value = false;
+      return false;
     }
   }
 
   Future<void> fetchItems() async {
-    isLoading.value = true;
-    final fetchedItems = await _service.getItems();
-    items.value = fetchedItems;
-    isLoading.value = false;
+    try {
+      isLoading.value = true;
+      final fetchedItems = await _service.getItems();
+      items.value = fetchedItems;
+      print('✅ Loaded ${fetchedItems.length} items');
+    } catch (e) {
+      print('❌ Error fetching items: $e');
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   Future<void> fetchInventoryInfo() async {
-    final info = await _service.getInventoryInfo();
-    if (info != null) {
-      totalValue.value = info.totalValue;
-      totalItems.value = info.totalItems;
-      inStock.value = info.inStock;
-      needAttention.value = info.needAttention;
+    try {
+      final info = await _service.getInventoryInfo();
+      if (info != null) {
+        totalValue.value = info.totalValue;
+        totalItems.value = info.totalItems;
+        inStock.value = info.remainingItems;
+        needAttention.value = info.remaingigInvetoryItems;
+        print('✅ Updated inventory info');
+      }
+    } catch (e) {
+      print('❌ Error fetching inventory info: $e');
+    }
+  }
+
+  Future<bool> updateItem(String itemId, AddItemModel item) async {
+    try {
+      isLoading.value = true;
+
+      final success = await _service.updateItem(itemId, item.toJson());
+
+      if (success) {
+        print('✅ Item updated, refreshing list...');
+
+        await fetchItems();
+        await fetchInventoryInfo();
+
+        isLoading.value = false;
+        return true;
+      } else {
+        isLoading.value = false;
+        return false;
+      }
+    } catch (e) {
+      print('❌ updateItem exception: $e');
+      isLoading.value = false;
+      return false;
+    }
+  }
+
+  Future<bool> deleteItem(String itemId) async {
+    try {
+      isLoading.value = true;
+
+      final success = await _service.deleteItem(itemId);
+
+      if (success) {
+        print('✅ Item deleted, refreshing list...');
+
+        await fetchItems();
+        await fetchInventoryInfo();
+
+        isLoading.value = false;
+        return true;
+      } else {
+        isLoading.value = false;
+        return false;
+      }
+    } catch (e) {
+      print('❌ deleteItem exception: $e');
+      isLoading.value = false;
+      return false;
     }
   }
 
   @override
   void onInit() {
     super.onInit();
-    fetchItems(); // load items on start
-    fetchInventoryInfo(); // load card values on start
+    fetchItems();
+    fetchInventoryInfo();
   }
 }
