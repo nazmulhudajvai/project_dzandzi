@@ -1,5 +1,7 @@
+import 'package:dzandzi/core/model/inventory_models/add_item_model.dart';
 import 'package:dzandzi/presentation/controllers/inventory_controllers/custom_dropdown_field_controller.dart';
 import 'package:dzandzi/presentation/controllers/inventory_controllers/filter_controller.dart';
+import 'package:dzandzi/presentation/controllers/inventory_controllers/inventory_controller.dart';
 import 'package:dzandzi/presentation/widgets/custom_button_ak.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/custom_dropdown_field.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/custom_textfield.dart';
@@ -27,7 +29,11 @@ class _AddInventoryState extends State<AddInventory> {
   final FilterController filterController = Get.isRegistered<FilterController>()
       ? Get.find<FilterController>()
       : Get.put(FilterController());
-  
+  final InventoryController inventoryController =
+      Get.isRegistered<InventoryController>()
+      ? Get.find<InventoryController>()
+      : Get.put(InventoryController());
+
   final TextEditingController _nameCtrl = TextEditingController();
   final TextEditingController _descCtrl = TextEditingController();
   final TextEditingController _quantityCtrl = TextEditingController();
@@ -42,9 +48,8 @@ class _AddInventoryState extends State<AddInventory> {
     super.dispose();
   }
 
-  void _onAddItem() {
+  Future<void> _onAddItem() async {
     final String name = _nameCtrl.text.trim();
-    final String desc = _descCtrl.text.trim();
     final String qtyText = _quantityCtrl.text.trim();
     final String valueText = _valueCtrl.text.trim();
 
@@ -54,24 +59,48 @@ class _AddInventoryState extends State<AddInventory> {
     }
 
     final int? quantity = int.tryParse(qtyText);
-    if (quantity == null) {
-      Get.snackbar('Validation', 'Quantity must be a number');
+    final double? valuePerUnit = double.tryParse(valueText);
+
+    if (quantity == null || valuePerUnit == null) {
+      Get.snackbar('Validation', 'Quantity and Value must be numbers');
       return;
     }
 
-    final String unit = widget.controller.selectedUnit.value;
-    final String category = widget.controller.selectedAddCategory.value;
-    final String costText = valueText.isEmpty ? '€0 Materials' : '€$valueText Materials';
+    final String unit = widget.controller.selectedUnit.value.isEmpty
+        ? 'Pieces'
+        : widget.controller.selectedUnit.value;
 
-    final newItem = InventoryItem(
-      heading: name,
-      costText: costText,
+    final String category = widget.controller.selectedAddCategory.value.isEmpty
+        ? 'Materials'
+        : widget.controller.selectedAddCategory.value;
+
+    final String costText = valueText.isEmpty
+        ? '€0 Materials'
+        : '€$valueText Materials';
+
+    final newItem = AddItemModel(
+      title: name,
       quantity: quantity,
-      unit: unit.isEmpty ? 'pcs' : unit,
-      category: category.isEmpty ? 'General' : category,
+      lowStockThreshold: 10,
+      unit: unit,
+      category: category,
+      valuePerUnit: valuePerUnit,
     );
+    await inventoryController.addItem(newItem);
+    if (!inventoryController.isLoading.value) {
+      Get.back(); // close add screen
+      Get.snackbar('Success', 'Item added successfully!');
+    }
 
-    filterController.addItem(newItem);
+    // final newItem = InventoryItem(
+    //   heading: name,
+    //   costText: costText,
+    //   quantity: quantity,
+    //   unit: unit.isEmpty ? 'pcs' : unit,
+    //   category: category.isEmpty ? 'General' : category,
+    // );
+
+    // filterController.addItem(newItem);
 
     Get.snackbar('Success', 'Item added');
     Navigator.of(context).pop();
@@ -116,21 +145,21 @@ class _AddInventoryState extends State<AddInventory> {
               fieldText: 'Enter here...',
             ),
             SizedBox(height: 16.h),
-            TextProperty(
-              text: 'Descriptions',
-              textColor: AppColor.textColor,
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w400,
-            ),
-            SizedBox(height: 4.h),
-            CustomTextfield(
-              controller: _descCtrl,
-              maxLines: 4,
-              borderRadius: 20.r,
-              fillColor: AppColors.textFieldColor,
-              fieldText: 'Enter here...',
-            ),
-            SizedBox(height: 16.h),
+            // TextProperty(
+            //   text: 'Descriptions',
+            //   textColor: AppColor.textColor,
+            //   fontSize: 14.sp,
+            //   fontWeight: FontWeight.w400,
+            // ),
+            // SizedBox(height: 4.h),
+            // CustomTextfield(
+            //   controller: _descCtrl,
+            //   maxLines: 4,
+            //   borderRadius: 20.r,
+            //   fillColor: AppColors.textFieldColor,
+            //   fieldText: 'Enter here...',
+            // ),
+            // SizedBox(height: 16.h),
             Row(
               children: [
                 Expanded(
@@ -216,8 +245,8 @@ class _AddInventoryState extends State<AddInventory> {
               fillColor: AppColors.textFieldColor,
               fieldText: 'Enter here...',
             ),
-            SizedBox(height: 24.h,),
-            CustomButtonAk(text: 'Add Items', onTap: _onAddItem)
+            SizedBox(height: 24.h),
+            CustomButtonAk(text: 'Add Items', onTap: _onAddItem),
           ],
         ),
       ),
