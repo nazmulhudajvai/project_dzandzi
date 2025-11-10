@@ -30,10 +30,21 @@ class StockCard extends StatelessWidget {
   }
 
   String _displayPrice(String input) {
-    // return first token (e.g. "€50" from "€50 Materials")
     final trimmed = input.trim();
-    if (trimmed.isEmpty) return trimmed;
-    return trimmed.split(RegExp(r'\s+')).first;
+    if (trimmed.isEmpty) return '€0';
+
+    // Extract numeric value and format with currency
+    final numeric = double.tryParse(trimmed.split(RegExp(r'\s+')).first);
+    if (numeric != null) {
+      return '€${numeric.toStringAsFixed(2)}';
+    }
+
+    // If already formatted with currency, return as is
+    if (trimmed.startsWith('€') || trimmed.startsWith('\$')) {
+      return trimmed.split(RegExp(r'\s+')).first;
+    }
+
+    return '€$trimmed';
   }
 
   @override

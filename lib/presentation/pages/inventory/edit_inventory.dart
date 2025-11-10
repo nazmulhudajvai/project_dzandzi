@@ -1,6 +1,5 @@
 import 'package:dzandzi/core/model/inventory_models/add_item_model.dart';
 import 'package:dzandzi/presentation/controllers/inventory_controllers/custom_dropdown_field_controller.dart';
-import 'package:dzandzi/presentation/controllers/inventory_controllers/filter_controller.dart';
 import 'package:dzandzi/presentation/controllers/inventory_controllers/inventory_controller.dart';
 import 'package:dzandzi/presentation/widgets/custom_button_ak.dart';
 import 'package:dzandzi/presentation/widgets/inventory_widgets/custom_dropdown_field.dart';
@@ -13,47 +12,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class AddInventory extends StatefulWidget {
-  final CustomDropdownFieldController controller = Get.put(
-    CustomDropdownFieldController(),
-  );
+class EditInventory extends StatefulWidget {
+  final AddItemModel item;
 
-  AddInventory({super.key});
+  const EditInventory({super.key, required this.item});
 
   @override
-  State<AddInventory> createState() => _AddInventoryState();
+  State<EditInventory> createState() => _EditInventoryState();
 }
 
-class _AddInventoryState extends State<AddInventory> {
-  // use existing FilterController instance if present, otherwise create it
-  final FilterController filterController = Get.isRegistered<FilterController>()
-      ? Get.find<FilterController>()
-      : Get.put(FilterController());
-  final InventoryController inventoryController =
-      Get.isRegistered<InventoryController>()
-      ? Get.find<InventoryController>()
-      : Get.put(InventoryController());
+class _EditInventoryState extends State<EditInventory> {
+  final CustomDropdownFieldController controller = Get.put(
+    CustomDropdownFieldController(),
+    tag: 'edit',
+  );
+  final InventoryController inventoryController = Get.find<InventoryController>();
 
-  final TextEditingController _nameCtrl = TextEditingController();
-  final TextEditingController _descCtrl = TextEditingController();
-  final TextEditingController _quantityCtrl = TextEditingController();
-  final TextEditingController _valueCtrl = TextEditingController();
+  late TextEditingController _nameCtrl;
+  late TextEditingController _quantityCtrl;
+  late TextEditingController _valueCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameCtrl = TextEditingController(text: widget.item.title);
+    _quantityCtrl = TextEditingController(text: widget.item.quantity.toString());
+    _valueCtrl = TextEditingController(text: widget.item.valuePerUnit.toString());
+    
+    controller.selectedUnit.value = widget.item.unit;
+    controller.selectedAddCategory.value = widget.item.category;
+  }
 
   @override
   void dispose() {
     _nameCtrl.dispose();
-    _descCtrl.dispose();
     _quantityCtrl.dispose();
     _valueCtrl.dispose();
     super.dispose();
   }
 
-  Future<void> _onAddItem() async {
-    // Prevent duplicate submissions
-    if (inventoryController.isLoading.value) {
-      print('⏳ Already processing...');
-      return;
-    }
+  Future<void> _onUpdateItem() async {
+    if (inventoryController.isLoading.value) return;
 
     final String name = _nameCtrl.text.trim();
     final String qtyText = _quantityCtrl.text.trim();
@@ -80,32 +79,24 @@ class _AddInventoryState extends State<AddInventory> {
       return;
     }
 
-    final String unit = widget.controller.selectedUnit.value.isEmpty
-        ? 'Pieces'
-        : widget.controller.selectedUnit.value;
-
-    final String category = widget.controller.selectedAddCategory.value.isEmpty
-        ? 'Materials'
-        : widget.controller.selectedAddCategory.value;
-
-    final newItem = AddItemModel(
+    final updatedItem = AddItemModel(
+      id: widget.item.id,
       title: name,
       quantity: quantity,
-      lowStockThreshold: 10,
-      unit: unit,
-      category: category,
+      lowStockThreshold: widget.item.lowStockThreshold,
+      unit: controller.selectedUnit.value,
+      category: controller.selectedAddCategory.value,
       valuePerUnit: valuePerUnit,
     );
 
-    print('🚀 Adding item: ${newItem.toJson()}');
-
-    final success = await inventoryController.addItem(newItem);
+    final success = await inventoryController.updateItem(widget.item.id!, updatedItem);
 
     if (success) {
-      Get.back(); // Close add screen
+      Get.back();
+      Get.back();
       Get.snackbar(
         'Success',
-        'Item "$name" added successfully!',
+        'Item "$name" updated successfully!',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.green,
         colorText: Colors.white,
@@ -114,7 +105,7 @@ class _AddInventoryState extends State<AddInventory> {
     } else {
       Get.snackbar(
         'Error',
-        'Failed to add item. Check console for details.',
+        'Failed to update item',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         colorText: Colors.white,
@@ -133,15 +124,12 @@ class _AddInventoryState extends State<AddInventory> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: () {
-                Get.back();
-              },
+              onTap: () => Get.back(),
               child: Image.asset(ImageAssets.back, width: 19.sp, height: 16.sp),
             ),
-
             SizedBox(height: 30.h),
             Text(
-              'Add New Items',
+              'Edit Item',
               style: TextStyle(
                 color: AppColor.textColor,
                 fontSize: 20.sp,
@@ -204,7 +192,7 @@ class _AddInventoryState extends State<AddInventory> {
                           'Meters',
                           'Gallons',
                         ],
-                        selectedValue: widget.controller.selectedUnit,
+                        selectedValue: controller.selectedUnit,
                       ),
                     ],
                   ),
@@ -223,16 +211,15 @@ class _AddInventoryState extends State<AddInventory> {
               fillColor: AppColors.textFieldColor,
               borderRadius: 50.r,
               borderColor: AppColors.borderColor,
-              hintText: 'Select a catagory',
+              hintText: 'Select a category',
               items: [
-                'All',
                 'Materials',
                 'Tools',
                 'Hardware',
-                'Electrcal',
+                'Electrical',
                 'Plumbing',
               ],
-              selectedValue: widget.controller.selectedAddCategory,
+              selectedValue: controller.selectedAddCategory,
             ),
             SizedBox(height: 16.h),
             TextProperty(
@@ -248,7 +235,7 @@ class _AddInventoryState extends State<AddInventory> {
               fieldText: 'Enter here...',
             ),
             SizedBox(height: 24.h),
-            CustomButtonAk(text: 'Add Items', onTap: _onAddItem),
+            CustomButtonAk(text: 'Update Item', onTap: _onUpdateItem),
           ],
         ),
       ),

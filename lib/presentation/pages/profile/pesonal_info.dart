@@ -201,7 +201,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                       title: 'Email Address',
                       detailsWidget: isEditing
                           ? CustomInputWidget(
-                        cwidth: 390.w,
+                        cwidth: 380.w,
                         radius: 100.r,
                         cheight: 44.h,
                         hintText: '',
@@ -303,12 +303,12 @@ class Custom_details extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(100.r),
+            color: AppColor.whiteColor,
+            borderRadius: BorderRadius.circular(100),
             border: Border.all(color: AppColor.border1Color),
           ),
           child: Padding(
-            padding:  EdgeInsets.only(left: 10.0, right: 10.0, top: 8.0),
+            padding: const EdgeInsets.only(left: 18.0, right: 10.0, top: 8.0),
             child: detailsWidget,
           ),
         ),

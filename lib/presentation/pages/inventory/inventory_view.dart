@@ -17,7 +17,7 @@ class InventoryView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(10.w, 60.h, 10.w, 30.h),
+        padding: EdgeInsets.fromLTRB(16.w, 60.h, 16.w, 30.h),
         child: ConstrainedBox(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height -

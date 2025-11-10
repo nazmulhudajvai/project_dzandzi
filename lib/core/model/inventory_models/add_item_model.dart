@@ -1,4 +1,5 @@
 class AddItemModel {
+  final String? id;
   final String title;
   final int quantity;
   final int lowStockThreshold;
@@ -7,6 +8,7 @@ class AddItemModel {
   final double valuePerUnit;
 
   AddItemModel({
+    this.id,
     required this.title,
     required this.quantity,
     required this.lowStockThreshold,
@@ -17,6 +19,7 @@ class AddItemModel {
 
   Map<String, dynamic> toJson() {
     return {
+      if (id != null) 'id': id,
       'title': title,
       'quantity': quantity,
       'lowStockThreshold': lowStockThreshold,
@@ -28,6 +31,7 @@ class AddItemModel {
 
   factory AddItemModel.fromJson(Map<String, dynamic> json) {
     return AddItemModel(
+      id: json['id']?.toString(),
       title: json['title'] ?? '',
       quantity: json['quantity'] ?? 0,
       lowStockThreshold: json['lowStockThreshold'] ?? 0,
