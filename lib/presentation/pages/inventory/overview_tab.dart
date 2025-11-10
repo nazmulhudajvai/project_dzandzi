@@ -13,9 +13,8 @@ import 'package:get/get.dart';
 import 'package:dzandzi/presentation/pages/inventory/item_detail.dart';
 
 class OverviewTab extends StatelessWidget {
-  // initialize filter controller (holds data + filtered results)
-  
   final InventoryController controller = Get.put(InventoryController());
+  final TextEditingController searchController = TextEditingController();
 
   OverviewTab({super.key});
 
@@ -78,7 +77,68 @@ class OverviewTab extends StatelessWidget {
         SizedBox(height: 16.h),
         Row(
           children: [
-            Expanded(child: search_bar()),
+            Expanded(
+              child: TextField(
+                controller: searchController,
+                onChanged: (value) {
+                  controller.updateSearchQuery(value);
+                },
+                decoration: InputDecoration(
+                  hintText: 'Search items...',
+                  hintStyle: TextStyle(
+                    color: AppColors.subtitleColor,
+                    fontSize: 14.sp,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: AppColors.subtitleColor,
+                    size: 20.sp,
+                  ),
+                  suffixIcon: Obx(() {
+                    return controller.searchQuery.value.isNotEmpty
+                        ? IconButton(
+                            icon: Icon(
+                              Icons.clear,
+                              color: AppColors.subtitleColor,
+                              size: 20.sp,
+                            ),
+                            onPressed: () {
+                              searchController.clear();
+                              controller.clearSearch();
+                            },
+                          )
+                        : const SizedBox.shrink();
+                  }),
+                  filled: true,
+                  fillColor: AppColors.whiteColor,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.r),
+                    borderSide: BorderSide(
+                      color: AppColors.borderColor,
+                      width: 1,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.r),
+                    borderSide: BorderSide(
+                      color: AppColors.borderColor,
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.r),
+                    borderSide: BorderSide(
+                      color: AppColors.inventoryText,
+                      width: 1.5,
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 12.h,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(width: 16.w),
             GestureDetector(
               onTap: () async {
@@ -106,7 +166,30 @@ class OverviewTab extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final items = controller.items;
+          final items = controller.filteredItems;
+          
+          if (items.isEmpty && controller.searchQuery.value.isNotEmpty) {
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.search_off,
+                    size: 48.sp,
+                    color: AppColors.subtitleColor,
+                  ),
+                  SizedBox(height: 8.h),
+                  TextProperty(
+                    text: 'No items found for "${controller.searchQuery.value}"',
+                    textColor: AppColors.subtitleColor,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ],
+              ),
+            );
+          }
+
           if (items.isEmpty) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -125,11 +208,17 @@ class OverviewTab extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => ItemDetail(item: it as dynamic));
+                      print('==========================================');
+                      print('🎯 Tapped item: ${it.title}');
+                      print('🎯 Item ID: ${it.id}');
+                      print('🎯 Full item data: ${it.toJson()}');
+                      print('==========================================');
+                      
+                      Get.to(() => ItemDetail(item: it));
                     },
                     child: StockCard(
                       heading: it.title,
-                      costText: '${it.valuePerUnit} ${it.unit}',
+                      costText: '€${it.valuePerUnit.toStringAsFixed(2)}',
                       quantity: it.quantity,
                       unit: it.unit,
                     ),
@@ -139,8 +228,7 @@ class OverviewTab extends StatelessWidget {
               );
             }).toList(),
           );
-          }
-          ),
+        }),
 
 
 
