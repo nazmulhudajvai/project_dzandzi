@@ -1,5 +1,4 @@
 import 'package:dzandzi/presentation/bottom_navigation2/view/second_bottom_navigation_view.dart';
-import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/search_bar.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/employee/employee_card.dart';
-import 'all_roles.dart';
 import 'invite_user.dart';
 
 class EmployeeView extends StatelessWidget {

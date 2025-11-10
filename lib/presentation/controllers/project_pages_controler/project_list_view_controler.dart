@@ -1,4 +1,4 @@
-import 'package:dzandzi/core/services/project_list_view_api.dart';
+import 'package:dzandzi/data/services/project_Page_api.dart';
 import 'package:dzandzi/presentation/data/models/project_list_model.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +27,7 @@ class ProjectController extends GetxController {
     try {
       isLoading.value = true;
       errorMessage.value = '';
-      final result = await ProjectListViewApi.fetchProjectList();
+      final result = await ProjectPageApi.fetchProjectList();
       allProjects.value = result;
       applyFilters();
     } catch (e) {

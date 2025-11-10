@@ -7,7 +7,7 @@ import 'package:fl_chart/fl_chart.dart';
 class Project_peichart extends StatelessWidget {
   final double completionPercent; // Example: 0.6 = 60%
 
-  const Project_peichart({super.key, this.completionPercent = 0.6});
+  const Project_peichart({super.key,  this.completionPercent=0.5 });
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,12 @@
 import 'package:dzandzi/presentation/pages/auth/otp/email_verify.dart';
 import 'package:dzandzi/presentation/pages/auth/sign_up/sign_up_screen.dart';
-import 'package:dzandzi/presentation/pages/common/company_details.dart';
 import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
 import 'package:dzandzi/presentation/widgets/buttons/custom_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../theams/app_color2.dart';
-import '../../../bottom_navigation_bar/view/bottom_navigation_view.dart';
 import '../../../controllers/auth/login_controller.dart';
 
 // Controller for UI state only
@@ -59,27 +56,27 @@ class LoginView extends StatelessWidget {
                     controller.emailController.text = value;
                   },controller: null
                 ),
-                SizedBox(height: 10.h),
+                // SizedBox(height: 10.h),
 
-                Text(
-                  'Telephone Number',
-                  style: GoogleFonts.roboto(
-                    color: AppColor.greyBC,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                SizedBox(height: 5.h),
-                CustomInputWidget(
-                  cwidth: 396.w,
-                  radius: 50.r,
-                  cheight: 50.h,
-                  hintText: 'Enter Telephone Number',
-                  onChanged: (String value) {
-                    controller.phoneController.text = value;
-                  },controller: null
-                ),
+                // Text(
+                //   'Telephone Number',
+                //   style: GoogleFonts.roboto(
+                //     color: AppColor.greyBC,
+                //     fontSize: 16,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                //   textAlign: TextAlign.left,
+                // ),
+                // SizedBox(height: 5.h),
+                // CustomInputWidget(
+                //   cwidth: 396.w,
+                //   radius: 50.r,
+                //   cheight: 50.h,
+                //   hintText: 'Enter Telephone Number',
+                //   onChanged: (String value) {
+                //     controller.phoneController.text = value;
+                //   },controller: null
+                // ),
                 SizedBox(height: 10.h),
                 Text(
                   'Password',

@@ -16,8 +16,11 @@ import 'package:google_fonts/google_fonts.dart';
 import '../employee2/overview.dart';
  
 class Project_all_File extends StatelessWidget {
-  Project_all_File( {super.key});
-  final ProjectTabbarcontroler controller = Get.put(ProjectTabbarcontroler());
+
+  Project_all_File( {super.key, required this.projectid});
+  final ProjectTabbarcontroler controller = Get.put(ProjectTabbarcontroler());  
+  
+  final dynamic projectid;
   final List<String> _tabs = [
     'Overview',
     'Task',
@@ -25,16 +28,19 @@ class Project_all_File extends StatelessWidget {
     'Employees',
     'Documents',
   ];
-  final List<Widget> _pages = [
-    Project_Overview(),
+  
+
+  @override
+  Widget build(BuildContext context) {
+
+final List<Widget> _pages = [
+    Project_Overview(projectId: projectid),
     ProjectTask(),
     Project_inventory(),
     Project_employ(),
     ProjectDocument(),
   ];
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
 

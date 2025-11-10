@@ -1,12 +1,8 @@
 import 'dart:convert';
-import 'package:dzandzi/presentation/widgets/buttons/custom_button.dart';
-import 'package:dzandzi/presentation/widgets/buttons/custom_input_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../../data/local/token_storage.dart';
-import '../../../theams/app_color2.dart';
 import '../../bottom_navigation_bar/view/bottom_navigation_view.dart';
 // <- import your TokenStorage
 
@@ -22,7 +18,7 @@ class LoginController extends GetxController {
   Future<void> login() async {
     // Validate the fields
     if (emailController.text.isEmpty ||
-        phoneController.text.isEmpty ||
+        // phoneController.text.isEmpty ||
         passwordController.text.isEmpty) {
       Get.snackbar("Error", "All fields are required",
           snackPosition: SnackPosition.BOTTOM);
@@ -33,13 +29,13 @@ class LoginController extends GetxController {
 
     final body = {
       "email": emailController.text.trim(),
-      "phone": phoneController.text.trim(),
+      // "phone": phoneController.text.trim(),
       "password": passwordController.text.trim(),
     };
 
     try {
       final response = await http.post(
-        Uri.parse('https://cc6d42d2c029.ngrok-free.app/auth/login'),
+        Uri.parse('https://0eb38cd6013b.ngrok-free.app/auth/login'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode(body),
       );

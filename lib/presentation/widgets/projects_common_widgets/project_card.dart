@@ -49,13 +49,15 @@ class project_card extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: GoogleFonts.roboto(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
+              SizedBox(width: 200.w,
+                child: Text(
+                  title,
+                  style: GoogleFonts.roboto(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-
               ),
               isActive
                   ? Container(
