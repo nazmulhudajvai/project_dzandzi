@@ -15,6 +15,7 @@ class ProjectPageApi {
    
     static const String projectDetailsEndPoint = '$baseUrl/project/9703c363-5b94-4902-afd6-b2d88f35a3ab';
     static const String projectDetails='$baseUrl/$projectDetailsEndPoint';
+    static const String inventoryEndpoint='inventory/project';
     
       
 // project list from api 
@@ -31,6 +32,7 @@ class ProjectPageApi {
       'Authorization':'Bearer $refreshToken'
     };
         final response = await http.get(url,headers:header);
+        debugPrint('Status code : ${response.statusCode}');
         if(response.statusCode==200){
             final alldata= jsonDecode(response.body);
             if(alldata['projects']!= null){

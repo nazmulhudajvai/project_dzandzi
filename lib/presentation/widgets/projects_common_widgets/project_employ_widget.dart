@@ -50,7 +50,7 @@ class EmployeeProfileCard extends StatelessWidget {
           Text(
             role,
             style: GoogleFonts.roboto(
-              fontSize: 16.sp,
+              fontSize: 13.sp,
               fontWeight: FontWeight.w400,
               color: AppColors.persondegi,
             ),

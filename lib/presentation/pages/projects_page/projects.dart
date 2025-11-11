@@ -134,7 +134,7 @@ class ProjectPage extends StatelessWidget {
                           projectController.displayedProjects[index];
                       return InkWell(
                         onTap: () {
-                          Get.to(() => Project_all_File(projectid: project.id));
+                          Get.to(() => Project_all_File(projectid: project.id, projectprogress: project.taskProgress.averageProgress));
                         },
                         child: project_card(
                           title: project.name,
@@ -175,8 +175,8 @@ class ProjectPage extends StatelessWidget {
                 child: Container(color: Colors.transparent),
               ),
               Positioned(
-                top: 150,
-                right: 40,
+                top: 150.h,
+                right: 40.w,
                 child: Material(
                   color: Colors.transparent,
                   child: Container(

@@ -1,18 +1,21 @@
-import 'package:dzandzi/presentation/widgets/projects_common_widgets/Project_inventory_item_card.dart';
-import 'package:dzandzi/theams/app_color2.dart';
-import 'package:dzandzi/theams/app_colors.dart';
+ import 'package:dzandzi/presentation/controllers/project_pages_controler/project_inventory_controler.dart';
+ import 'package:dzandzi/presentation/widgets/projects_common_widgets/Project_inventory_item_card.dart';
+ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart' show Get, GetNavigation;
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Project_inventory extends StatelessWidget {
-
-  Project_inventory({Key? key}) : super(key: key);
-
+  Project_inventory({Key? key, required this.ProjectId}) : super(key: key);
+  
+ final ProjectId;
+  final InventoryController controller = Get.put(InventoryController());
 
   @override
   Widget build(BuildContext context) {
+    controller.fetchInventoryData(ProjectId); 
+
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
       body: SafeArea(
@@ -21,13 +24,11 @@ class Project_inventory extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 02.h,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 2.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      // 🔹 keep your existing "Inventory Use" container same
                       Container(
                         padding: EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
@@ -45,33 +46,6 @@ class Project_inventory extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 7.r,
-                                  backgroundColor: AppColors.inProgressText,
-                                ),
-                                SizedBox(width: 8.w),
-                                Text(
-                                  'Cement',
-                                  style: TextStyle(
-                                    color: AppColors.grey13,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  '23%',
-                                  style: TextStyle(
-                                    color: AppColors.textcolor2,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-
                             Text(
                               'Inventory Use',
                               style: TextStyle(
@@ -85,100 +59,19 @@ class Project_inventory extends StatelessWidget {
                               children: [
                                 CircleAvatar(
                                   radius: 7.r,
-
                                   backgroundColor: AppColors.inventoryText,
                                 ),
                                 SizedBox(width: 8.w),
-                                Text(
-                                  'Steel',
-
-                                  selectionColor: AppColors.inProgressText,
-                                ),
-                                SizedBox(width: 8.w),
-                                Text(
-                                  'Cement',
-
-                                  style: TextStyle(
-                                    color: AppColors.grey13,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
+                                Text('Steel'),
                                 Spacer(),
                                 Text(
-
                                   '25%',
-
                                   style: TextStyle(
-                                    color: AppColors.textcolor2,
-                                    fontSize: 14.sp,
-                                  ),
+                                      color: AppColors.textcolor2,
+                                      fontSize: 14.sp),
                                 ),
                               ],
                             ),
-                            SizedBox(height: 7.h),
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 7.r,
-
-                                  backgroundColor: AppColors.paintColor,
-                                ),
-                                SizedBox(width: 8.w),
-                                Text(
-                                  'Paint',
-                                  selectionColor: AppColors.inventoryText,
-                                ),
-                                SizedBox(width: 8.w),
-                                Text(
-                                  'Steel',
-
-                                  style: TextStyle(
-                                    color: AppColors.grey13,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-
-                                  '20%',
-                                  style: TextStyle(
-                                    color: AppColors.textcolor2,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-
-
-                            SizedBox(height: 7.h),
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 7.r,
-                                  backgroundColor: AppColors.paintColor,
-                                ),
-                                SizedBox(width: 8.w),
-                                Text(
-                                  'Paint',
-                                  style: TextStyle(
-                                    color: AppColors.grey13,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  '20%',
-                                  style: TextStyle(
-                                    color: AppColors.textcolor2,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-
                           ],
                         ),
                       ),
@@ -203,47 +96,39 @@ class Project_inventory extends StatelessWidget {
                       ),
                       SizedBox(height: 20.h),
 
-                      InventoryItemCard(
-                        quantity: '120 Bags',
-                        materialName: 'Cement ',
-                        materialTitle: 'Metarial',
-                        price: '500',
-                        statusText: 'Sufficient',
-                        statusColor: AppColors.greenTextcolor,
-                      ),
-                      InventoryItemCard(
-                        quantity: '180 Bags',
-                        materialName: 'Bag',
-                        materialTitle: 'Metarial',
-                        price: '800',
-                        statusText: 'Sufficient',
-                        statusColor: AppColors.inventoryText,
-                      ),
-                      InventoryItemCard(
-                        quantity: '700 Gallons',
-                        materialName: 'Paint',
-                        materialTitle: 'Metarial',
-                        price: '300',
-                        statusText: 'Medium',
-                        statusColor: AppColors.mediumorg,
-                      ),
-                      InventoryItemCard(
-                        quantity: '120 Units',
-                        materialName: 'Dril ',
-                        materialTitle: 'Metarial',
-                        price: '900',
-                        statusText: 'Sufficient',
-                        statusColor: AppColor.greenColor,
-                      ),
+                      // 🔹 replace static InventoryItemCards with dynamic list
+                      Obx(() {
+                        if (controller.isLoading.value) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
 
-                      InventoryItemCard(
-                        quantity: '700 Bags',
-                        materialName: 'Cement ',
-                        materialTitle: 'Metarial',
-                        price: '850',
-                        statusText: 'Low',
-                        statusColor: AppColors.inventoryRedText,
-                      ),
+                        if (controller.inventoryItems.isEmpty) {
+                          return const Center(child: Text("No inventory found"));
+                        }
+
+                        return Column(
+                          children: controller.inventoryItems.map((item) {
+                            // decide color based on stock
+                            final statusText = item.isLowOnStock
+                                ? 'Low'
+                                : 'Sufficient';
+                            final statusColor = item.isLowOnStock
+                                ? AppColors.inventoryRedText
+                                : AppColors.greenTextcolor;
+
+                            return InventoryItemCard(
+                              quantity:
+                                  '${item.availableQuantity} ${item.unit}',
+                              materialName: item.title,
+                              materialTitle: item.category,
+                              price: item.valuePerUnit.toString(),
+                              statusText: statusText,
+                              statusColor: statusColor,
+                            );
+                          }).toList(),
+                        );
+                      }),
                     ],
                   ),
                 ),
@@ -252,26 +137,19 @@ class Project_inventory extends StatelessWidget {
           ],
         ),
       ),
-      // bottomNavigationBar: CustomBottomNav2(),
     );
   }
 
-  // Updated signature: accepts tapPosition to position the popup where user tapped
+  // ⬇ keep your existing filter_Emply function exactly the same
   Future<Object?> filter_Emply(BuildContext context, Offset tapPosition) {
     final screenSize = MediaQuery.of(context).size;
-    // approximate dialog width to prevent overflow (tweak if you change dialog width)
     const double dialogWidth = 220.0;
-    // calculate right offset from global tap x so we can use Positioned(right: ...)
-    double right = screenSize.width - tapPosition.dx - 8.0; // small margin
-    // if right would be negative or too large, clamp it
+    double right = screenSize.width - tapPosition.dx - 8.0;
     if (right < 8.0) right = 8.0;
     if (right > screenSize.width - 8.0) right = 8.0;
 
-    // top should be slightly below the tap so it appears like a contextual menu
     double top = tapPosition.dy;
-    // ensure it doesn't go off the bottom
-    final maxTop =
-        screenSize.height - 200.0; // keep some margin; adjust if needed
+    final maxTop = screenSize.height - 200.0;
     if (top > maxTop) top = maxTop;
 
     return showGeneralDialog(
@@ -281,14 +159,12 @@ class Project_inventory extends StatelessWidget {
       pageBuilder: (context, anim1, anim2) {
         return Stack(
           children: [
-            // full-screen transparent layer to allow tapping outside to dismiss
             Positioned.fill(
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
                 child: Container(color: Colors.transparent),
               ),
             ),
-
             Positioned(
               top: top,
               right: right,
@@ -309,73 +185,13 @@ class Project_inventory extends StatelessWidget {
                     ],
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            right: 50.0.r,
-                            top: 10.r,
-                            bottom: 10.r,
-                            left: 10.r,
-                          ),
-                          child: Text(
-                            'View All',
-                            style: GoogleFonts.roboto(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
+                      buildFilterOption(context, 'View All'),
                       SizedBox(height: 10.h),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            right: 50.0.r,
-                            top: 10.r,
-                            bottom: 10.r,
-                            left: 10.r,
-                          ),
-                          child: Text(
-                            'View Sufficient',
-                            style: GoogleFonts.roboto(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
+                      buildFilterOption(context, 'View Sufficient'),
                       SizedBox(height: 10.h),
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-
-                          // Navigator.of(context).pop();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            right: 50.0.r,
-                            top: 10.r,
-                            bottom: 10.r,
-                            left: 10.r,
-                          ),
-                          child: Text(
-                            'View Low',
-                            style: GoogleFonts.roboto(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
+                      buildFilterOption(context, 'View Low'),
                     ],
                   ),
                 ),
@@ -384,10 +200,9 @@ class Project_inventory extends StatelessWidget {
           ],
         );
       },
-      transitionBuilder: (context, anim1, anim2, child) {
-        return FadeTransition(opacity: anim1, child: child);
-      },
-      transitionDuration: Duration(milliseconds: 200),
+      transitionBuilder: (context, anim1, anim2, child) =>
+          FadeTransition(opacity: anim1, child: child),
+      transitionDuration: const Duration(milliseconds: 200),
     );
   }
 

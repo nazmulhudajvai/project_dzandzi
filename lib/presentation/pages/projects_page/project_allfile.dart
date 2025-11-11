@@ -17,10 +17,11 @@ import '../employee2/overview.dart';
  
 class Project_all_File extends StatelessWidget {
 
-  Project_all_File( {super.key, required this.projectid});
+  Project_all_File( {super.key, required this.projectid, required this.projectprogress});
   final ProjectTabbarcontroler controller = Get.put(ProjectTabbarcontroler());  
   
   final dynamic projectid;
+  final int projectprogress;
   final List<String> _tabs = [
     'Overview',
     'Task',
@@ -35,10 +36,10 @@ class Project_all_File extends StatelessWidget {
 
 final List<Widget> _pages = [
     Project_Overview(projectId: projectid),
-    ProjectTask(),
-    Project_inventory(),
-    Project_employ(),
-    ProjectDocument(),
+    ProjectTask(ProjectId: projectid),
+    Project_inventory(ProjectId: projectid),
+    Project_employ(projectId: projectid),
+    ProjectDocument(projectId: projectid),
   ];
 
     return Scaffold(
@@ -77,7 +78,7 @@ final List<Widget> _pages = [
           SizedBox(height: 20.h),
           ProjectBuildSyncCard(
             title: 'Build Sync',
-            progress: 50,
+            progress: projectprogress??50,
             padding: EdgeInsets.all(12.r),
           ),
           InkWell(

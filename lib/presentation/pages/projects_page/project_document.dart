@@ -1,3 +1,4 @@
+import 'package:dzandzi/presentation/controllers/project_pages_controler/project_document_controler.dart';
 import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart' show AppColors;
 import 'package:flutter/material.dart';
@@ -5,86 +6,81 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 class ProjectDocument extends StatelessWidget {
-  const ProjectDocument({super.key});
+  final String projectId;
+  ProjectDocument({super.key, required this.projectId});
+
+  final ProjectDocumentController controller = Get.put(ProjectDocumentController());
 
   @override
   Widget build(BuildContext context) {
+    controller.fetchDocuments(projectId);
+
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(15.0.r),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header Section
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Text(
-                        "Name",
-                        style: GoogleFonts.roboto(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 40.w),
-                    Expanded(
-                      flex: 2,
-                      child: Text(
-                        "Type",
-                        style: GoogleFonts.roboto(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Action",
-                      style: GoogleFonts.roboto(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-              // ROWS SECTION (STATIC 12 ITEMS)
-              tableRow("Project Proposal", "PDF", context),
-              divider(),
-              tableRow("Site Photo", "JPG", context),
-              divider(),
-              tableRow("Budget Estimate", "PDF", context),
-              divider(),
-              tableRow("Contrct Agreement", "Document", context),
-              divider(),
-              tableRow("Progress Report", "PDF", context),
-              divider(),
-              tableRow("Project Overview", "PDF", context),
-              divider(),
-              tableRow("Project time", "PDF", context),
-              divider(),
-              tableRow("Project feedback", "PDF", context),
-              divider(),
-              tableRow("Project Proposal", "PDF", context),
-              divider(),
-              tableRow("Project Overview", "PDF", context),
-              divider(),
-              tableRow("Project time", "PDF", context),
-              divider(),
-              tableRow("Project feedback", "PDF", context),
-            ],
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(15.0.r),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header Section
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          "Name",
+                          style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 40.w),
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          "Type",
+                          style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "Action",
+                        style: GoogleFonts.roboto(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Dynamic rows
+                ...controller.documents.map((doc) {
+                  return Column(
+                    children: [
+                      tableRow(doc.title, doc.type, context),
+                      divider(),
+                    ],
+                  );
+                }).toList(),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
@@ -118,20 +114,13 @@ class ProjectDocument extends StatelessWidget {
             flex: 1,
             child: Align(
               alignment: Alignment.centerLeft,
-              // Replaced IconButton with GestureDetector to capture tap position
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTapDown: (TapDownDetails details) {
-                  // pass the global tap position to three_dot
                   three_dot(context, details.globalPosition);
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(
-                    right: 0.r,
-                    top: 0.r,
-                    bottom: 0.r,
-                    left: 15.r,
-                  ),
+                  padding: EdgeInsets.only(left: 15.r),
                   child: Icon(Icons.more_horiz),
                 ),
               ),
@@ -141,6 +130,17 @@ class ProjectDocument extends StatelessWidget {
       ),
     );
   }
+
+  Widget divider() => Center(
+        child: SizedBox(
+          width: 340.w,
+          child: Divider(height: 1.h, thickness: 1),
+        ),
+      );
+
+  // keep your existing three_dot(), showDownload(), downloadOption() as-is
+}
+
 
   Widget divider() => Center(
     child: SizedBox(
@@ -509,4 +509,4 @@ class ProjectDocument extends StatelessWidget {
       },
     );
   }
-}
+

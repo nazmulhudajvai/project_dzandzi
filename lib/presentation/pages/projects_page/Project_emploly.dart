@@ -1,17 +1,22 @@
-// ignore_for_file: non_constant_identifier_names
 
+ import 'package:dzandzi/presentation/controllers/project_pages_controler/project_employes_controler.dart' show EmployeeController;
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_employ_widget.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart' show Get, GetNavigation;
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Project_employ extends StatelessWidget {
-  const Project_employ({super.key});
+  final String projectId;
+  Project_employ({super.key, required this.projectId});
+
+  final EmployeeController controller = Get.put(EmployeeController());
 
   @override
   Widget build(BuildContext context) {
+    controller.fetchEmployees(projectId);
+
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
       body: SafeArea(
@@ -20,10 +25,7 @@ class Project_employ extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 16.h,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -38,70 +40,49 @@ class Project_employ extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTapDown: (TapDownDetails details) {
-                  // pass the global tap position to three_dot
-                  filter_Employee(context, details.globalPosition);
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      right: 0.r, top: 0.r, bottom: 0.r, left: 15.r),
-                  child: Icon(Icons.filter_list),
-                ),
-              ),
+                            behavior: HitTestBehavior.translucent,
+                            onTapDown: (details) {
+                              filter_Employee(context, details.globalPosition);
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 15.r),
+                              child: Icon(Icons.filter_list),
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(height: 20.h),
-                      GridView.count(
-                        crossAxisCount: 2,
-                        shrinkWrap: true,
-                        mainAxisSpacing: 16.h,
-                        crossAxisSpacing: 16.w,
-                        childAspectRatio: 157.w / 153.h,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: [
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'John Doe',
-                            role: 'Software Engineer',
+
+                     
+                      Obx(() {
+                        if (controller.isLoading.value) {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+
+                        if (controller.employees.isEmpty) {
+                          return const Center(child: Text("No employees found"));
+                        }
+
+                        return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 16.h,
+                            crossAxisSpacing: 16.w,
+                            childAspectRatio: 157.w / 153.h,
                           ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'Jane Smith',
-                            role: 'Product Manager',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'Alice Johnson',
-                            role: 'UX Designer',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'Bob Brown',
-                            role: 'Data Analyst',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'John Doe',
-                            role: 'Software Engineer',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'Jane Smith',
-                            role: 'Product Manager',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'Alice Johnson',
-                            role: 'UX Designer',
-                          ),
-                          EmployeeProfileCard(
-                            imagePath: 'assets/image/damyPic.png',
-                            name: 'Bob Brown',
-                            role: 'Data Analyst',
-                          ),
-                        ],
-                      ),
+                          itemCount: controller.employees.length,
+                          itemBuilder: (context, index) {
+                            final emp = controller.employees[index];
+                            return EmployeeProfileCard(
+                              imagePath: emp.avatarUrl ?? 'assets/image/damyPic.png',
+                              name: '${emp.firstName} ${emp.lastName}',
+                              role: emp.role,
+                            );
+                          },
+                        );
+                      }),
                     ],
                   ),
                 ),
@@ -110,29 +91,19 @@ class Project_employ extends StatelessWidget {
           ],
         ),
       ),
-      // bottomNavigationBar: CustomBottomNav2(),
     );
   }
 
+  // keep your popup filter same
   Future<Object?> filter_Employee(BuildContext context, Offset tapPosition) async {
-
-  // Updated signature: accepts tapPosition to position the popup where user tapped
-  Future<Object?> three_dot(BuildContext context, Offset tapPosition) {
     final screenSize = MediaQuery.of(context).size;
-    // approximate dialog width to prevent overflow (tweak if you change dialog width)
     const double dialogWidth = 220.0;
-    // calculate right offset from global tap x so we can use Positioned(right: ...)
-    double right = screenSize.width - tapPosition.dx - 8.0; // small margin
-    // if right would be negative or too large, clamp it
+    double right = screenSize.width - tapPosition.dx - 8.0;
     if (right < 8.0) right = 8.0;
     if (right > screenSize.width - 8.0) right = 8.0;
-
-    // top should be slightly below the tap so it appears like a contextual menu
     double top = tapPosition.dy;
-    // ensure it doesn't go off the bottom
-    final maxTop = screenSize.height - 200.0; // keep some margin; adjust if needed
+    final maxTop = screenSize.height - 200.0;
     if (top > maxTop) top = maxTop;
-
 
     return showGeneralDialog(
       context: context,
@@ -141,14 +112,12 @@ class Project_employ extends StatelessWidget {
       pageBuilder: (context, anim1, anim2) {
         return Stack(
           children: [
-            // full-screen transparent layer to allow tapping outside to dismiss
             Positioned.fill(
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
                 child: Container(color: Colors.transparent),
               ),
             ),
-
             Positioned(
               top: top,
               right: right,
@@ -169,55 +138,13 @@ class Project_employ extends StatelessWidget {
                     ],
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View All',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
-                        ),
-                      ),
+                      buildFilterOption(context, 'View All'),
                       SizedBox(height: 10.h),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View Engineer',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
-                        ),
-                      ),
+                      buildFilterOption(context, 'View Engineer'),
                       SizedBox(height: 10.h),
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                         
-                          // Navigator.of(context).pop();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              right: 50.0.r, top: 10.r, bottom: 10.r, left: 10.r),
-                          child: Text('View Designer',
-                              style: GoogleFonts.roboto(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                              )),
-                        ),
-                      ),
+                      buildFilterOption(context, 'View Designer'),
                     ],
                   ),
                 ),
@@ -226,10 +153,9 @@ class Project_employ extends StatelessWidget {
           ],
         );
       },
-      transitionBuilder: (context, anim1, anim2, child) {
-        return FadeTransition(opacity: anim1, child: child);
-      },
-      transitionDuration: Duration(milliseconds: 200),
+      transitionBuilder: (context, anim1, anim2, child) =>
+          FadeTransition(opacity: anim1, child: child),
+      transitionDuration: const Duration(milliseconds: 200),
     );
   }
 
@@ -248,5 +174,4 @@ class Project_employ extends StatelessWidget {
       ),
     );
   }
-}
 }

@@ -38,6 +38,8 @@ class Project_Overview extends StatelessWidget {
           }
 
           final task = data.taskAnalytics;
+          final activeTask=data.taskAnalytics.ongoingTaskCount;
+          
 
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 1.h),
@@ -95,8 +97,8 @@ class Project_Overview extends StatelessWidget {
                 SizedBox(height: 24.h),
                 _activeTaskSection(),
                 SizedBox(height: 30.h),
-                _employeeSection(),
-                SizedBox(height: 30.h),
+                // _employeeSection(),
+                // SizedBox(height: 30.h),
                 _recentActivitySection(data.taskAnalytics.recentActivities),
               ],
             ),
@@ -219,45 +221,45 @@ class Project_Overview extends StatelessWidget {
     );
   }
 
-  Widget _employeeSection() {
+  // Widget _employeeSection() {
 
-    // final d
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Text('Today On Site',
-                style: GoogleFonts.roboto(
-                    color: AppColors.titleText,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500)),
-            const Spacer(),
-            Text('View All',
-                style: GoogleFonts.roboto(
-                    color: AppColors.grey14,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600)),
-          ],
-        ),
-        SizedBox(height: 30.h),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(4, (index) {
-              return Padding(
-                padding: EdgeInsets.only(right: 10.w),
-                child: EmployeeProfileCard(
-                    imagePath: 'assets/image/damyPic.png',
-                    name: 'John Doe',
-                    role: 'Owner'),
-              );
-            }),
-          ),
-        ),
-      ],
-    );
-  }
+  //   // final d
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Row(
+  //         children: [
+  //           Text('Today On Site',
+  //               style: GoogleFonts.roboto(
+  //                   color: AppColors.titleText,
+  //                   fontSize: 20.sp,
+  //                   fontWeight: FontWeight.w500)),
+  //           const Spacer(),
+  //           Text('View All',
+  //               style: GoogleFonts.roboto(
+  //                   color: AppColors.grey14,
+  //                   fontSize: 16.sp,
+  //                   fontWeight: FontWeight.w600)),
+  //         ],
+  //       ),
+  //       SizedBox(height: 30.h),
+  //       SingleChildScrollView(
+  //         scrollDirection: Axis.horizontal,
+  //         child: Row(
+  //           children: List.generate(4, (index) {
+  //             return Padding(
+  //               padding: EdgeInsets.only(right: 10.w),
+  //               child: EmployeeProfileCard(
+  //                   imagePath: 'assets/image/damyPic.png',
+  //                   name: 'John Doe',
+  //                   role: 'Owner'),
+  //             );
+  //           }),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget _recentActivitySection(List<dynamic> activities) {
     return Column(
