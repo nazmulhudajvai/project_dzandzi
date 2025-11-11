@@ -17,11 +17,12 @@ import '../employee2/overview.dart';
  
 class Project_all_File extends StatelessWidget {
 
-  Project_all_File( {super.key, required this.projectid, required this.projectprogress});
+  Project_all_File( {super.key, required this.projectid, required this.projectprogress, required this.projectTitle});
   final ProjectTabbarcontroler controller = Get.put(ProjectTabbarcontroler());  
   
   final dynamic projectid;
   final int projectprogress;
+  final String projectTitle;
   final List<String> _tabs = [
     'Overview',
     'Task',
@@ -77,8 +78,8 @@ final List<Widget> _pages = [
           ),
           SizedBox(height: 20.h),
           ProjectBuildSyncCard(
-            title: 'Build Sync',
-            progress: projectprogress??50,
+            title: '$projectTitle',
+            progress: projectprogress,
             padding: EdgeInsets.all(12.r),
           ),
           InkWell(
@@ -138,8 +139,7 @@ final List<Widget> _pages = [
               ),
             ),
           ),
-
-          // 🔹 Dynamic Page Content Based on Selected Tab
+          
           Expanded(
             child: Obx(() {
               return _pages[controller.selectedIndex.value];

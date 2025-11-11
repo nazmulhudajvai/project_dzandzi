@@ -134,7 +134,7 @@ class ProjectPage extends StatelessWidget {
                           projectController.displayedProjects[index];
                       return InkWell(
                         onTap: () {
-                          Get.to(() => Project_all_File(projectid: project.id, projectprogress: project.taskProgress.averageProgress));
+                          Get.to(() => Project_all_File(projectid: project.id, projectprogress: project.taskProgress.averageProgress,projectTitle:project.name));
                         },
                         child: project_card(
                           title: project.name,
