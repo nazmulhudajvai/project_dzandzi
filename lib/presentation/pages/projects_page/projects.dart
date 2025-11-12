@@ -1,21 +1,19 @@
- 
 import 'package:dzandzi/presentation/controllers/project_pages_controler/project_list_view_controler.dart';
 import 'package:dzandzi/presentation/pages/projects_page/create_new_project.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_allfile.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
- import 'package:dzandzi/theams/app_colors.dart';
+import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
- 
 
 class ProjectPage extends StatelessWidget {
   ProjectPage({super.key});
 
   final ProjectController projectController = Get.put(ProjectController());
-  final TextEditingController searchController =TextEditingController();
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,28 +56,26 @@ class ProjectPage extends StatelessWidget {
               // Search + Filter
               Row(
                 children: [
-                 Expanded(
-                        child: Container(
-                            width: double.infinity,
-      padding: EdgeInsets.only(left: 10.r,top: 5.r),
-                          decoration: BoxDecoration(
-        color: AppColors.textFieldColor2,
-        borderRadius: BorderRadius.circular(25.r),
-        border: Border.all(
-          color: AppColors.borderColor,
-        ),
-      ),
-                          child: TextField(
-                            controller: searchController,
-                            onChanged: projectController.updateSearch,
-                            decoration: InputDecoration(
-                              hintText: "Search projects",
-                              border:InputBorder.none ,
-                              suffixIcon: const Icon(Icons.search),
-                            ),
-                          ),
+                  Expanded(
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.only(left: 10.r, top: 5.r),
+                      decoration: BoxDecoration(
+                        color: AppColors.textFieldColor2,
+                        borderRadius: BorderRadius.circular(25.r),
+                        border: Border.all(color: AppColors.borderColor),
+                      ),
+                      child: TextField(
+                        controller: searchController,
+                        onChanged: projectController.updateSearch,
+                        decoration: InputDecoration(
+                          hintText: "Search projects",
+                          border: InputBorder.none,
+                          suffixIcon: const Icon(Icons.search),
                         ),
                       ),
+                    ),
+                  ),
                   SizedBox(width: 5.w),
                   IconButton(
                     icon: Icon(Icons.filter_list),
@@ -121,8 +117,8 @@ class ProjectPage extends StatelessWidget {
                     return const Center(child: CircularProgressIndicator());
                   } else if (projectController.errorMessage.isNotEmpty) {
                     return Center(
-                        child: Text(
-                            "Error: ${projectController.errorMessage}"));
+                      child: Text("Error: ${projectController.errorMessage}"),
+                    );
                   } else if (projectController.displayedProjects.isEmpty) {
                     return const Center(child: Text("No projects found"));
                   }
@@ -134,17 +130,31 @@ class ProjectPage extends StatelessWidget {
                           projectController.displayedProjects[index];
                       return InkWell(
                         onTap: () {
-                          Get.to(() => Project_all_File(projectid: project.id, projectprogress: project.taskProgress.averageProgress,projectTitle:project.name));
+                          Get.to(
+                            () => Project_all_File(
+                              projectid: project.id,
+                              projectprogress:
+                                  project.taskProgress.averageProgress,
+                              projectTitle: project.name,
+                              owner_firstname: project.projectManager.firstName,
+                              owner_lastname: project.projectManager.lastName,
+                              project_location: project.location,
+                            ),
+                          );
                         },
                         child: project_card(
                           title: project.name,
+                          first_name: project.projectManager.firstName,
+                          last_name: project.projectManager.lastName,
                           progress: project.taskProgress.averageProgress,
-                          days: project.startDate != null &&
+                          days:
+                              project.startDate != null &&
                                   project.endDate != null
                               ? project.endDate!
-                                  .difference(project.startDate!)
-                                  .inDays
+                                    .difference(project.startDate!)
+                                    .inDays
                               : 0,
+                          
                           isdayshow: false,
                           isProgress: true,
                         ),
@@ -199,7 +209,7 @@ class ProjectPage extends StatelessWidget {
                       children: [
                         buildFilterOption(context, 'All'),
                         buildFilterOption(context, 'Complete'),
-                        buildFilterOption(context, 'On-going'),
+                        buildFilterOption(context, 'In Progress'),
                       ],
                     ),
                   ),

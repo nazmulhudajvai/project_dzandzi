@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class Project_peichart extends StatelessWidget {
-  final double completionPercent; // Example: 0.6 = 60%
+  final int completionPercent; // Example: 0.6 = 60%
 
-  const Project_peichart({super.key,  this.completionPercent=0.5 });
+  const Project_peichart({super.key,  this.completionPercent = 20 });
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +42,15 @@ class Project_peichart extends StatelessWidget {
                 sections: [
                   PieChartSectionData(
                     color: const Color(0xFF1E5AA8), // Blue
-                    value: completionPercent * 100,
+                    // value: completionPercent * 100,
+                    value: completionPercent.toDouble() ,
                     showTitle: false,
 
                   ),
                   PieChartSectionData(
                     color: const Color(0xFFE8E8E8), // Grey
-                    value: (1 - completionPercent) * 100,
+                    // value: (1 - completionPercent) * 100,
+                    value:100-completionPercent.toDouble(),
                     showTitle: false,
                   ),
                   
@@ -69,7 +71,7 @@ class Project_peichart extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: "${(completionPercent * 100).toInt()}%",
+                  text: "$completionPercent%",
                   style: GoogleFonts.roboto(
                     color: Colors.blue,
                     fontSize: 20.sp,

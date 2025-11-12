@@ -11,6 +11,8 @@ class project_card extends StatelessWidget {
   const project_card({
     super.key,
     required this.title,
+    this.first_name='zan',
+    this.last_name='di',
     required this.progress,
     this.days = 0,
     required this.isdayshow,
@@ -20,6 +22,8 @@ class project_card extends StatelessWidget {
   });
 
   final String title;
+  final String first_name;
+  final String last_name;
   final int progress;
   final int days;
   final bool isdayshow;
@@ -139,7 +143,7 @@ class project_card extends StatelessWidget {
               ),
               SizedBox(width: 4.w),
               Text(
-                "Mikel Clark",
+                "$first_name $last_name",
                 style: GoogleFonts.roboto(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400,

@@ -76,7 +76,7 @@ class Project_Over_metric_card extends StatelessWidget {
               value,
               style: TextStyle(
                 color: valueColor,
-                fontSize: 32.sp,
+                fontSize: 24.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),

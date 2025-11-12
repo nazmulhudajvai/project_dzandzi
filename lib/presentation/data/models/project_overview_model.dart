@@ -42,14 +42,14 @@ class Project {
 }
 
 class TaskAnalytics {
-  // final double avarageProgress;
+  final int avarageProgress;
   final int totalTaskCount;
   final int completedTaskCount;
   final int ongoingTaskCount;
   final List recentActivities;
 
   TaskAnalytics({
-    // required this.avarageProgress,
+    required this.avarageProgress,
     required this.totalTaskCount,
     required this.completedTaskCount,
     required this.ongoingTaskCount,
@@ -58,7 +58,7 @@ class TaskAnalytics {
 
   factory TaskAnalytics.fromJson(Map<String, dynamic> json) {
     return TaskAnalytics(
-      // avarageProgress: json['averageProgress'] ?? 0,
+      avarageProgress: json['averageProgress'] ?? 0,
       totalTaskCount: json['totalTaskCount'] ?? 0,
       completedTaskCount: json['completedTaskCount'] ?? 0,
       ongoingTaskCount: json['ongoingTaskCount'] ?? 0,

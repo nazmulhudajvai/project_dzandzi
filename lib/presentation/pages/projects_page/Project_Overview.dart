@@ -1,5 +1,8 @@
 
 import 'package:dzandzi/presentation/controllers/project_pages_controler/overview_controler.dart';
+import 'package:dzandzi/presentation/controllers/project_pages_controler/project_task_controler.dart';
+import 'package:dzandzi/presentation/data/models/project_overview_model.dart';
+import 'package:dzandzi/presentation/data/models/project_task_model.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_peichart.dart';
 import 'package:dzandzi/presentation/widgets/employee_profile_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/Project_Overview_milestone.dart';
@@ -19,6 +22,7 @@ class Project_Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProjectOverviewController(projectId));
+     
 
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
@@ -38,7 +42,7 @@ class Project_Overview extends StatelessWidget {
           }
 
           final task = data.taskAnalytics;
-          final activeTask=data.taskAnalytics.ongoingTaskCount;
+          // final lastThreeActivetasks=task.lastThreeActiveTasks.toList();
           
 
           return SingleChildScrollView(
@@ -47,7 +51,7 @@ class Project_Overview extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Project_peichart(completionPercent:task.avarageProgress/100),
-                Project_peichart(),
+                Project_peichart(completionPercent: data.taskAnalytics.avarageProgress),
                 SizedBox(height: 24.h),
 
                 // Task cards
@@ -95,7 +99,7 @@ class Project_Overview extends StatelessWidget {
                 SizedBox(height: 24.h),
                 _milestonesSection(),
                 SizedBox(height: 24.h),
-                _activeTaskSection(),
+                _activeTaskSection( ),
                 SizedBox(height: 30.h),
                 // _employeeSection(),
                 // SizedBox(height: 30.h),
@@ -187,7 +191,7 @@ class Project_Overview extends StatelessWidget {
     );
   }
 
-  Widget _activeTaskSection() {
+  Widget _activeTaskSection( ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -208,7 +212,7 @@ class Project_Overview extends StatelessWidget {
         ),
         SizedBox(height: 30.h),
         project_card(
-            title: 'Foundation inspection',
+            title:'Foundation inspection',
             isProgress: false,
             progress: 50,
             isdayshow: false),
@@ -265,6 +269,7 @@ class Project_Overview extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
         Row(
           children: [
             Text('Recent Activity',
@@ -287,7 +292,7 @@ class Project_Overview extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '${activity["first_name"] ?? ""} ${activity["last_name"] ?? ""} ${activity["message"] ?? ""}',
+                    '${activity["firstName"] ?? ""} ${activity["lastName"] ?? ""} ${activity["message"] ?? ""}',
                     style: GoogleFonts.roboto(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,

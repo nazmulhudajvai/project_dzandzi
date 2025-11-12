@@ -1,11 +1,13 @@
+import 'dart:math';
+
 import 'package:dzandzi/presentation/controllers/project_tabBarControler.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_Overview.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_emploly.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_document.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_inventory.dart';
 import 'package:dzandzi/presentation/pages/projects_page/project_task.dart';
- import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_build_sync_card.dart';
- import 'package:dzandzi/theams/app_color2.dart';
+import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_build_sync_card.dart';
+import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,15 +16,25 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../employee2/overview.dart';
- 
-class Project_all_File extends StatelessWidget {
 
-  Project_all_File( {super.key, required this.projectid, required this.projectprogress, required this.projectTitle});
-  final ProjectTabbarcontroler controller = Get.put(ProjectTabbarcontroler());  
-  
+class Project_all_File extends StatelessWidget {
+  Project_all_File({
+    super.key,
+    required this.projectid,
+    required this.projectprogress,
+    required this.projectTitle,
+    required this.owner_firstname,
+    required this.owner_lastname,
+    required this.project_location,
+  });
+  final ProjectTabbarcontroler controller = Get.put(ProjectTabbarcontroler());
+
   final dynamic projectid;
   final int projectprogress;
   final String projectTitle;
+  final String owner_firstname;
+  final String owner_lastname;
+  final String project_location;
   final List<String> _tabs = [
     'Overview',
     'Task',
@@ -30,22 +42,18 @@ class Project_all_File extends StatelessWidget {
     'Employees',
     'Documents',
   ];
-  
 
   @override
   Widget build(BuildContext context) {
-
-final List<Widget> _pages = [
-    Project_Overview(projectId: projectid),
-    ProjectTask(ProjectId: projectid),
-    Project_inventory(ProjectId: projectid),
-    Project_employ(projectId: projectid),
-    ProjectDocument(projectId: projectid),
-  ];
-
+    final List<Widget> _pages = [
+      Project_Overview(projectId: projectid),
+      ProjectTask(ProjectId: projectid),
+      Project_inventory(ProjectId: projectid),
+      Project_employ(projectId: projectid),
+      ProjectDocument(projectId: projectid),
+    ];
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
-
       body: Column(
         children: [
           SizedBox(height: 40.h),
@@ -81,6 +89,9 @@ final List<Widget> _pages = [
             title: '$projectTitle',
             progress: projectprogress,
             padding: EdgeInsets.all(12.r),
+            first_name: '$owner_firstname',
+            last_name: '$owner_lastname',
+            location: '$project_location',
           ),
           InkWell(
             onTap: () {
@@ -139,7 +150,7 @@ final List<Widget> _pages = [
               ),
             ),
           ),
-          
+
           Expanded(
             child: Obx(() {
               return _pages[controller.selectedIndex.value];

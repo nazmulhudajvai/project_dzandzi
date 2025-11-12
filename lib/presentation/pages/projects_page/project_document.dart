@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dzandzi/presentation/controllers/project_pages_controler/project_document_controler.dart';
 import 'package:dzandzi/theams/app_color2.dart';
 import 'package:dzandzi/theams/app_colors.dart' show AppColors;
@@ -6,11 +7,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
+import 'package:open_filex/open_filex.dart';
+
 class ProjectDocument extends StatelessWidget {
   final String projectId;
   ProjectDocument({super.key, required this.projectId});
 
-  final ProjectDocumentController controller = Get.put(ProjectDocumentController());
+  final ProjectDocumentController controller =
+      Get.put(ProjectDocumentController());
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +77,7 @@ class ProjectDocument extends StatelessWidget {
                 ...controller.documents.map((doc) {
                   return Column(
                     children: [
-                      tableRow(doc.title, doc.type, context),
+                      tableRow(doc.title, doc.type, doc.url, context),
                       divider(),
                     ],
                   );
@@ -84,7 +90,7 @@ class ProjectDocument extends StatelessWidget {
     );
   }
 
-  Widget tableRow(String name, String type, BuildContext context) {
+  Widget tableRow(String name, String type, String url, BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 12.r, horizontal: 10.r),
       child: Row(
@@ -92,11 +98,15 @@ class ProjectDocument extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: Text(
-              name,
-              style: GoogleFonts.roboto(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
+            child: SizedBox(
+              width: 80.w,
+              child: Text(
+                name,
+                style: GoogleFonts.roboto(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
@@ -117,7 +127,7 @@ class ProjectDocument extends StatelessWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTapDown: (TapDownDetails details) {
-                  three_dot(context, details.globalPosition);
+                  three_dot(context, details.globalPosition, type, url, name);
                 },
                 child: Padding(
                   padding: EdgeInsets.only(left: 15.r),
@@ -138,34 +148,24 @@ class ProjectDocument extends StatelessWidget {
         ),
       );
 
-  // keep your existing three_dot(), showDownload(), downloadOption() as-is
-}
-
-
-  Widget divider() => Center(
-    child: SizedBox(
-      width: 340.w,
-      child: Divider(height: 1.h, thickness: 1),
-    ),
-  );
-
-  // Updated signature: accepts tapPosition to position the popup where user tapped
-  Future<Object?> three_dot(BuildContext context, Offset tapPosition) {
+  // ============================
+  // Three-dot popup
+  // ============================
+  Future<Object?> three_dot(BuildContext context, Offset tapPosition,
+      String type, String url, String title) {
     final screenSize = MediaQuery.of(context).size;
-    // approximate dialog width to prevent overflow (tweak if you change dialog width)
     const double dialogWidth = 220.0;
-    // calculate right offset from global tap x so we can use Positioned(right: ...)
-    double right = screenSize.width - tapPosition.dx - 8.0; // small margin
-    // if right would be negative or too large, clamp it
+
+    double right = screenSize.width - tapPosition.dx - 8.0;
     if (right < 8.0) right = 8.0;
     if (right > screenSize.width - 8.0) right = 8.0;
 
-    // top should be slightly below the tap so it appears like a contextual menu
     double top = tapPosition.dy;
-    // ensure it doesn't go off the bottom
-    final maxTop =
-        screenSize.height - 200.0; // keep some margin; adjust if needed
+    final maxTop = screenSize.height - 200.0;
     if (top > maxTop) top = maxTop;
+
+    String viewText = type == 'IMAGE' ? 'View Image' : 'View PDF';
+    String downloadText = type == 'IMAGE' ? 'Download Image' : 'Download PDF';
 
     return showGeneralDialog(
       context: context,
@@ -174,14 +174,12 @@ class ProjectDocument extends StatelessWidget {
       pageBuilder: (context, anim1, anim2) {
         return Stack(
           children: [
-            // full-screen transparent layer to allow tapping outside to dismiss
             Positioned.fill(
               child: GestureDetector(
                 onTap: () => Navigator.of(context).pop(),
                 child: Container(color: Colors.transparent),
               ),
             ),
-
             Positioned(
               top: top,
               right: right,
@@ -202,22 +200,22 @@ class ProjectDocument extends StatelessWidget {
                     ],
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // View PDF/Image
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           Navigator.of(context).pop();
+                          String? filePath =
+                              await downloadFileWithHttp(url, title);
+                          if (filePath != null) {
+                            await OpenFilex.open(filePath);
+                          }
                         },
                         child: Padding(
-                          padding: EdgeInsets.only(
-                            right: 50.0.r,
-                            top: 10.r,
-                            bottom: 10.r,
-                            left: 10.r,
-                          ),
+                          padding: EdgeInsets.symmetric(vertical: 10.r),
                           child: Text(
-                            'View PDF',
+                            viewText,
                             style: GoogleFonts.roboto(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w600,
@@ -226,17 +224,14 @@ class ProjectDocument extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10.h),
+                      // View Details (optional)
                       GestureDetector(
                         onTap: () {
                           Navigator.of(context).pop();
+                          Get.snackbar('Details', 'View Details clicked');
                         },
                         child: Padding(
-                          padding: EdgeInsets.only(
-                            right: 50.0.r,
-                            top: 10.r,
-                            bottom: 10.r,
-                            left: 10.r,
-                          ),
+                          padding: EdgeInsets.symmetric(vertical: 10.r),
                           child: Text(
                             'View Details',
                             style: GoogleFonts.roboto(
@@ -247,21 +242,16 @@ class ProjectDocument extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10.h),
+                      // Download PDF/Image
                       GestureDetector(
-                        onTap: () {
-                          Get.back();
-                          showDownload(context);
-                          // Navigator.of(context).pop();
+                        onTap: () async {
+                          Navigator.of(context).pop();
+                          showDownload(context, url, title, type);
                         },
                         child: Padding(
-                          padding: EdgeInsets.only(
-                            right: 50.0.r,
-                            top: 10.r,
-                            bottom: 10.r,
-                            left: 10.r,
-                          ),
+                          padding: EdgeInsets.symmetric(vertical: 10.r),
                           child: Text(
-                            'Download',
+                            downloadText,
                             style: GoogleFonts.roboto(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w600,
@@ -284,171 +274,41 @@ class ProjectDocument extends StatelessWidget {
     );
   }
 
-  void showDownload(BuildContext context) {
+  // ============================
+  // Show download dialog
+  // ============================
+  void showDownload(
+      BuildContext context, String url, String title, String type) {
+    String downloadText = type == 'IMAGE' ? 'Download Image' : 'Download PDF';
+
     showDialog(
       context: context,
       barrierDismissible: true,
-      barrierColor: AppColor.blackColor.withOpacity(
-        0.6,
-      ), // fully transparent background
+      barrierColor: AppColor.blackColor.withOpacity(0.6),
       builder: (context) {
         return Dialog(
-          backgroundColor: AppColor.whiteColor, // semi-transparent box
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Name ",
-                  style: GoogleFonts.roboto(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.downTextcolor,
-                  ),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "Project Proposal",
-                  style: GoogleFonts.roboto(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.downTextcolor2,
-                  ),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  "Type ",
-                  style: GoogleFonts.roboto(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.downTextcolor,
-                  ),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "PDF",
-                  style: GoogleFonts.roboto(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.downTextcolor2,
-                  ),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  "Date Uploaded",
-                  style: GoogleFonts.roboto(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.downTextcolor,
-                  ),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "Dec 10, 2025",
-                  style: GoogleFonts.roboto(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.downTextcolor2,
-                  ),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  "Size",
-                  style: GoogleFonts.roboto(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.downTextcolor,
-                  ),
-                ),
-                SizedBox(height: 5.h),
-                Text(
-                  "2.4 MB",
-                  style: GoogleFonts.roboto(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.downTextcolor2,
-                  ),
-                ),
-                SizedBox(height: 30.h),
-                GestureDetector(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/image/download_icon.svg',
-                        height: 16.h,
-                        width: 16.w,
-                      ),
-                      SizedBox(width: 15.w),
-                      Text(
-                        "Download PDF",
-                        style: GoogleFonts.roboto(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.inProgressText,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    Get.back();
-                    downloadOption(context);
-                  },
-                ),
-                SizedBox(height: 10.h),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void downloadOption(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      barrierColor: AppColor.blackColor.withOpacity(
-        0.6,
-      ), // fully transparent background
-
-      builder: (context) {
-        return Dialog(
-          backgroundColor: AppColor.whiteColor, // semi-transparent box
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
+          backgroundColor: AppColor.whiteColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-
               children: [
                 Text(
-                  "Are you sure to download ",
+                  "Are you sure you want to download?",
                   style: GoogleFonts.roboto(
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
                     color: AppColors.black,
                   ),
                 ),
-
                 SizedBox(height: 30.h),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     Get.back();
-                    Get.snackbar(
-                      'Downloading ..',
-                      ' you downloadin a Pdf file',
-                    );
+                    await downloadFileWithHttp(url, title);
                   },
                   child: Container(
                     height: 44.h,
@@ -466,7 +326,7 @@ class ProjectDocument extends StatelessWidget {
                         ),
                         SizedBox(width: 15.w),
                         Text(
-                          "Download PDF",
+                          downloadText,
                           style: GoogleFonts.roboto(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
@@ -479,9 +339,7 @@ class ProjectDocument extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
+                  onTap: () => Get.back(),
                   child: Container(
                     height: 44.h,
                     width: double.infinity,
@@ -491,7 +349,7 @@ class ProjectDocument extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        "Cencel",
+                        "Cancel",
                         style: GoogleFonts.roboto(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w500,
@@ -510,3 +368,30 @@ class ProjectDocument extends StatelessWidget {
     );
   }
 
+  // ============================
+  // HTTP download helper
+  // ============================
+  Future<String?> downloadFileWithHttp(String url, String fileName) async {
+    try {
+      final dir = await getApplicationDocumentsDirectory();
+      final file = File('${dir.path}/$fileName');
+
+      // If already exists, return path
+      if (await file.exists()) return file.path;
+
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        await file.writeAsBytes(response.bodyBytes);
+        Get.snackbar('Downloaded', '$fileName saved to ${dir.path}');
+        return file.path;
+      } else {
+        Get.snackbar("Error", "Failed to download $fileName");
+        return null;
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Download failed: $e");
+      return null;
+    }
+  }
+}
