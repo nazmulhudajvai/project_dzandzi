@@ -37,6 +37,8 @@ class InventoryItem {
   final String category;
   final bool isLowOnStock;
   final int availableQuantity;
+  final int reserveditem;
+  final int useditem;
 
   InventoryItem({
     required this.id,
@@ -47,6 +49,8 @@ class InventoryItem {
     required this.category,
     required this.isLowOnStock,
     required this.availableQuantity,
+    required this.reserveditem,
+    required this.useditem,
   });
 
   factory InventoryItem.fromJson(Map<String, dynamic> json) {
@@ -59,6 +63,8 @@ class InventoryItem {
       category: json['category'] ?? '',
       isLowOnStock: json['isLowOnStock'] ?? false,
       availableQuantity: json['availableQuantity'] ?? 0,
+      reserveditem: json['reserved']??0,
+      useditem: json['used']??0
     );
   }
 }

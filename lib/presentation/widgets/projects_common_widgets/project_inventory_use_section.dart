@@ -8,12 +8,12 @@ class inventory_use extends StatelessWidget {
     super.key,
     required this.name,
     required this.percent,
-    required this.color,
+     this.color,
   });
 
   final String name;
-  final int percent;
-  final Color color;
+  final dynamic percent;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,7 @@ class inventory_use extends StatelessWidget {
         Text(name, style: TextStyle(color: AppColors.grey13, fontSize: 14.sp)),
         const Spacer(),
         Text("$percent%", style: TextStyle(color: AppColors.textcolor2, fontSize: 14.sp)),
+        
       ],
     );
   }

@@ -12,11 +12,12 @@ class Project_inventory extends StatelessWidget {
   
  final ProjectId;
   final InventoryController controller = Get.put(InventoryController());
+  
 
   @override
   Widget build(BuildContext context) {
     controller.fetchInventoryData(ProjectId); 
-
+final firstThree=controller.inventoryItems.take(3).toList();
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
       body: SafeArea(
@@ -49,18 +50,44 @@ class Project_inventory extends StatelessWidget {
                           children: [
                             Text(
                               'Inventory Use',
-                              style: TextStyle(
+                              style: GoogleFonts.roboto(
                                 color: AppColors.grey13,
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             SizedBox(height: 7.h),
-                           inventory_use(name:'Cement', percent: 48, color: Colors.green),
-                           SizedBox(height: 5.h),
-                           inventory_use(name: 'Steel', percent: 30, color: Colors.blue),
-                            SizedBox(height: 5.h),
-                           inventory_use(name: 'Steel', percent: 30, color: Colors.yellow),
+ 
+                          ListView.builder(
+                            itemCount: firstThree.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              final items=firstThree[index];
+                              var percentofUsed= (items.reserveditem==0 || items.useditem ==0)?0:(items.reserveditem /items.useditem)*100;
+                              print(percentofUsed);
+                              if(!percentofUsed.isFinite){
+                                percentofUsed=0;
+                              }
+                              paddingOnly(bottom: 10.h);
+
+                              Color color;
+                              if(percentofUsed >= 90){
+                                color=AppColors.chartOrange;
+                              }else if(percentofUsed >=50){
+                                color=AppColors.chartYellow;
+                              }else if(percentofUsed>=10){
+                                color=AppColors.chartGradColor;
+                              }else{
+                                color=AppColors.greenColor;
+                              }
+                              return Padding(
+                                padding:  EdgeInsets.only( bottom :8.0.r),
+                                child: inventory_use(name: items.title, percent: percentofUsed, color: color ),
+                              );
+
+                            },
+                          )
                           ],
                         ),
                       ),
@@ -73,15 +100,15 @@ class Project_inventory extends StatelessWidget {
                             style: GoogleFonts.roboto(
                               fontSize: 20.sp,
                               fontWeight: FontWeight.w500,
-                            ),
+                            )
                           ),
                           IconButton(
                             icon: Icon(Icons.filter_list),
                             onPressed: () {
                               filter_Emply(context, Offset(454, 500));
-                            },
-                          ),
-                        ],
+                            }
+                          )
+                        ]
                       ),
                       SizedBox(height: 20.h),
 

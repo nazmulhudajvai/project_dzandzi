@@ -1,4 +1,5 @@
 import 'package:dzandzi/presentation/controllers/project_pages_controler/overview_controler.dart';
+import 'package:dzandzi/presentation/controllers/project_pages_controler/project_inventory_controler.dart';
 import 'package:dzandzi/presentation/controllers/project_pages_controler/project_task_controler.dart';
 import 'package:dzandzi/presentation/data/models/project_overview_model.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_peichart.dart';
@@ -21,7 +22,8 @@ class Project_Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProjectOverviewController(projectId));
-    final taskcontroller = Get.put(ProjectTaskController());
+    final taskControler = Get.put(InventoryController());
+    final firstThree = taskControler.inventoryItems.take(3).toList();
 
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
@@ -32,7 +34,9 @@ class Project_Overview extends StatelessWidget {
           }
 
           if (controller.errorMessage.isNotEmpty) {
-            return Center(child: Text('Error: ${controller.errorMessage.value}'));
+            return Center(
+              child: Text('Error: ${controller.errorMessage.value}'),
+            );
           }
 
           final data = controller.overviewData.value;
@@ -91,13 +95,15 @@ class Project_Overview extends StatelessWidget {
                 ),
 
                 SizedBox(height: 12.h),
-                _inventorySection(),
+                _inventorySection(context, firstThree),
                 SizedBox(height: 24.h),
                 _milestonesSection(data),
                 SizedBox(height: 24.h),
                 _activeTaskSection(data),
                 SizedBox(height: 30.h),
-                _recentActivitySection(data.taskAnalytics?.recentActivities ?? []),
+                _recentActivitySection(
+                  data.taskAnalytics?.recentActivities ?? [],
+                ),
               ],
             ),
           );
@@ -106,7 +112,7 @@ class Project_Overview extends StatelessWidget {
     );
   }
 
-  Widget _inventorySection() {
+  Widget _inventorySection(context, controler) {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -124,11 +130,52 @@ class Project_Overview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          inventory_use(name: 'Cement', percent: 20 , color: AppColors.inProgressText),
-          SizedBox(height: 7.h),
-          inventory_use(name: 'Steel', percent: 30 , color: AppColors.inventoryText),
-          SizedBox(height: 7.h),
-          inventory_use(name: 'Paint', percent: 45 , color: AppColors.paintColor),
+          Text(
+            'Inventory Use',
+            style: GoogleFonts.roboto(
+              color: AppColors.grey13,
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          SizedBox(height: 10.h),
+
+          // inventory_use(name: 'Cement', percent: 20 , color: AppColors.inProgressText),
+          ListView.builder(
+            itemCount: controler.length,
+            shrinkWrap: true,
+
+             physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              
+              final items = controler[index];
+              var parcentage = items.reserveditem != 0
+                  ? (items.reserveditem / items.useditem) * 100
+                  : 0;
+
+              if (parcentage.isInfinite) {
+                parcentage = 0;
+              }
+              Color color;
+              if (parcentage >= 90) {
+                color = AppColors.chartOrange;
+              } else if (parcentage >= 50) {
+                color = AppColors.chartYellow;
+              } else if (parcentage >= 10) {
+                color = AppColors.greenColor;
+              } else {
+                color = AppColors.greenColor;
+              }
+              return Padding(
+                 padding:   EdgeInsets.only( bottom :8.0.r),
+                child: inventory_use(
+                  name: items.title,
+                  percent: parcentage,
+                  color: color,
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
@@ -140,16 +187,22 @@ class Project_Overview extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Milestone Timeline',
-            style: GoogleFonts.roboto(
-                color: AppColors.titleText,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w500)),
+        Text(
+          'Milestone Timeline',
+          style: GoogleFonts.roboto(
+            color: AppColors.titleText,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         SizedBox(height: 12.h),
         ...maxTasks.map((task) {
-          final endDate = task.endDate != null ? DateTime.tryParse(task.endDate!) : null;
-          final formattedDate =
-              endDate != null ? DateFormat('MMM d, yyyy').format(endDate) : '';
+          final endDate = task.endDate != null
+              ? DateTime.tryParse(task.endDate!)
+              : null;
+          final formattedDate = endDate != null
+              ? DateFormat('MMM d, yyyy').format(endDate)
+              : '';
           return Project_Over_milestone(
             title: task.title ?? '',
             date: formattedDate,
@@ -171,11 +224,14 @@ class Project_Overview extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('Active Task',
-                style: GoogleFonts.roboto(
-                    color: AppColors.titleText,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500)),
+            Text(
+              'Active Task',
+              style: GoogleFonts.roboto(
+                color: AppColors.titleText,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const Spacer(),
           ],
         ),
@@ -193,70 +249,77 @@ class Project_Overview extends StatelessWidget {
     );
   }
 
- Widget _recentActivitySection(List<dynamic> activities) {
-  if (activities.isEmpty) return const SizedBox();
+  Widget _recentActivitySection(List<dynamic> activities) {
+    if (activities.isEmpty) return const SizedBox();
 
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(
-        children: [
-          Text('Recent Activity',
-              style: GoogleFonts.roboto(
-                  color: AppColors.titleText,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w500)),
-          const Spacer(),
-          Text('View All',
-              style: GoogleFonts.roboto(
-                  color: AppColors.grey14,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600)),
-        ],
-      ),
-      SizedBox(height: 20.h),
-      ...activities.map((activity) {
-        final timestamp = (activity.timestamp != null && activity.timestamp!.isNotEmpty)
-            ? DateTime.tryParse(activity.timestamp!)
-            : null;
-        final formattedTime =
-            timestamp != null ? DateFormat('hh:mm a').format(timestamp) : '';
-
-        return Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    '${activity.firstName ?? ''} ${activity.lastName ?? ''} ${activity.message ?? ''}',
-                    style: GoogleFonts.roboto(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.textclr,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                if (formattedTime.isNotEmpty)
-                  Text(
-                    formattedTime,
-                    style: GoogleFonts.roboto(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.textclr,
-                    ),
-                  ),
-              ],
+            Text(
+              'Recent Activity',
+              style: GoogleFonts.roboto(
+                color: AppColors.titleText,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-            const Divider(),
+            const Spacer(),
+            Text(
+              'View All',
+              style: GoogleFonts.roboto(
+                color: AppColors.grey14,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
-        );
-      }).toList(),
-    ],
-  );
-}
+        ),
+        SizedBox(height: 20.h),
+        ...activities.map((activity) {
+          final timestamp =
+              (activity.timestamp != null && activity.timestamp!.isNotEmpty)
+              ? DateTime.tryParse(activity.timestamp!)
+              : null;
+          final formattedTime = timestamp != null
+              ? DateFormat('hh:mm a').format(timestamp)
+              : '';
 
+          return Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      '${activity.firstName ?? ''} ${activity.lastName ?? ''} ${activity.message ?? ''}',
+                      style: GoogleFonts.roboto(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textclr,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  SizedBox(width: 12.w),
+                  if (formattedTime.isNotEmpty)
+                    Text(
+                      formattedTime,
+                      style: GoogleFonts.roboto(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textclr,
+                      ),
+                    ),
+                ],
+              ),
+              const Divider(),
+            ],
+          );
+        }).toList(),
+      ],
+    );
+  }
 
   Color _getStatusColor(String? status) {
     switch (status?.toUpperCase()) {
@@ -278,5 +341,3 @@ class Project_Overview extends StatelessWidget {
     return "$difference Days Left";
   }
 }
-
-
