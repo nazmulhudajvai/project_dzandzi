@@ -8,7 +8,7 @@ import '../../theams/app_color2.dart';
 
 class CustomCardProgressCards extends StatelessWidget {
   final String heading;
-  final String value;
+  final int value;
   final String iconPath;
   final String iconPath2;
   final Color startColor;
@@ -100,7 +100,7 @@ class CustomCardProgressCards extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              value,
+              "$value",
               style: TextStyle(
                 color: AppColors.whiteColor,
                 fontSize: 40.sp,

@@ -1,18 +1,17 @@
-
 import 'package:dzandzi/presentation/controllers/project_pages_controler/overview_controler.dart';
 import 'package:dzandzi/presentation/controllers/project_pages_controler/project_task_controler.dart';
 import 'package:dzandzi/presentation/data/models/project_overview_model.dart';
-import 'package:dzandzi/presentation/data/models/project_task_model.dart';
 import 'package:dzandzi/presentation/pages/projects_page/Project_peichart.dart';
-import 'package:dzandzi/presentation/widgets/employee_profile_card.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/Project_Overview_milestone.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_card.dart';
+import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_inventory_use_section.dart';
 import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_metric_card.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class Project_Overview extends StatelessWidget {
   final String projectId;
@@ -22,7 +21,7 @@ class Project_Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProjectOverviewController(projectId));
-     
+    final taskcontroller = Get.put(ProjectTaskController());
 
     return Scaffold(
       backgroundColor: AppColors.pageBackgroundColor,
@@ -41,20 +40,17 @@ class Project_Overview extends StatelessWidget {
             return const Center(child: Text("No data available"));
           }
 
-          final task = data.taskAnalytics;
-          // final lastThreeActivetasks=task.lastThreeActiveTasks.toList();
-          
-
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 1.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Project_peichart(completionPercent:task.avarageProgress/100),
-                Project_peichart(completionPercent: data.taskAnalytics.avarageProgress),
+                Project_peichart(
+                  completionPercent: data.taskAnalytics?.averageProgress ?? 0,
+                ),
                 SizedBox(height: 24.h),
 
-                // Task cards
+                // Task metric cards
                 GridView.count(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10.w,
@@ -65,28 +61,28 @@ class Project_Overview extends StatelessWidget {
                   children: [
                     Project_Over_metric_card(
                       title: 'Total Task',
-                      value: '${task.totalTaskCount}',
+                      value: '${data.taskAnalytics?.totalTaskCount ?? 0}',
                       icon: "assets/image/total_task.svg",
                       iconBackgroundColor: AppColors.totalProjectIcon,
                       valueColor: AppColors.totalProjectIcon,
                     ),
                     Project_Over_metric_card(
                       title: 'On-going Task',
-                      value: '${task.ongoingTaskCount}',
+                      value: '${data.taskAnalytics?.ongoingTaskCount ?? 0}',
                       icon: "assets/image/onGoing.svg",
                       iconBackgroundColor: AppColors.ongoingIcon,
                       valueColor: AppColors.ongoingIcon,
                     ),
                     Project_Over_metric_card(
                       title: 'Complete Task',
-                      value: '${task.completedTaskCount}',
+                      value: '${data.taskAnalytics?.completedTaskCount ?? 0}',
                       icon: "assets/image/complete_task.svg",
                       iconBackgroundColor: AppColors.completeProjectIconColor,
                       valueColor: AppColors.completeProjectIconColor,
                     ),
                     Project_Over_metric_card(
                       title: 'Budget Used',
-                      value: '${data.inventoryBudget}',
+                      value: '${data.inventoryBudget ?? 0}',
                       icon: "assets/image/dollar.svg",
                       iconBackgroundColor: AppColors.budgetUserColor,
                       valueColor: AppColors.budgetUserColor,
@@ -97,13 +93,11 @@ class Project_Overview extends StatelessWidget {
                 SizedBox(height: 12.h),
                 _inventorySection(),
                 SizedBox(height: 24.h),
-                _milestonesSection(),
+                _milestonesSection(data),
                 SizedBox(height: 24.h),
-                _activeTaskSection( ),
+                _activeTaskSection(data),
                 SizedBox(height: 30.h),
-                // _employeeSection(),
-                // SizedBox(height: 30.h),
-                _recentActivitySection(data.taskAnalytics.recentActivities),
+                _recentActivitySection(data.taskAnalytics?.recentActivities ?? []),
               ],
             ),
           );
@@ -130,30 +124,19 @@ class Project_Overview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _inventoryRow('Cement', '23%', AppColors.inProgressText),
+          inventory_use(name: 'Cement', percent: 20 , color: AppColors.inProgressText),
           SizedBox(height: 7.h),
-          _inventoryRow('Steel', '25%', AppColors.inventoryText),
+          inventory_use(name: 'Steel', percent: 30 , color: AppColors.inventoryText),
           SizedBox(height: 7.h),
-          _inventoryRow('Paint', '20%', AppColors.paintColor),
+          inventory_use(name: 'Paint', percent: 45 , color: AppColors.paintColor),
         ],
       ),
     );
   }
 
-  Widget _inventoryRow(String name, String percent, Color color) {
-    return Row(
-      children: [
-        CircleAvatar(radius: 7.r, backgroundColor: color),
-        SizedBox(width: 8.w),
-        Text(name, style: TextStyle(color: AppColors.grey13, fontSize: 14.sp)),
-        const Spacer(),
-        Text(percent,
-            style: TextStyle(color: AppColors.textcolor2, fontSize: 14.sp)),
-      ],
-    );
-  }
+  Widget _milestonesSection(ProjectOverviewModel data) {
+    final maxTasks = data.taskAnalytics?.maximumProgress5Tasks ?? [];
 
-  Widget _milestonesSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -163,35 +146,26 @@ class Project_Overview extends StatelessWidget {
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w500)),
         SizedBox(height: 12.h),
-        Project_Over_milestone(
-          title: "Foundation Completion",
-          date: "Oct 30, 2023",
-          status: "Complete",
-          statusColor: Colors.green,
-          progress: 1.0,
-          daysLeft: "",
-        ),
-        Project_Over_milestone(
-          title: "Framing & Structure",
-          date: "Nov 15, 2023",
-          status: "Complete",
-          statusColor: Colors.green,
-          progress: 1.0,
-          daysLeft: "",
-        ),
-        Project_Over_milestone(
-          title: "Electrical & Plumbing",
-          date: "Dec 5, 2023",
-          status: "On Task",
-          statusColor: Colors.blue,
-          progress: 0.75,
-          daysLeft: "3 Days Left",
-        ),
+        ...maxTasks.map((task) {
+          final endDate = task.endDate != null ? DateTime.tryParse(task.endDate!) : null;
+          final formattedDate =
+              endDate != null ? DateFormat('MMM d, yyyy').format(endDate) : '';
+          return Project_Over_milestone(
+            title: task.title ?? '',
+            date: formattedDate,
+            status: task.status ?? '',
+            statusColor: _getStatusColor(task.status),
+            progress: (task.progress ?? 0) / 100,
+            daysLeft: endDate != null ? _calculateDaysLeft(endDate) : '',
+          );
+        }).toList(),
       ],
     );
   }
 
-  Widget _activeTaskSection( ) {
+  Widget _activeTaskSection(ProjectOverviewModel data) {
+    final tasks = data.taskAnalytics?.lastThreeActiveTasks ?? [];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -203,120 +177,106 @@ class Project_Overview extends StatelessWidget {
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500)),
             const Spacer(),
-            Text('View All',
-                style: GoogleFonts.roboto(
-                    color: AppColors.grey14,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600)),
           ],
         ),
-        SizedBox(height: 30.h),
-        project_card(
-            title:'Foundation inspection',
-            isProgress: false,
-            progress: 50,
-            isdayshow: false),
-        project_card(
-            title: 'Foundation inspection',
-            isProgress: false,
-            progress: 70,
-            isdayshow: false),
-      ],
-    );
-  }
-
-  // Widget _employeeSection() {
-
-  //   // final d
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Row(
-  //         children: [
-  //           Text('Today On Site',
-  //               style: GoogleFonts.roboto(
-  //                   color: AppColors.titleText,
-  //                   fontSize: 20.sp,
-  //                   fontWeight: FontWeight.w500)),
-  //           const Spacer(),
-  //           Text('View All',
-  //               style: GoogleFonts.roboto(
-  //                   color: AppColors.grey14,
-  //                   fontSize: 16.sp,
-  //                   fontWeight: FontWeight.w600)),
-  //         ],
-  //       ),
-  //       SizedBox(height: 30.h),
-  //       SingleChildScrollView(
-  //         scrollDirection: Axis.horizontal,
-  //         child: Row(
-  //           children: List.generate(4, (index) {
-  //             return Padding(
-  //               padding: EdgeInsets.only(right: 10.w),
-  //               child: EmployeeProfileCard(
-  //                   imagePath: 'assets/image/damyPic.png',
-  //                   name: 'John Doe',
-  //                   role: 'Owner'),
-  //             );
-  //           }),
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  Widget _recentActivitySection(List<dynamic> activities) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-
-        Row(
-          children: [
-            Text('Recent Activity',
-                style: GoogleFonts.roboto(
-                    color: AppColors.titleText,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500)),
-            const Spacer(),
-            Text('View All',
-                style: GoogleFonts.roboto(
-                    color: AppColors.grey14,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600)),
-          ],
-        ),
-        SizedBox(height: 30.h),
-        ...activities.map((activity) {
-          return Column(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    '${activity["firstName"] ?? ""} ${activity["lastName"] ?? ""} ${activity["message"] ?? ""}',
-                    style: GoogleFonts.roboto(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.textclr,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    activity["timestamp"] != null
-                        ? activity["timestamp"].toString().substring(11, 16)
-                        : '',
-                    style: GoogleFonts.roboto(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.textclr,
-                    ),
-                  ),
-                ],
-              ),
-              const Divider(),
-            ],
+        SizedBox(height: 20.h),
+        ...tasks.map((task) {
+          return project_card(
+            title: task.title ?? '',
+            progress: (task.progress ?? 0),
+            days: 14,
+            isdayshow: false,
+            isProgress: true,
           );
         }).toList(),
       ],
     );
   }
+
+ Widget _recentActivitySection(List<dynamic> activities) {
+  if (activities.isEmpty) return const SizedBox();
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        children: [
+          Text('Recent Activity',
+              style: GoogleFonts.roboto(
+                  color: AppColors.titleText,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w500)),
+          const Spacer(),
+          Text('View All',
+              style: GoogleFonts.roboto(
+                  color: AppColors.grey14,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600)),
+        ],
+      ),
+      SizedBox(height: 20.h),
+      ...activities.map((activity) {
+        final timestamp = (activity.timestamp != null && activity.timestamp!.isNotEmpty)
+            ? DateTime.tryParse(activity.timestamp!)
+            : null;
+        final formattedTime =
+            timestamp != null ? DateFormat('hh:mm a').format(timestamp) : '';
+
+        return Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    '${activity.firstName ?? ''} ${activity.lastName ?? ''} ${activity.message ?? ''}',
+                    style: GoogleFonts.roboto(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.textclr,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                SizedBox(width: 12.w),
+                if (formattedTime.isNotEmpty)
+                  Text(
+                    formattedTime,
+                    style: GoogleFonts.roboto(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.textclr,
+                    ),
+                  ),
+              ],
+            ),
+            const Divider(),
+          ],
+        );
+      }).toList(),
+    ],
+  );
 }
+
+
+  Color _getStatusColor(String? status) {
+    switch (status?.toUpperCase()) {
+      case 'DONE':
+      case 'COMPLETE':
+        return Colors.green;
+      case 'TODO':
+        return Colors.blue;
+      case 'ONGOING':
+        return Colors.orange;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  String _calculateDaysLeft(DateTime endDate) {
+    final difference = endDate.difference(DateTime.now()).inDays;
+    if (difference <= 0) return "Due";
+    return "$difference Days Left";
+  }
+}
+
+

@@ -12,7 +12,7 @@ import '../../../theams/app_color2.dart';
 import '../../controllers/home_controller.dart';
 
 class HomeView extends StatelessWidget {
-  final HomeController controller = Get.put(HomeController());
+  final HomeController controller= Get.put(HomeController());
   final BottomNavController bottomNavController = Get.put(
     BottomNavController(),
   );
@@ -27,6 +27,7 @@ class HomeView extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.all(10),
           child: SingleChildScrollView(
+            
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -136,36 +137,47 @@ class HomeView extends StatelessWidget {
                 ),
 
                 SizedBox(height: 16.h),
-                CustomCardProgressCards(
-                  heading: 'Total Project',
-                  value: '56',
-                  iconPath: 'assets/image/itp.svg',
-                  startColor: AppColor.blueColor,
-                  endColor: AppColor.blueLiteColor,
-                  boxsColor: AppColor.blueLiteColor.withOpacity(.4),
-                  iconPath2: 'assets/image/ifrwd.svg',
+
+                Obx(
+                  ()=> SizedBox(
+                    child: Column(
+                      children: [  
+                  CustomCardProgressCards(
+                    heading: 'Total Project',
+                    value: controller.homeData.value?.ComplitedProjects ??0,
+                    iconPath: 'assets/image/itp.svg',
+                    startColor: AppColor.blueColor,
+                    endColor: AppColor.blueLiteColor,
+                    boxsColor: AppColor.blueLiteColor.withOpacity(.4),
+                    iconPath2: 'assets/image/ifrwd.svg',
+                  ),
+                  SizedBox(height: 16.h),
+                  CustomCardProgressCards(
+                    heading: 'On-going Project',
+                    value: controller.homeData.value?.InProgressProjects??0,
+                    iconPath: 'assets/image/iongoing.svg',
+                    startColor: AppColors.orangeDeep,
+                    endColor: AppColors.orangelight,
+                    boxsColor: AppColors.orangelight.withOpacity(.4),
+                    iconPath2: 'assets/image/ifrwd.svg',
+                  ),
+                  SizedBox(height: 16.h),
+                  CustomCardProgressCards(
+                    heading: 'Complete',
+                    value: controller.homeData.value?.ComplitedProjects??0,
+                    iconPath: ImageAssets.done,
+                    startColor: AppColors.completeProjectSection1,
+                    endColor: AppColors.completeProjectSection2,
+                    boxsColor: AppColors.completeProjectSection2.withOpacity(0.4),
+                    iconPath2: 'assets/image/ifrwd.svg',
+                  ),
+                  SizedBox(height: 16.h),
+                  
+                      ]
+                  
+                    ),
+                  ),
                 ),
-                SizedBox(height: 16.h),
-                CustomCardProgressCards(
-                  heading: 'On-going Project',
-                  value: '56',
-                  iconPath: 'assets/image/iongoing.svg',
-                  startColor: AppColors.orangeDeep,
-                  endColor: AppColors.orangelight,
-                  boxsColor: AppColors.orangelight.withOpacity(.4),
-                  iconPath2: 'assets/image/ifrwd.svg',
-                ),
-                SizedBox(height: 16.h),
-                CustomCardProgressCards(
-                  heading: 'Complete',
-                  value: '56',
-                  iconPath: ImageAssets.done,
-                  startColor: AppColors.completeProjectSection1,
-                  endColor: AppColors.completeProjectSection2,
-                  boxsColor: AppColors.completeProjectSection2.withOpacity(0.4),
-                  iconPath2: 'assets/image/ifrwd.svg',
-                ),
-                SizedBox(height: 16.h),
 
                 InkWell(
                   onTap: () {

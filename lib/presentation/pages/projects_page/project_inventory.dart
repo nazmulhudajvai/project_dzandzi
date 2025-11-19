@@ -1,5 +1,6 @@
  import 'package:dzandzi/presentation/controllers/project_pages_controler/project_inventory_controler.dart';
  import 'package:dzandzi/presentation/widgets/projects_common_widgets/Project_inventory_item_card.dart';
+import 'package:dzandzi/presentation/widgets/projects_common_widgets/project_inventory_use_section.dart';
  import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,23 +56,11 @@ class Project_inventory extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 7.h),
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 7.r,
-                                  backgroundColor: AppColors.inventoryText,
-                                ),
-                                SizedBox(width: 8.w),
-                                Text('Steel'),
-                                Spacer(),
-                                Text(
-                                  '25%',
-                                  style: TextStyle(
-                                      color: AppColors.textcolor2,
-                                      fontSize: 14.sp),
-                                ),
-                              ],
-                            ),
+                           inventory_use(name:'Cement', percent: 48, color: Colors.green),
+                           SizedBox(height: 5.h),
+                           inventory_use(name: 'Steel', percent: 30, color: Colors.blue),
+                            SizedBox(height: 5.h),
+                           inventory_use(name: 'Steel', percent: 30, color: Colors.yellow),
                           ],
                         ),
                       ),
