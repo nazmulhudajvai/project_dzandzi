@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 class ProjectPageApi {
 
-    static const String baseUrl='https://a944e6c56434.ngrok-free.app';
+    static const String baseUrl='https://08cdd6970275.ngrok-free.app';
     static const String endpoint='project/list';
     static const String createProjectEndpoint ='project/create';
     static const String getProjects='$baseUrl/$endpoint';

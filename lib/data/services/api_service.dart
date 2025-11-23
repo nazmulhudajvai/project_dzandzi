@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class ApiService extends GetxService {
 
  
-  final String baseUrl = "https://a944e6c56434.ngrok-free.app";
+  final String baseUrl = "https://08cdd6970275.ngrok-free.app";
   final refreshToken =ProjectPageApi.refreshToken;
 
   Future<http.Response> post(String endpoint, Map<String, dynamic> body) async {
