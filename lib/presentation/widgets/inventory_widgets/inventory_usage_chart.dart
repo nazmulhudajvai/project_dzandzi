@@ -2,130 +2,146 @@ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../../controllers/inventory/project_usage_filter_controller.dart';
 
 class InventoryUsageChart extends StatelessWidget {
   const InventoryUsageChart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final data = [
-      {'used': 2200.0, 'total': 2600.0},
-      {'used': 1800.0, 'total': 2600.0},
-      {'used': 2100.0, 'total': 2600.0},
-      {'used': 800.0, 'total': 2600.0},
-      {'used': 2000.0, 'total': 2600.0},
-    ];
+    final controller = Get.find<ProjectUsageFilterController>();
 
-    final labels = ['Kitchen Remodel', 'Kitchen Remodel', 'Kitchen Remodel', 'Kitchen Remodel', 'Kitchen Remodel'];
-
-    return Container(
-      padding: EdgeInsets.only(top: 16.h, bottom: 40.h, left: 16.w, right: 16.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.15),
-            blurRadius: 12.r,
-            offset: Offset(0, 5.h),
+    return Obx(() {
+      print('📊 Chart rebuild - Projects: ${controller.allProjects.length}');
+      
+      final projects = controller.allProjects.take(5).toList();
+      
+      if (projects.isEmpty) {
+        return Container(
+          padding: EdgeInsets.all(40.w),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.15),
+                blurRadius: 12.r,
+                offset: Offset(0, 5.h),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Inventory Usage by Project',
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w600,
-              color: Colors.black87,
+          child: Center(
+            child: Column(
+              children: [
+                Icon(Icons.bar_chart, size: 48.sp, color: AppColors.subtitleColor),
+                SizedBox(height: 16.h),
+                Text('No project data', style: TextStyle(color: AppColors.subtitleColor, fontSize: 14.sp)),
+              ],
             ),
           ),
-          SizedBox(height: 40.h),
-          AspectRatio(
-            aspectRatio: 1.3,
-            child: BarChart(
-              BarChartData(
-                alignment: BarChartAlignment.spaceAround,
-                maxY: 3200,
-                barTouchData: BarTouchData(enabled: false),
-                titlesData: FlTitlesData(
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 48.w,
-                      interval: 800,
-                      getTitlesWidget: (value, meta) {
-                        final int v = value.toInt();
-                        const allowed = [0, 800, 1600, 2400, 3200];
-                        if (!allowed.contains(v)) return const SizedBox.shrink();
-                        return Padding(
-                          padding: EdgeInsets.only(right: 6.w),
-                          child: Text(
-                            v.toString(),
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  rightTitles:
-                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  topTitles:
-                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 40.h,
-                      interval: 1,
-                      getTitlesWidget: (value, meta) {
-                        final int index = value.toInt();
-                        final text = (index >= 0 && index < labels.length)
-                            ? labels[index]
-                            : '';
-                        return Padding(
-                          padding: EdgeInsets.only(top: 16.h, right: 70.w),
-                          child: Transform.rotate(
-                            angle: -0.4,
+        );
+      }
+
+      final maxValue = projects.map((p) => p.totalValue).reduce((a, b) => a > b ? a : b);
+      final roundedMax = maxValue > 0 ? ((maxValue / 20000).ceil() * 20000).toDouble() : 20000.0;
+
+      return Container(
+        padding: EdgeInsets.only(top: 16.h, bottom: 40.h, left: 16.w, right: 16.w),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.15),
+              blurRadius: 12.r,
+              offset: Offset(0, 5.h),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Inventory Usage by Project',
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600, color: Colors.black87),
+            ),
+            SizedBox(height: 40.h),
+            AspectRatio(
+              aspectRatio: 1.3,
+              child: BarChart(
+                BarChartData(
+                  alignment: BarChartAlignment.spaceAround,
+                  maxY: roundedMax,
+                  barTouchData: BarTouchData(enabled: false),
+                  titlesData: FlTitlesData(
+                    leftTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 50.w,
+                        interval: roundedMax / 4,
+                        getTitlesWidget: (value, meta) {
+                          if (value == 0) return Text('0', style: TextStyle(fontSize: 10.sp, color: Colors.black54));
+                          return Padding(
+                            padding: EdgeInsets.only(right: 6.w),
                             child: Text(
-                              text,
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Colors.black54,
+                              '${(value / 1000).toInt()}k',
+                              style: TextStyle(fontSize: 10.sp, color: Colors.black54),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                    bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        reservedSize: 80.h,
+                        interval: 1,
+                        getTitlesWidget: (value, meta) {
+                          final int index = value.toInt();
+                          if (index < 0 || index >= projects.length) return SizedBox.shrink();
+                          
+                          final text = projects[index].projectName;
+                          return Padding(
+                            padding: EdgeInsets.only(top: 8.h),
+                            child: Transform.rotate(
+                              angle: -0.5,
+                              child: Text(
+                                text,
+                                style: TextStyle(fontSize: 8.sp, color: Colors.black54),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
                               ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-                gridData: FlGridData(show: false),
-                // draw thin grey lines for left and bottom axes
-                borderData: FlBorderData(
-                  show: true,
-                  border: Border(
-                    left: BorderSide(color: Colors.grey.shade300, width: 1),
-                    bottom: BorderSide(color: Colors.grey.shade300, width: 1),
-                    top: BorderSide(color: Colors.transparent, width: 0),
-                    right: BorderSide(color: Colors.transparent, width: 0),
+                  gridData: FlGridData(show: false),
+                  borderData: FlBorderData(
+                    show: true,
+                    border: Border(
+                      left: BorderSide(color: Colors.grey.shade300, width: 1),
+                      bottom: BorderSide(color: Colors.grey.shade300, width: 1),
+                      top: BorderSide.none,
+                      right: BorderSide.none,
+                    ),
                   ),
+                  barGroups: List.generate(projects.length, (index) {
+                    final double value = (projects[index].totalValue > 0 ? projects[index].totalValue : 100).toDouble();
+                    return _makeStackedBar(index, value, roundedMax);
+                  }),
                 ),
-                barGroups: List.generate(data.length, (index) {
-                  final used = data[index]['used']!;
-                  final total = data[index]['total']!;
-                  return _makeStackedBar(index, used, total);
-                }),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 
   BarChartGroupData _makeStackedBar(int x, double used, double total) {

@@ -12,18 +12,14 @@ import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 class AddInventory extends StatefulWidget {
   final CustomDropdownFieldController controller = Get.put(
     CustomDropdownFieldController(),
   );
-
   AddInventory({super.key});
-
   @override
   State<AddInventory> createState() => _AddInventoryState();
 }
-
 class _AddInventoryState extends State<AddInventory> {
   // use existing FilterController instance if present, otherwise create it
   final FilterController filterController = Get.isRegistered<FilterController>()
@@ -33,12 +29,10 @@ class _AddInventoryState extends State<AddInventory> {
       Get.isRegistered<InventoryController>()
       ? Get.find<InventoryController>()
       : Get.put(InventoryController());
-
   final TextEditingController _nameCtrl = TextEditingController();
   final TextEditingController _descCtrl = TextEditingController();
   final TextEditingController _quantityCtrl = TextEditingController();
   final TextEditingController _valueCtrl = TextEditingController();
-
   @override
   void dispose() {
     _nameCtrl.dispose();
@@ -60,7 +54,7 @@ class _AddInventoryState extends State<AddInventory> {
     final String valueText = _valueCtrl.text.trim();
 
     if (name.isEmpty || qtyText.isEmpty) {
-      Get.snackbar(
+       Get.snackbar(
         'Validation',
         'Please provide item name and quantity',
         snackPosition: SnackPosition.BOTTOM,
@@ -72,7 +66,7 @@ class _AddInventoryState extends State<AddInventory> {
     final double? valuePerUnit = double.tryParse(valueText);
 
     if (quantity == null || valuePerUnit == null) {
-      Get.snackbar(
+       Get.snackbar(
         'Validation',
         'Quantity and Value must be valid numbers',
         snackPosition: SnackPosition.BOTTOM,
@@ -83,12 +77,10 @@ class _AddInventoryState extends State<AddInventory> {
     final String unit = widget.controller.selectedUnit.value.isEmpty
         ? 'Pieces'
         : widget.controller.selectedUnit.value;
-
     final String category = widget.controller.selectedAddCategory.value.isEmpty
         ? 'Materials'
         : widget.controller.selectedAddCategory.value;
-
-    final newItem = AddItemModel(
+         final newItem = AddItemModel(
       title: name,
       quantity: quantity,
       lowStockThreshold: 10,
@@ -96,12 +88,9 @@ class _AddInventoryState extends State<AddInventory> {
       category: category,
       valuePerUnit: valuePerUnit,
     );
-
-    print('🚀 Adding item: ${newItem.toJson()}');
-
-    final success = await inventoryController.addItem(newItem);
-
-    if (success) {
+     print('🚀 Adding item: ${newItem.toJson()}');
+     final success = await inventoryController.addItem(newItem);
+     if (success) {
       Get.back(); // Close add screen
       Get.snackbar(
         'Success',
@@ -138,7 +127,6 @@ class _AddInventoryState extends State<AddInventory> {
               },
               child: Image.asset(ImageAssets.back, width: 19.sp, height: 16.sp),
             ),
-
             SizedBox(height: 30.h),
             Text(
               'Add New Items',
@@ -162,7 +150,7 @@ class _AddInventoryState extends State<AddInventory> {
               fieldText: 'Enter here...',
             ),
             SizedBox(height: 16.h),
-            Row(
+              Row(
               children: [
                 Expanded(
                   child: Column(

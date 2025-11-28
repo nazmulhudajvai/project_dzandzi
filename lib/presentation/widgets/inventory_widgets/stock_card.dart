@@ -2,13 +2,11 @@ import 'package:dzandzi/presentation/widgets/text_property.dart';
 import 'package:dzandzi/theams/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class StockCard extends StatelessWidget {
   final String heading;
   final String costText;
   final int quantity;
   final String unit;
-
   const StockCard({
     super.key,
     required this.heading,
@@ -16,13 +14,11 @@ class StockCard extends StatelessWidget {
     required this.quantity,
     this.unit = 'pcs',
   });
-
   String get _status {
     if (quantity == 0) return 'Out of Stock';
     if (quantity < 50) return 'Low Stock';
     return 'In Stock';
   }
-
   Color get _statusColor {
     if (quantity == 0) return AppColors.inventoryRedText;
     if (quantity < 50) return AppColors.lowStockColor; // Low stock color
@@ -30,8 +26,8 @@ class StockCard extends StatelessWidget {
   }
 
   String _displayPrice(String input) {
-    final trimmed = input.trim();
-    if (trimmed.isEmpty) return '€0';
+     final trimmed = input.trim();
+      if (trimmed.isEmpty) return '€0';
 
     // Extract numeric value and format with currency
     final numeric = double.tryParse(trimmed.split(RegExp(r'\s+')).first);

@@ -2,7 +2,6 @@ import 'package:dzandzi/core/model/inventory_models/add_item_model.dart';
 import 'package:dzandzi/core/model/inventory_models/inventory_info_model.dart';
 import 'package:dzandzi/core/services/add_inventory_api_service.dart';
 import 'package:get/get.dart';
-
 class InventoryController extends GetxController {
   final AddInventoryApiService _service = AddInventoryApiService();
   var isLoading = false.obs;
@@ -14,7 +13,6 @@ class InventoryController extends GetxController {
   var totalItems = 0.obs;
   var inStock = 0.obs;
   var needAttention = 0.obs;
-
   // Computed filtered items based on search query
   List<AddItemModel> get filteredItems {
     if (searchQuery.value.isEmpty) {
@@ -32,21 +30,16 @@ class InventoryController extends GetxController {
   void clearSearch() {
     searchQuery.value = '';
   }
-
-  Future<bool> addItem(AddItemModel item) async {
+   Future<bool> addItem(AddItemModel item) async {
     try {
       isLoading.value = true;
-
-      final success = await _service.addItem(item.toJson());
-
-      if (success) {
+        final success = await _service.addItem(item.toJson());
+         if (success) {
         print('✅ Item added, refreshing list...');
-
-        // Refresh items from server to show the new item
+         // Refresh items from server to show the new item
         await fetchItems();
         await fetchInventoryInfo();
-
-        isLoading.value = false;
+         isLoading.value = false;
         return true;
       } else {
         isLoading.value = false;
@@ -60,7 +53,7 @@ class InventoryController extends GetxController {
   }
 
   Future<void> fetchItems() async {
-    try {
+     try {
       isLoading.value = true;
       final fetchedItems = await _service.getItems();
       items.value = fetchedItems;
@@ -73,7 +66,7 @@ class InventoryController extends GetxController {
   }
 
   Future<void> fetchInventoryInfo() async {
-    try {
+     try {
       final info = await _service.getInventoryInfo();
       if (info != null) {
         totalValue.value = info.totalValue;
@@ -140,7 +133,7 @@ class InventoryController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchItems();
+     fetchItems();
     fetchInventoryInfo();
   }
 }

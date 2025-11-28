@@ -22,7 +22,7 @@ class LoginController extends GetxController {
   Future<void> login() async {
     // Validate the fields
     if (emailController.text.isEmpty ||
-        phoneController.text.isEmpty ||
+        // phoneController.text.isEmpty ||
         passwordController.text.isEmpty) {
       Get.snackbar("Error", "All fields are required",
           snackPosition: SnackPosition.BOTTOM);
@@ -39,8 +39,11 @@ class LoginController extends GetxController {
 
     try {
       final response = await http.post(
-        Uri.parse('https://0eb38cd6013b.ngrok-free.app/auth/login'),
-        headers: {'Content-Type': 'application/json'},
+        Uri.parse('https://simple-stingray-daring.ngrok-free.app/auth/login'),
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
+        },
         body: json.encode(body),
       );
 

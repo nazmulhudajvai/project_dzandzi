@@ -15,7 +15,7 @@ class InventoryInfoModel {
     return InventoryInfoModel(
       totalValue: (json['totalValue'] ?? 0).toDouble(),
       totalItems: json['totalItems'] ?? 0,
-      remainingItems: json['remainingItems'] ?? 0,
+       remainingItems: json['remainingItems'] ?? 0,
       remaingigInvetoryItems: json['remaingigInvetoryItems'] ?? 0,
     );
   }

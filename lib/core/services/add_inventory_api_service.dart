@@ -3,19 +3,18 @@ import 'package:dzandzi/core/model/inventory_models/add_item_model.dart';
 import 'package:dzandzi/core/model/inventory_models/inventory_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 class AddInventoryApiService {
-  static const String baseUrl = 'https://0eb38cd6013b.ngrok-free.app';
+  static const String baseUrl = 'https://simple-stingray-daring.ngrok-free.app';
   static const String endpoint = '/inventory/list';
   final headers = {'Content-Type': 'application/json'};
-  final refreshToken='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkMTY3MWNjNi0wY2FlLTQzNjAtYTUzMi05OWJiZjZmMGVlZGMiLCJyb2xlIjoiT1dORVIiLCJpc1ZlcmlmaWVkIjp0cnVlLCJjb21wYW55SWQiOiJhN2NkMTBhNS1jMGVmLTRhMzQtOTFlNi0zNTE2ZTU5ODU3N2IiLCJpYXQiOjE3NjI2MzY3MjQsImV4cCI6MTc2MzI0MTUyNH0.8qWEdUyhGp7nXeEZhb4wjldfd15mE5Cys0xs-pkh6Zs';
+  final refreshToken='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkNmMxMmI2My1iZTI5LTQ3MjAtOWQyNS1kNWIyMjgxMjRiOTkiLCJyb2xlIjoiT1dORVIiLCJpc1ZlcmlmaWVkIjp0cnVlLCJjb21wYW55SWQiOiJkMTYxOTllNC0wMjVlLTQwMDAtOGQ2NS1kZDM3OTQ5M2MzNjYiLCJpYXQiOjE3NjQzNjczMjUsImV4cCI6MTc2NDk3MjEyNX0.N923yDW64168l8XukC-upqf0qHDdA16bL7FIfpMlM-U';
 
   Map<String,String> get _auth => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $refreshToken',
+        'ngrok-skip-browser-warning': 'true',
       };
-
-  // Map UI values to backend expected values
+        // Map UI values to backend expected values
   String _mapUnitToBackend(String unit) {
     final mapping = {
       'Pieces': 'PIECE',
@@ -66,8 +65,8 @@ class AddInventoryApiService {
   }
 
   Future<bool> addItem(Map<String, dynamic> itemData) async {
-    final url = Uri.parse('$baseUrl/inventory/create');
-    
+     final url = Uri.parse('$baseUrl/inventory/create');
+
     // Transform payload to match backend expectations
     final transformedPayload = {
       'title': itemData['title'],
@@ -77,14 +76,14 @@ class AddInventoryApiService {
       'category': _mapCategoryToBackend(itemData['category']),
       'valuePerUnit': itemData['valuePerUnit'],
     };
-    
+
     print('==========================================');
     print('📤 POST TO: $url');
     print('📋 ORIGINAL: ${jsonEncode(itemData)}');
     print('🔄 TRANSFORMED: ${jsonEncode(transformedPayload)}');
     print('==========================================');
 
-    try {
+     try {
       final response = await http.post(
         url, 
         headers: _auth, 
@@ -94,11 +93,11 @@ class AddInventoryApiService {
         onTimeout: () => throw Exception('Request timeout'),
       );
 
-      print('📥 STATUS: ${response.statusCode}');
+       print('📥 STATUS: ${response.statusCode}');
       print('📥 BODY: ${response.body}');
       print('==========================================');
 
-      if (response.statusCode == 200 || response.statusCode == 201 || response.statusCode == 204) {
+       if (response.statusCode == 200 || response.statusCode == 201 || response.statusCode == 204) {
         print('✅ Item added successfully');
         return true;
       } else {
@@ -117,7 +116,7 @@ class AddInventoryApiService {
 
   Future<bool> updateItem(String itemId, Map<String, dynamic> itemData) async {
     final url = Uri.parse('$baseUrl/inventory/update/$itemId');
-    
+
     final transformedPayload = {
       'title': itemData['title'],
       'quantity': itemData['quantity'],
@@ -126,7 +125,7 @@ class AddInventoryApiService {
       'category': _mapCategoryToBackend(itemData['category']),
       'valuePerUnit': itemData['valuePerUnit'],
     };
-    
+
     print('==========================================');
     print('📤 PUT TO: $url');
     print('🔄 PAYLOAD: ${jsonEncode(transformedPayload)}');
@@ -161,11 +160,11 @@ class AddInventoryApiService {
       print('❌ EXCEPTION: $e');
       return false;
     }
-  }
+     }
 
-  Future<bool> deleteItem(String itemId) async {
+      Future<bool> deleteItem(String itemId) async {
     final url = Uri.parse('$baseUrl/inventory/delete/$itemId');
-    
+
     print('==========================================');
     print('🗑️ DELETE: $url');
     print('==========================================');
@@ -204,21 +203,21 @@ class AddInventoryApiService {
       debugPrint('getItems status: ${response.statusCode}');
 
       if (response.statusCode == 200) {
-        final responseBody = response.body;
+          final responseBody = response.body;
         print('==========================================');
         print('📥 RAW API RESPONSE:');
         print(responseBody);
         print('==========================================');
-        
+
         final List<dynamic> data = jsonDecode(responseBody);
-        
+
         // Debug: print ALL items to see structure
         if (data.isNotEmpty) {
           print('==========================================');
           print('📋 TOTAL ITEMS RECEIVED: ${data.length}');
           print('📋 FIRST ITEM STRUCTURE:');
           print(jsonEncode(data.first));
-          
+
           // Print all keys in first item
           if (data.first is Map) {
             final Map<String, dynamic> firstItem = data.first;
@@ -226,7 +225,7 @@ class AddInventoryApiService {
           }
           print('==========================================');
         }
-        
+
         return data.map((json) {
           // Try ALL possible ID field names
           final id = json['id']?.toString() ?? 
@@ -235,14 +234,14 @@ class AddInventoryApiService {
                      json['itemId']?.toString() ??
                      json['ID']?.toString() ??
                      json['uuid']?.toString();
-          
+
           print('🔍 Processing item: ${json['title']} | ID: $id');
-          
+
           if (id == null || id.isEmpty) {
             print('⚠️⚠️⚠️ WARNING: Item without ID!');
             print('   Full JSON: ${jsonEncode(json)}');
           }
-          
+
           return AddItemModel(
             id: id,
             title: json['title'] ?? '',
@@ -259,17 +258,15 @@ class AddInventoryApiService {
         throw Exception('Failed to load items');
       }
     } catch (e) {
-      print('❌ Error fetching items: $e');
+        print('❌ Error fetching items: $e');
       return [];
     }
   }
-
   Future<InventoryInfoModel?> getInventoryInfo() async {
     try {
       final url = Uri.parse('$baseUrl/inventory/info');
       final response = await http.get(url, headers: _auth);
       debugPrint('getInventoryInfo status: ${response.statusCode}');
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
         return InventoryInfoModel.fromJson(data);

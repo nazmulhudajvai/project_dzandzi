@@ -23,47 +23,51 @@ class OverviewTab extends StatelessWidget {
     return Column(
       children: [
         // dynamic inventory cards using API data
-        Obx(() => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InventoryCards(
-                  heading: 'Total Value',
-                  value: '€${controller.totalValue.value.toStringAsFixed(0)}',
-                  iconPath: ImageAssets.totalValue,
-                  startColor: AppColors.totalValueColor,
-                  endColor: AppColors.totalValueColor1,
-                ),
-                SizedBox(width: 16.w),
-                InventoryCards(
-                  heading: 'Total Items',
-                  value: '${controller.totalItems.value}',
-                  iconPath: ImageAssets.totalItems,
-                  startColor: AppColors.itemsectionColor,
-                  endColor: AppColors.totalItemTextColor,
-                ),
-              ],
-            )),
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InventoryCards(
+                heading: 'Total Value',
+                value: '€${controller.totalValue.value.toStringAsFixed(0)}',
+                iconPath: ImageAssets.totalValue,
+                startColor: AppColors.totalValueColor,
+                endColor: AppColors.totalValueColor1,
+              ),
+              SizedBox(width: 16.w),
+              InventoryCards(
+                heading: 'Total Items',
+                value: '${controller.totalItems.value}',
+                iconPath: ImageAssets.totalItems,
+                startColor: AppColors.itemsectionColor,
+                endColor: AppColors.totalItemTextColor,
+              ),
+            ],
+          ),
+        ),
         SizedBox(height: 16.h),
-        Obx(() => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InventoryCards(
-                  heading: 'in Stock',
-                  value: '${controller.inStock.value}',
-                  iconPath: ImageAssets.inStock,
-                  startColor: AppColors.orangelight,
-                  endColor: AppColors.orangeDeep,
-                ),
-                SizedBox(width: 16.w),
-                InventoryCards(
-                  heading: 'Need Attention',
-                  value: '${controller.needAttention.value}',
-                  iconPath: ImageAssets.needAttention,
-                  startColor: AppColors.needAttentionColor1,
-                  endColor: AppColors.needAttentionColor2,
-                ),
-              ],
-            )),
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InventoryCards(
+                heading: 'in Stock',
+                value: '${controller.inStock.value}',
+                iconPath: ImageAssets.inStock,
+                startColor: AppColors.orangelight,
+                endColor: AppColors.orangeDeep,
+              ),
+              SizedBox(width: 16.w),
+              InventoryCards(
+                heading: 'Need Attention',
+                value: '${controller.needAttention.value}',
+                iconPath: ImageAssets.needAttention,
+                startColor: AppColors.needAttentionColor1,
+                endColor: AppColors.needAttentionColor2,
+              ),
+            ],
+          ),
+        ),
         SizedBox(height: 24.h),
         Align(
           alignment: Alignment.centerLeft,
@@ -160,14 +164,12 @@ class OverviewTab extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         // render filtered items reactively
-
         Obx(() {
           if (controller.isLoading.value) {
             return const Center(child: CircularProgressIndicator());
           }
-
           final items = controller.filteredItems;
-          
+
           if (items.isEmpty && controller.searchQuery.value.isNotEmpty) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -180,7 +182,8 @@ class OverviewTab extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   TextProperty(
-                    text: 'No items found for "${controller.searchQuery.value}"',
+                    text:
+                        'No items found for "${controller.searchQuery.value}"',
                     textColor: AppColors.subtitleColor,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
@@ -201,7 +204,6 @@ class OverviewTab extends StatelessWidget {
               ),
             );
           }
-
           return Column(
             children: items.map((it) {
               return Column(
@@ -213,7 +215,7 @@ class OverviewTab extends StatelessWidget {
                       print('🎯 Item ID: ${it.id}');
                       print('🎯 Full item data: ${it.toJson()}');
                       print('==========================================');
-                      
+
                       Get.to(() => ItemDetail(item: it));
                     },
                     child: StockCard(
@@ -229,46 +231,6 @@ class OverviewTab extends StatelessWidget {
             }).toList(),
           );
         }),
-
-
-
-        // Obx(() {
-        //   final items = filterController.filteredItems;
-        //   if (items.isEmpty) {
-        //     return Padding(
-        //       padding: EdgeInsets.symmetric(vertical: 20.h),
-        //       child: TextProperty(
-        //         text: 'No items match the selected filters',
-        //         textColor: AppColors.subtitleColor,
-        //         fontSize: 14.sp,
-        //         fontWeight: FontWeight.w400,
-        //       ),
-        //     );
-        //   }
-
-        //   return Column(
-        //     children: items
-        //         .map(
-        //           (it) => Column(
-        //             children: [
-        //               GestureDetector(
-        //                 onTap: () {
-        //                   Get.to(() => ItemDetail(item: it));
-        //                 },
-        //                 child: StockCard(
-        //                   heading: it.heading,
-        //                   costText: it.costText,
-        //                   quantity: it.quantity,
-        //                   unit: it.unit,
-        //                 ),
-        //               ),
-        //               SizedBox(height: 12.h),
-        //             ],
-        //           ),
-        //         )
-        //         .toList(),
-        //   );
-        // }),
         SizedBox(height: 24.h),
       ],
     );

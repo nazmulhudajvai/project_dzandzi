@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 class ItemDetail extends StatelessWidget {
   final AddItemModel item;
   final InventoryController controller = Get.find<InventoryController>();
-  
+
   ItemDetail({super.key, required this.item});
 
   String get _status {
@@ -34,7 +34,9 @@ class ItemDetail extends StatelessWidget {
   void _showDeleteDialog(BuildContext context) {
     Get.dialog(
       AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
         title: Text(
           'Delete Item',
           style: TextStyle(
@@ -45,26 +47,20 @@ class ItemDetail extends StatelessWidget {
         ),
         content: Text(
           'Are you sure you want to delete "${item.title}"?\n\nThis action cannot be undone.',
-          style: TextStyle(
-            color: AppColors.subtitleColor,
-            fontSize: 14.sp,
-          ),
+          style: TextStyle(color: AppColors.subtitleColor, fontSize: 14.sp),
         ),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
             child: Text(
               'Cancel',
-              style: TextStyle(
-                color: AppColors.subtitleColor,
-                fontSize: 14.sp,
-              ),
+              style: TextStyle(color: AppColors.subtitleColor, fontSize: 14.sp),
             ),
           ),
           TextButton(
             onPressed: () async {
               Get.back(); // Close dialog
-              
+
               print('🗑️ Attempting to delete item with ID: ${item.id}');
 
               final success = await controller.deleteItem(item.id!);
@@ -196,7 +192,10 @@ class ItemDetail extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 6.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 20.w,
+                        vertical: 6.h,
+                      ),
                       decoration: BoxDecoration(
                         color: _statusColor,
                         borderRadius: BorderRadius.circular(50.r),
@@ -242,9 +241,12 @@ class ItemDetail extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                print('📝 Edit clicked for item: ${item.title}');
+                                // Edit item action
+                                print(
+                                  '📝 Edit clicked for item: ${item.title}',
+                                );
                                 print('📝 Item ID: ${item.id}');
-                                
+
                                 if (item.id != null && item.id!.isNotEmpty) {
                                   Get.to(() => EditInventory(item: item));
                                 } else {
@@ -273,9 +275,12 @@ class ItemDetail extends StatelessWidget {
                             SizedBox(width: 12.w),
                             GestureDetector(
                               onTap: () {
-                                print('🗑️ Delete clicked for item: ${item.title}');
+                                // Delete item action
+                                print(
+                                  '🗑️ Delete clicked for item: ${item.title}',
+                                );
                                 print('🗑️ Item ID: ${item.id}');
-                                
+
                                 if (item.id != null && item.id!.isNotEmpty) {
                                   _showDeleteDialog(context);
                                 } else {
@@ -312,7 +317,11 @@ class ItemDetail extends StatelessWidget {
                         Expanded(
                           child: Column(
                             children: [
-                              Image.asset(ImageAssets.hexa, height: 20.h, width: 20.w),
+                              Image.asset(
+                                ImageAssets.hexa,
+                                height: 20.h,
+                                width: 20.w,
+                              ),
                               SizedBox(height: 8.h),
                               TextProperty(
                                 text: 'Category',
@@ -338,7 +347,11 @@ class ItemDetail extends StatelessWidget {
                         Expanded(
                           child: Column(
                             children: [
-                              Image.asset(ImageAssets.dollar, height: 20.h, width: 20.w),
+                              Image.asset(
+                                ImageAssets.dollar,
+                                height: 20.h,
+                                width: 20.w,
+                              ),
                               SizedBox(height: 8.h),
                               TextProperty(
                                 text: 'Value/Unit',
@@ -371,7 +384,11 @@ class ItemDetail extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.info_outline, size: 16.sp, color: AppColors.subtitleColor),
+                      Icon(
+                        Icons.info_outline,
+                        size: 16.sp,
+                        color: AppColors.subtitleColor,
+                      ),
                       SizedBox(width: 8.w),
                       Expanded(
                         child: Text(

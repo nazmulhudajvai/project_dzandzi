@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/Navigation/custom_bottom_nav.dart';
 
 class InventoryView extends StatelessWidget {
   const InventoryView({super.key});

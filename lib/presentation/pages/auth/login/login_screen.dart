@@ -61,26 +61,26 @@ class LoginView extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
 
-                Text(
-                  'Telephone Number',
-                  style: GoogleFonts.roboto(
-                    color: AppColor.greyBC,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                SizedBox(height: 5.h),
-                CustomInputWidget(
-                  cwidth: 396.w,
-                  radius: 50.r,
-                  cheight: 50.h,
-                  hintText: 'Enter Telephone Number',
-                  onChanged: (String value) {
-                    controller.phoneController.text = value;
-                  },controller: null
-                ),
-                SizedBox(height: 10.h),
+                // Text(
+                //   'Telephone Number',
+                //   style: GoogleFonts.roboto(
+                //     color: AppColor.greyBC,
+                //     fontSize: 16,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                //   textAlign: TextAlign.left,
+                // ),
+                // SizedBox(height: 5.h),
+                // CustomInputWidget(
+                //   cwidth: 396.w,
+                //   radius: 50.r,
+                //   cheight: 50.h,
+                //   hintText: 'Enter Telephone Number',
+                //   onChanged: (String value) {
+                //     controller.phoneController.text = value;
+                //   },controller: null
+                // ),
+                // SizedBox(height: 10.h),
                 Text(
                   'Password',
                   style: GoogleFonts.roboto(

@@ -38,7 +38,7 @@ class _EditInventoryState extends State<EditInventory> {
     _nameCtrl = TextEditingController(text: widget.item.title);
     _quantityCtrl = TextEditingController(text: widget.item.quantity.toString());
     _valueCtrl = TextEditingController(text: widget.item.valuePerUnit.toString());
-    
+
     controller.selectedUnit.value = widget.item.unit;
     controller.selectedAddCategory.value = widget.item.category;
   }
